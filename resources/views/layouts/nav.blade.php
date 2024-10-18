@@ -2,7 +2,7 @@
 <div class="header">
     <div class="header-left">
         <a href="index.html" class="logo">
-            <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>Pre Clinic</span>
+            <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>Medi Care</span>
         </a>
     </div>
     <a id="toggle_btn" href="javascript:void(0);"><img src="assets/img/icons/bar-icon.svg" alt=""></a>
@@ -111,7 +111,7 @@
         <li class="nav-item dropdown has-arrow user-profile-list">
             <a href="#" class="dropdown-toggle nav-link user-link" data-bs-toggle="dropdown">
                 <div class="user-names">
-                    <h5>Liam Michael </h5>
+                    <h5>{{ auth()->user()->name }} </h5>
                     <span>Admin</span>
                 </div>
                 <span class="user-img">
