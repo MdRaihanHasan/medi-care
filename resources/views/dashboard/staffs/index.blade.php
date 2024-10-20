@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="doctors.html">Doctors </a></li>
+                        <li class="breadcrumb-item"><a href="doctors.html">Patients </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Doctors List</li>
+                        <li class="breadcrumb-item active">Patients List</li>
                     </ul>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                             <div class="row align-items-center">
                                 <div class="col">
                                     <div class="doctor-table-blk">
-                                        <h3>Doctors List</h3>
+                                        <h3>Patients List</h3>
                                         <div class="doctor-search-blk">
                                             <div class="top-nav-search table-search-blk">
                                                 <form>
@@ -36,7 +36,7 @@
                                                 </form>
                                             </div>
                                             <div class="add-group">
-                                                <a href="{{ route('dashboard.doctor.create') }}"
+                                                <a href="{{ route('dashboard.patient.create') }}"
                                                     class="btn btn-primary add-pluss ms-2"><img
                                                         src="{{ asset('') }}assets/img/icons/plus.svg" alt=""></a>
                                                 <a href="javascript:;"
@@ -88,7 +88,7 @@
                                                     value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a href="{{ route('dashboard.doctor.profile') }}"><img width="28"
+                                        <td class="profile-image"><a href="{{ route('dashboard.patient.profile') }}"><img width="28"
                                                     height="28" src="{{ asset('') }}assets/img/profiles/avatar-01.jpg"
                                                     class="rounded-circle m-r-5" alt=""> Andrea
                                                 Lalema</a></td>
@@ -160,7 +160,7 @@
                                                     value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a href="{{ route('dashboard.doctor.profile') }}"><img width="28"
+                                        <td class="profile-image"><a href="{{ route('dashboard.patient.profile') }}"><img width="28"
                                                     height="28" src="{{ asset('') }}assets/img/profiles/avatar-03.jpg"
                                                     class="rounded-circle m-r-5" alt=""> Dr.William
                                                 Stephin</a></td>

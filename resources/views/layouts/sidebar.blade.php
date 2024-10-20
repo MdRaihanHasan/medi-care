@@ -4,7 +4,7 @@
             <ul>
                 <li class="menu-title">Admin Menu</li>
                 <li class="submenu {{ request()->routeIs('dashboard.dashboard') ? 'active' : '' }}">
-                    <a href="{{ route('dashboard.dashboard') }}"><span class="menu-side"><img src="assets/img/icons/menu-icon-01.svg"
+                    <a href="{{ route('dashboard.dashboard') }}"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-01.svg"
                                 alt=""></span> <span> Dashboard </span> <span
                             class="menu-arrow"></span></a>
                     {{-- <ul style="display: none;">
@@ -13,30 +13,31 @@
                         <li><a href="patient-dashboard.html">Patient Dashboard</a></li>
                     </ul> --}}
                 </li>
-                <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-02.svg"
+                <li class="submenu {{ request()->routeIs('dashboard.doctor' , 'dashboard.doctor.create') ? 'active' : '' }}">
+                    <a href="#"><span class="menu-side "><img src="{{ asset('/') }}/assets/img/icons/menu-icon-02.svg"
                                 alt=""></span> <span> Doctors </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="{{ route('dashboard.doctor') }}">Doctor List</a></li>
+                        <li><a href="{{ route('dashboard.doctor') }}">Doctors List</a></li>
                         <li><a href="{{ route('dashboard.doctor.create') }}">Add Doctor</a></li>
-                        <li><a href="edit-doctor.html">Edit Doctor</a></li>
-                        <li><a href="doctor-profile.html">Doctor Profile</a></li>
+                        {{-- <li><a href="edit-doctor.html">Edit Doctor</a></li>
+                        <li><a href="doctor-profile.html">Doctor Profile</a></li> --}}
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-03.svg"
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-03.svg"
                                 alt=""></span> <span>Patients </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="patients.html">Patients List</a></li>
-                        <li><a href="add-patient.html">Add Patients</a></li>
+                        <li><a href="{{ route('dashboard.patient') }}">Patients List</a></li>
+                        <li><a href="{{ route('dashboard.patient.create') }}">Add Patient</a></li>
+
                         <li><a href="edit-patient.html">Edit Patients</a></li>
                         <li><a href="patient-profile.html">Patients Profile</a></li>
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-08.svg"
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-08.svg"
                                 alt=""></span> <span> Staff </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
@@ -49,7 +50,7 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-04.svg"
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-04.svg"
                                 alt=""></span> <span> Appointments </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
@@ -59,7 +60,7 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-05.svg"
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-05.svg"
                                 alt=""></span> <span> Doctor Schedule </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
@@ -69,7 +70,7 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-06.svg"
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-06.svg"
                                 alt=""></span> <span> Departments </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
@@ -79,7 +80,7 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-07.svg"
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-07.svg"
                                 alt=""></span> <span> Accounts </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
@@ -91,7 +92,7 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-09.svg"
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-09.svg"
                                 alt=""></span> <span> Payroll </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
@@ -100,11 +101,11 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="chat.html"><span class="menu-side"><img src="assets/img/icons/menu-icon-10.svg"
+                    <a href="chat.html"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-10.svg"
                                 alt=""></span> <span>Chat</span></a>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-11.svg"
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-11.svg"
                                 alt=""></span> <span> Calls</span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
@@ -114,7 +115,7 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-12.svg"
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-12.svg"
                                 alt=""></span> <span> Email</span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
@@ -124,7 +125,7 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-13.svg"
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-13.svg"
                                 alt=""></span> <span> Blog</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="blog.html">Blog</a></li>
@@ -138,7 +139,7 @@
                 </li>
                 <li>
                     <a href="activities.html"><span class="menu-side"><img
-                                src="assets/img/icons/menu-icon-14.svg" alt=""></span>
+                                src="{{ asset('/') }}/assets/img/icons/menu-icon-14.svg" alt=""></span>
                         <span>Activities</span></a>
                 </li>
                 <li class="submenu">
@@ -150,7 +151,7 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-15.svg"
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-15.svg"
                                 alt=""></span> <span> Invoice </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
@@ -164,7 +165,7 @@
                 </li>
                 <li>
                     <a href="settings.html"><span class="menu-side"><img
-                                src="assets/img/icons/menu-icon-16.svg" alt=""></span>
+                                src="{{ asset('/') }}/assets/img/icons/menu-icon-16.svg" alt=""></span>
                         <span>Settings</span></a>
                 </li>
                 <li class="menu-title">UI Interface</li>
@@ -317,7 +318,7 @@
                 </li>
             </ul>
             <div class="logout-btn">
-                <a href="login.html"><span class="menu-side"><img src="assets/img/icons/logout.svg"
+                <a href="login.html"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/logout.svg"
                             alt=""></span> <span>Logout</span></a>
             </div>
         </div>

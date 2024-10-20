@@ -13,4 +13,8 @@ class DoctorController extends Controller
     public function create() {
         return view('dashboard.doctors.store');
     }
+
+    public function profile() {
+        return view('dashboard.doctors.profile');
+    }
 }

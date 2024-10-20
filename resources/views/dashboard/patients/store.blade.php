@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="doctors.html">Doctors </a></li>
+                        <li class="breadcrumb-item"><a href="patients.html">Patients </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Add Doctor</li>
+                        <li class="breadcrumb-item active">Add Patient</li>
                     </ul>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-heading">
-                                        <h4>Doctor Details</h4>
+                                        <h4>Patinets Details</h4>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
@@ -82,13 +82,13 @@
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
                                                 <input type="radio" name="gender"
-                                                    class="mt-0 form-check-input">Male
+                                                    class="form-check-input">Male
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
                                                 <input type="radio" name="gender"
-                                                    class="mt-0 form-check-input">Female
+                                                    class="form-check-input">Female
                                             </label>
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@
                                                 id="file"
                                                 onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
                                                 class="hide-input"
-                                                data-cf-modified-508c3ee3fee5155f58908d7b-="">
+                                                data-cf-modified-470c3c83d9e9415220de68d3-="">
                                             <label for="file" class="upload">Choose File</label>
                                         </div>
                                     </div>
@@ -186,13 +186,13 @@
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
                                                 <input type="radio" name="gender"
-                                                    class="mt-0 form-check-input">Active
+                                                    class="form-check-input">Active
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
                                                 <input type="radio" name="gender"
-                                                    class="mt-0 form-check-input">In Active
+                                                    class="form-check-input">In Active
                                             </label>
                                         </div>
                                     </div>
