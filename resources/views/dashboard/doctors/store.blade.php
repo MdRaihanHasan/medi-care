@@ -7,187 +7,61 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard </a></li>
+                        <li class="breadcrumb-item"><a href="doctors.html">Doctors </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Admin Dashboard</li>
+                        <li class="breadcrumb-item active">Doctors List</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div class="good-morning-blk">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="morning-user">
-                        <h2>Good Morning, <span>Daniel Bruk</span></h2>
-                        <p>Have a nice day at work</p>
-                    </div>
-                </div>
-                <div class="col-md-6 position-blk">
-                    <div class="morning-img">
-                        <img src="{{ asset('assets/img/morning-img-01.png') }}" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row">
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                <div class="dash-widget">
-                    <div class="dash-boxs comman-flex-center">
-                        <img src="{{ asset('assets/img/icons/calendar.svg') }}" alt="">
-                    </div>
-                    <div class="dash-content dash-count">
-                        <h4>Appointments</h4>
-                        <h2><span class="counter-up">250</span></h2>
-                        <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>40%</span> vs
-                            last month</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                <div class="dash-widget">
-                    <div class="dash-boxs comman-flex-center">
-                        <img src="{{ asset('assets/img/icons/profile-add.svg') }}" alt="">
-                    </div>
-                    <div class="dash-content dash-count">
-                        <h4>New Patients</h4>
-                        <h2><span class="counter-up">140</span></h2>
-                        <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>20%</span> vs
-                            last month</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                <div class="dash-widget">
-                    <div class="dash-boxs comman-flex-center">
-                        <img src="{{ asset('assets/img/icons/scissor.svg') }}" alt="">
-                    </div>
-                    <div class="dash-content dash-count">
-                        <h4>Operations</h4>
-                        <h2><span class="counter-up">56</span></h2>
-                        <p><span class="negative-view"><i class="feather-arrow-down-right me-1"></i>15%</span>
-                            vs last month</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                <div class="dash-widget">
-                    <div class="dash-boxs comman-flex-center">
-                        <img src="{{ asset('assets/img/icons/empty-wallet.svg') }}" alt="">
-                    </div>
-                    <div class="dash-content dash-count">
-                        <h4>Earnings</h4>
-                        <h2>$<span class="counter-up"> 20,250</span></h2>
-                        <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>30%</span> vs
-                            last month</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-12 col-lg-6 col-xl-9">
-                <div class="card">
+            <div class="col-sm-12">
+                <div class="card card-table show-entire">
                     <div class="card-body">
-                        <div class="chart-title patient-visit">
-                            <h4>Patient Visit by Gender</h4>
-                            <div>
-                                <ul class="nav chat-user-total">
-                                    <li><i class="fa fa-circle current-users" aria-hidden="true"></i>Male 75%
-                                    </li>
-                                    <li><i class="fa fa-circle old-users" aria-hidden="true"></i> Female 25%
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="input-block mb-0">
-                                <select class="form-control select">
-                                    <option>2022</option>
-                                    <option>2021</option>
-                                    <option>2020</option>
-                                    <option>2019</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div id="patient-chart"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-12 col-lg-6 col-xl-3 d-flex">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="chart-title">
-                            <h4>Patient by Department</h4>
-                        </div>
-                        <div id="donut-chart-dash" class="chart-user-icon">
-                            <img src="{{ asset('assets/img/icons/user-icon.svg') }}" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-12  col-xl-4">
-                <div class="card top-departments">
-                    <div class="card-header">
-                        <h4 class="card-title mb-0">Top Departments</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="activity-top">
-                            <div class="activity-boxs comman-flex-center">
-                                <img src="{{ asset('assets/img/icons/dep-icon-01.svg') }}" alt="">
-                            </div>
-                            <div class="departments-list">
-                                <h4>General Physician</h4>
-                                <p>35%</p>
+
+                        <div class="page-table-header mb-2">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <div class="doctor-table-blk">
+                                        <h3>Doctors List</h3>
+                                        <div class="doctor-search-blk">
+                                            <div class="top-nav-search table-search-blk">
+                                                <form>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Search here">
+                                                    <a class="btn"><img
+                                                            src="assets/img/icons/search-normal.svg"
+                                                            alt=""></a>
+                                                </form>
+                                            </div>
+                                            <div class="add-group">
+                                                <a href="add-doctor.html"
+                                                    class="btn btn-primary add-pluss ms-2"><img
+                                                        src="assets/img/icons/plus.svg" alt=""></a>
+                                                <a href="javascript:;"
+                                                    class="btn btn-primary doctor-refresh ms-2"><img
+                                                        src="assets/img/icons/re-fresh.svg"
+                                                        alt=""></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto text-end float-end ms-auto download-grp">
+                                    <a href="javascript:;" class=" me-2"><img
+                                            src="assets/img/icons/pdf-icon-01.svg" alt=""></a>
+                                    <a href="javascript:;" class=" me-2"><img
+                                            src="assets/img/icons/pdf-icon-02.svg" alt=""></a>
+                                    <a href="javascript:;" class=" me-2"><img
+                                            src="assets/img/icons/pdf-icon-03.svg" alt=""></a>
+                                    <a href="javascript:;"><img src="assets/img/icons/pdf-icon-04.svg"
+                                            alt=""></a>
+                                </div>
                             </div>
                         </div>
-                        <div class="activity-top">
-                            <div class="activity-boxs comman-flex-center">
-                                <img src="{{ asset('assets/img/icons/dep-icon-02.svg') }}" alt="">
-                            </div>
-                            <div class="departments-list">
-                                <h4>Dentist</h4>
-                                <p>24%</p>
-                            </div>
-                        </div>
-                        <div class="activity-top">
-                            <div class="activity-boxs comman-flex-center">
-                                <img src="{{ asset('assets/img/icons/dep-icon-03.svg') }}" alt="">
-                            </div>
-                            <div class="departments-list">
-                                <h4>ENT</h4>
-                                <p>10%</p>
-                            </div>
-                        </div>
-                        <div class="activity-top">
-                            <div class="activity-boxs comman-flex-center">
-                                <img src="{{ asset('assets/img/icons/dep-icon-04.svg') }}" alt="">
-                            </div>
-                            <div class="departments-list">
-                                <h4>Cardiologist</h4>
-                                <p>15%</p>
-                            </div>
-                        </div>
-                        <div class="activity-top mb-0">
-                            <div class="activity-boxs comman-flex-center">
-                                <img src="{{ asset('assets/img/icons/dep-icon-05.svg') }}" alt="">
-                            </div>
-                            <div class="departments-list">
-                                <h4>Opthomology</h4>
-                                <p>20%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-12  col-xl-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a
-                            href="appointments.html" class="patient-views float-end">Show all</a>
-                    </div>
-                    <div class="card-body p-0 table-dash">
+
                         <div class="table-responsive">
-                            <table class="table mb-0 border-0 datatable custom-table">
+                            <table class="table border-0 custom-table comman-table datatable mb-0">
                                 <thead>
                                     <tr>
                                         <th>
@@ -196,11 +70,13 @@
                                                     value="something">
                                             </div>
                                         </th>
-                                        <th>No</th>
-                                        <th>Patient name</th>
-                                        <th>Doctor</th>
-                                        <th>Time</th>
-                                        <th>Disease</th>
+                                        <th>Name</th>
+                                        <th>Department</th>
+                                        <th>Specialization</th>
+                                        <th>Degree</th>
+                                        <th>Mobile</th>
+                                        <th>Email</th>
+                                        <th>Joining Date</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -212,27 +88,30 @@
                                                     value="something">
                                             </div>
                                         </td>
-                                        <td>R00001</td>
-                                        <td>Andrea Lalema</td>
-                                        <td class="table-image appoint-doctor">
-                                            <img width="28" height="28" class="rounded-circle"
-                                                src="{{ asset('assets/img/profiles/avatar-02.jpg') }}" alt="">
-                                            <h2>Dr.Jenny Smith</h2>
+                                        <td class="profile-image"><a href="profile.html"><img width="28"
+                                                    height="28" src="assets/img/profiles/avatar-01.jpg"
+                                                    class="rounded-circle m-r-5" alt=""> Andrea
+                                                Lalema</a></td>
+                                        <td>Otolaryngology</td>
+                                        <td>Infertility</td>
+                                        <td>MBBS, MS</td>
+                                        <td><a href="javascript:;">+1 23 456890</a></td>
+                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                data-cfemail="c1a4b9a0acb1ada481a4aca0a8adefa2aeac">[email&#160;protected]</a>
                                         </td>
-                                        <td class="appoint-time"><span>12.05.2022 at </span>7.00 PM</td>
-                                        <td><button class="custom-badge status-green ">Fracture</button></td>
+                                        <td>01.10.2022</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle"
                                                     data-bs-toggle="dropdown" aria-expanded="false"><i
                                                         class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-appointment.html"><i
+                                                    <a class="dropdown-item" href="edit-doctor.html"><i
                                                             class="fa-solid fa-pen-to-square m-r-5"></i>
                                                         Edit</a>
                                                     <a class="dropdown-item" href="#"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#delete_appointment"><i
+                                                        data-bs-target="#delete_patient"><i
                                                             class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                 </div>
                                             </div>
@@ -245,27 +124,30 @@
                                                     value="something">
                                             </div>
                                         </td>
-                                        <td>R00002</td>
-                                        <td>Cristina Groves</td>
-                                        <td class="table-image appoint-doctor">
-                                            <img width="28" height="28" class="rounded-circle"
-                                                src="{{ asset('assets/img/profiles/avatar-03.jpg') }}" alt="">
-                                            <h2>Dr.Angelica Ramos</h2>
+                                        <td class="profile-image"><a href="profile.html"><img width="28"
+                                                    height="28" src="assets/img/profiles/avatar-02.jpg"
+                                                    class="rounded-circle m-r-5" alt=""> Dr.Smith
+                                                Bruklin</a></td>
+                                        <td>Urology</td>
+                                        <td>Prostate</td>
+                                        <td>MBBS, MS</td>
+                                        <td><a href="javascript:;">+1 23 456890</a></td>
+                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                data-cfemail="94f1ecf5f9e4f8f1d4f1f9f5fdf8baf7fbf9">[email&#160;protected]</a>
                                         </td>
-                                        <td class="appoint-time"><span>13.05.2022 at </span>7.00 PM</td>
-                                        <td><button class="custom-badge status-green">Fever</button></td>
+                                        <td>01.10.2022</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle"
                                                     data-bs-toggle="dropdown" aria-expanded="false"><i
                                                         class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-appointment.html"><i
+                                                    <a class="dropdown-item" href="edit-doctor.html"><i
                                                             class="fa-solid fa-pen-to-square m-r-5"></i>
                                                         Edit</a>
                                                     <a class="dropdown-item" href="#"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#delete_appointment"><i
+                                                        data-bs-target="#delete_patient"><i
                                                             class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                 </div>
                                             </div>
@@ -278,27 +160,30 @@
                                                     value="something">
                                             </div>
                                         </td>
-                                        <td>R00003</td>
-                                        <td>Bernardo </td>
-                                        <td class="table-image appoint-doctor">
-                                            <img width="28" height="28" class="rounded-circle"
-                                                src="{{ asset('assets/img/profiles/avatar-04.jpg') }}" alt="">
-                                            <h2>Dr.Martin Doe</h2>
+                                        <td class="profile-image"><a href="profile.html"><img width="28"
+                                                    height="28" src="assets/img/profiles/avatar-03.jpg"
+                                                    class="rounded-circle m-r-5" alt=""> Dr.William
+                                                Stephin</a></td>
+                                        <td>Radiology</td>
+                                        <td>Cancer</td>
+                                        <td>MBBS, MS</td>
+                                        <td><a href="javascript:;">+1 23 456890</a></td>
+                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                data-cfemail="87e2ffe6eaf7ebe2c7e2eae6eeeba9e4e8ea">[email&#160;protected]</a>
                                         </td>
-                                        <td class="appoint-time"><span>14.05.2022 at </span>7.00 PM</td>
-                                        <td><button class="custom-badge status-green">Fracture</button></td>
+                                        <td>01.10.2022</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle"
                                                     data-bs-toggle="dropdown" aria-expanded="false"><i
                                                         class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-appointment.html"><i
+                                                    <a class="dropdown-item" href="edit-doctor.html"><i
                                                             class="fa-solid fa-pen-to-square m-r-5"></i>
                                                         Edit</a>
                                                     <a class="dropdown-item" href="#"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#delete_appointment"><i
+                                                        data-bs-target="#delete_patient"><i
                                                             class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                 </div>
                                             </div>
@@ -311,27 +196,30 @@
                                                     value="something">
                                             </div>
                                         </td>
-                                        <td>R00004</td>
-                                        <td>Galaviz Lalema</td>
-                                        <td class="table-image appoint-doctor">
-                                            <img width="28" height="28" class="rounded-circle"
-                                                src="{{ asset('assets/img/profiles/avatar-05.jpg') }}" alt="">
-                                            <h2>Dr.William Jerk</h2>
+                                        <td class="profile-image"><a href="profile.html"><img width="28"
+                                                    height="28" src="assets/img/profiles/avatar-04.jpg"
+                                                    class="rounded-circle m-r-5" alt=""> Bernardo
+                                                James</a></td>
+                                        <td>Dentist</td>
+                                        <td>Prostate</td>
+                                        <td>MBBS, MS</td>
+                                        <td><a href="javascript:;">+1 23 456890</a></td>
+                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                data-cfemail="53362b323e233f3613363e323a3f7d303c3e">[email&#160;protected]</a>
                                         </td>
-                                        <td class="appoint-time"><span>15.05.2022 at </span>7.00 PM</td>
-                                        <td><button class="custom-badge status-green">Fracture</button></td>
+                                        <td>01.10.2022</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle"
                                                     data-bs-toggle="dropdown" aria-expanded="false"><i
                                                         class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-appointment.html"><i
+                                                    <a class="dropdown-item" href="edit-doctor.html"><i
                                                             class="fa-solid fa-pen-to-square m-r-5"></i>
                                                         Edit</a>
                                                     <a class="dropdown-item" href="#"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#delete_appointment"><i
+                                                        data-bs-target="#delete_patient"><i
                                                             class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                 </div>
                                             </div>
@@ -344,96 +232,30 @@
                                                     value="something">
                                             </div>
                                         </td>
-                                        <td>R00005</td>
-                                        <td>Cristina Groves</td>
-                                        <td class="table-image appoint-doctor">
-                                            <img width="28" height="28" class="rounded-circle"
-                                                src="{{ asset('assets/img/profiles/avatar-03.jpg') }}" alt="">
-                                            <h2>Dr.Angelica Ramos</h2>
+                                        <td class="profile-image"><a href="profile.html"><img width="28"
+                                                    height="28" src="assets/img/profiles/avatar-06.jpg"
+                                                    class="rounded-circle m-r-5" alt="">Cristina
+                                                Groves</a></td>
+                                        <td>Gynocolgy</td>
+                                        <td>Prostate</td>
+                                        <td>MBBS, MS</td>
+                                        <td><a href="javascript:;">+1 23 456890</a></td>
+                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                data-cfemail="23465b424e534f4663464e424a4f0d404c4e">[email&#160;protected]</a>
                                         </td>
-                                        <td class="appoint-time"><span>16.05.2022 at </span>7.00 PM</td>
-                                        <td><button class="custom-badge status-green">Fever</button></td>
+                                        <td>01.10.2022</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle"
                                                     data-bs-toggle="dropdown" aria-expanded="false"><i
                                                         class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-appointment.html"><i
+                                                    <a class="dropdown-item" href="edit-doctor.html"><i
                                                             class="fa-solid fa-pen-to-square m-r-5"></i>
                                                         Edit</a>
                                                     <a class="dropdown-item" href="#"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#delete_appointment"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-xl-12">
-                <div class="card">
-                    <div class="card-header pb-0">
-                        <h4 class="card-title d-inline-block">Recent Patients </h4> <a href="patients.html"
-                            class="float-end patient-views">Show all</a>
-                    </div>
-                    <div class="card-block table-dash">
-                        <div class="table-responsive">
-                            <table class="table mb-0 border-0 datatable custom-table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </th>
-                                        <th>No</th>
-                                        <th>Patient name</th>
-                                        <th>Age</th>
-                                        <th>Date of Birth</th>
-                                        <th>Diagnosis</th>
-                                        <th>Triage</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td>R00001</td>
-                                        <td class="table-image">
-                                            <img width="28" height="28" class="rounded-circle"
-                                                src="{{ asset('assets/img/profiles/avatar-02.jpg') }}" alt="">
-                                            <h2>Andrea Lalema</h2>
-                                        </td>
-                                        <td>21</td>
-                                        <td>07 January 2002</td>
-                                        <td>Heart attack</td>
-                                        <td><button class="custom-badge status-green ">Non Urgent</button></td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-patient.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_appointment"><i
+                                                        data-bs-target="#delete_patient"><i
                                                             class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                 </div>
                                             </div>
@@ -446,28 +268,30 @@
                                                     value="something">
                                             </div>
                                         </td>
-                                        <td>R00002</td>
-                                        <td class="table-image">
-                                            <img width="28" height="28" class="rounded-circle"
-                                                src="{{ asset('assets/img/profiles/avatar-03.jpg') }}" alt="">
-                                            <h2>Mark Hay Smith</h2>
+                                        <td class="profile-image"><a href="profile.html"><img width="28"
+                                                    height="28" src="assets/img/profiles/avatar-05.jpg"
+                                                    class="rounded-circle m-r-5" alt=""> Mark Hay
+                                                Smith</a></td>
+                                        <td>Gynocolgy</td>
+                                        <td>Prostate</td>
+                                        <td>MBBS, MS</td>
+                                        <td><a href="javascript:;">+1 23 456890</a></td>
+                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                data-cfemail="b2d7cad3dfc2ded7f2d7dfd3dbde9cd1dddf">[email&#160;protected]</a>
                                         </td>
-                                        <td>23</td>
-                                        <td>06 January 2002</td>
-                                        <td>Jaundice</td>
-                                        <td><button class="custom-badge status-pink">Emergency</button></td>
+                                        <td>01.10.2022</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle"
                                                     data-bs-toggle="dropdown" aria-expanded="false"><i
                                                         class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-patient.html"><i
+                                                    <a class="dropdown-item" href="edit-doctor.html"><i
                                                             class="fa-solid fa-pen-to-square m-r-5"></i>
                                                         Edit</a>
                                                     <a class="dropdown-item" href="#"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#delete_appointment"><i
+                                                        data-bs-target="#delete_patient"><i
                                                             class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                 </div>
                                             </div>
@@ -480,28 +304,30 @@
                                                     value="something">
                                             </div>
                                         </td>
-                                        <td>R00003</td>
-                                        <td class="table-image">
-                                            <img width="28" height="28" class="rounded-circle"
-                                                src="{{ asset('assets/img/profiles/avatar-04.jpg') }}" alt="">
-                                            <h2>Cristina Groves</h2>
+                                        <td class="profile-image"><a href="profile.html"><img width="28"
+                                                    height="28" src="assets/img/profiles/avatar-01.jpg"
+                                                    class="rounded-circle m-r-5" alt=""> Andrea
+                                                Lalema</a></td>
+                                        <td>Otolaryngology</td>
+                                        <td>Infertility</td>
+                                        <td>MBBS, MS</td>
+                                        <td><a href="javascript:;">+1 23 456890</a></td>
+                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                data-cfemail="8beef3eae6fbe7eecbeee6eae2e7a5e8e4e6">[email&#160;protected]</a>
                                         </td>
-                                        <td>25</td>
-                                        <td>10 January 2002</td>
-                                        <td>Malaria</td>
-                                        <td><button class="custom-badge status-gray">Out Patient</button></td>
+                                        <td>01.10.2022</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle"
                                                     data-bs-toggle="dropdown" aria-expanded="false"><i
                                                         class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-patient.html"><i
+                                                    <a class="dropdown-item" href="edit-doctor.html"><i
                                                             class="fa-solid fa-pen-to-square m-r-5"></i>
                                                         Edit</a>
                                                     <a class="dropdown-item" href="#"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#delete_appointment"><i
+                                                        data-bs-target="#delete_patient"><i
                                                             class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                 </div>
                                             </div>
@@ -514,28 +340,30 @@
                                                     value="something">
                                             </div>
                                         </td>
-                                        <td>R00004</td>
-                                        <td class="table-image">
-                                            <img width="28" height="28" class="rounded-circle"
-                                                src="{{ asset('assets/img/profiles/avatar-05.jpg') }}" alt="">
-                                            <h2>Galaviz Lalema</h2>
+                                        <td class="profile-image"><a href="profile.html"><img width="28"
+                                                    height="28" src="assets/img/profiles/avatar-02.jpg"
+                                                    class="rounded-circle m-r-5" alt=""> Dr.Smith
+                                                Bruklin</a></td>
+                                        <td>Urology</td>
+                                        <td>Prostate</td>
+                                        <td>MBBS, MS</td>
+                                        <td><a href="javascript:;">+1 23 456890</a></td>
+                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                data-cfemail="b6d3ced7dbc6dad3f6d3dbd7dfda98d5d9db">[email&#160;protected]</a>
                                         </td>
-                                        <td>21</td>
-                                        <td>09 January 2002</td>
-                                        <td>Typhoid</td>
-                                        <td><button class="custom-badge status-orange">Non Urgent</button></td>
+                                        <td>01.10.2022</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle"
                                                     data-bs-toggle="dropdown" aria-expanded="false"><i
                                                         class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-patient.html"><i
+                                                    <a class="dropdown-item" href="edit-doctor.html"><i
                                                             class="fa-solid fa-pen-to-square m-r-5"></i>
                                                         Edit</a>
                                                     <a class="dropdown-item" href="#"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#delete_appointment"><i
+                                                        data-bs-target="#delete_patient"><i
                                                             class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                                 </div>
                                             </div>
@@ -768,6 +596,20 @@
             </div>
             <div class="topnav-dropdown-footer">
                 <a href="chat.html">See all messages</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="delete_patient" class="modal fade delete-modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img src="assets/img/sent.png" alt="" width="50" height="46">
+                <h3>Are you sure want to delete this ?</h3>
+                <div class="m-t-20"> <a href="#" class="btn btn-white"
+                        data-bs-dismiss="modal">Close</a>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
             </div>
         </div>
     </div>

@@ -2,24 +2,24 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                <li class="menu-title">Main</li>
-                <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-01.svg"
+                <li class="menu-title">Admin Menu</li>
+                <li class="submenu {{ request()->routeIs('dashboard.dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.dashboard') }}"><span class="menu-side"><img src="assets/img/icons/menu-icon-01.svg"
                                 alt=""></span> <span> Dashboard </span> <span
                             class="menu-arrow"></span></a>
-                    <ul style="display: none;">
+                    {{-- <ul style="display: none;">
                         <li><a class="active" href="index.html">Admin Dashboard</a></li>
                         <li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
                         <li><a href="patient-dashboard.html">Patient Dashboard</a></li>
-                    </ul>
+                    </ul> --}}
                 </li>
                 <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="assets/img/icons/menu-icon-02.svg"
                                 alt=""></span> <span> Doctors </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="doctors.html">Doctor List</a></li>
-                        <li><a href="add-doctor.html">Add Doctor</a></li>
+                        <li><a href="{{ route('dashboard.doctor') }}">Doctor List</a></li>
+                        <li><a href="{{ route('dashboard.doctor.create') }}">Add Doctor</a></li>
                         <li><a href="edit-doctor.html">Edit Doctor</a></li>
                         <li><a href="doctor-profile.html">Doctor Profile</a></li>
                     </ul>
