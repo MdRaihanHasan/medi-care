@@ -13,7 +13,29 @@ return new class extends Migration
     {
         Schema::create('appoinments', function (Blueprint $table) {
             $table->id();
+            
+            // Patient details
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->enum('gender', ['Male', 'Female']);
+            $table->string('mobile');
+            $table->string('email')->unique();
+            $table->text('address');
+            $table->date('birth_date')->nullable();
+
+            // Appointment details
+            $table->date('appointment_date');
+            $table->time('appointment_from');
+            $table->time('appointment_to');
+            $table->unsignedBigInteger('doctor_id')->nullable(); // Foreign key for doctor
+            $table->string('treatment')->nullable();
+            $table->text('notes')->nullable();
+            $table->string('avatar')->nullable(); // Path to avatar image file
+            
             $table->timestamps();
+
+            // Foreign key relationship for doctor (optional)
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('set null');
         });
     }
 

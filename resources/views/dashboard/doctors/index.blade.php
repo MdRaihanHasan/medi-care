@@ -19,7 +19,6 @@
             <div class="col-sm-12">
                 <div class="card card-table show-entire">
                     <div class="card-body">
-
                         <div class="mb-2 page-table-header">
                             <div class="row align-items-center">
                                 <div class="col">
@@ -28,34 +27,16 @@
                                         <div class="doctor-search-blk">
                                             <div class="top-nav-search table-search-blk">
                                                 <form>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Search here">
-                                                    <a class="btn"><img
-                                                            src="{{ asset('') }}assets/img/icons/search-normal.svg"
-                                                            alt=""></a>
+                                                    <input type="text" class="form-control" placeholder="Search here">
+                                                    <a class="btn"><img src="{{ asset('assets/img/icons/search-normal.svg') }}" alt=""></a>
                                                 </form>
                                             </div>
                                             <div class="add-group">
-                                                <a href="{{ route('dashboard.doctor.create') }}"
-                                                    class="btn btn-primary add-pluss ms-2"><img
-                                                        src="{{ asset('') }}assets/img/icons/plus.svg" alt=""></a>
-                                                <a href="javascript:;"
-                                                    class="btn btn-primary doctor-refresh ms-2"><img
-                                                        src="{{ asset('') }}assets/img/icons/re-fresh.svg"
-                                                        alt=""></a>
+                                                <a href="{{ route('dashboard.doctor.create') }}" class="btn btn-primary add-pluss ms-2"><img src="{{ asset('assets/img/icons/plus.svg') }}" alt=""></a>
+                                                <a href="{{ route('dashboard.doctor') }}" class="btn btn-primary doctor-refresh ms-2"><img src="{{ asset('assets/img/icons/re-fresh.svg') }}" alt=""></a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-auto text-end float-end ms-auto download-grp">
-                                    <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}assets/img/icons/pdf-icon-01.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}assets/img/icons/pdf-icon-02.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}assets/img/icons/pdf-icon-03.svg" alt=""></a>
-                                    <a href="javascript:;"><img src="{{ asset('') }}assets/img/icons/pdf-icon-04.svg"
-                                            alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -66,8 +47,7 @@
                                     <tr>
                                         <th>
                                             <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
+                                                <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </th>
                                         <th>Name</th>
@@ -81,301 +61,49 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="{{ route('dashboard.doctor.profile') }}"><img width="28"
-                                                    height="28" src="{{ asset('') }}assets/img/profiles/avatar-01.jpg"
-                                                    class="rounded-circle m-r-5" alt=""> Andrea
-                                                Lalema</a></td>
-                                        <td>Otolaryngology</td>
-                                        <td>Infertility</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="c1a4b9a0acb1ada481a4aca0a8adefa2aeac">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-doctor.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
+                                    @foreach($doctors as $doctor)
+                                        <tr>
+                                            <td>
+                                                <div class="form-check check-tables">
+                                                    <input class="form-check-input" type="checkbox" value="something">
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="{{ route('dashboard.doctor.profile') }}"><img width="28"
-                                                    height="28" src="{{ asset('') }}assets/img/profiles/avatar-02.jpg"
-                                                    class="rounded-circle m-r-5" alt=""> Dr.Smith
-                                                Bruklin</a></td>
-                                        <td>Urology</td>
-                                        <td>Prostate</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="94f1ecf5f9e4f8f1d4f1f9f5fdf8baf7fbf9">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-doctor.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
+                                            </td>
+                                            <td class="profile-image">
+                                                <a href="{{ route('dashboard.doctor.profile', $doctor->id) }}">
+                                                    <img width="28" height="28" src="{{ asset('storage/avatars/' . $doctor->doctorInfo->avatar ?? 'assets/img/profiles/default-avatar.jpg') }}" class="rounded-circle m-r-5" alt="">
+                                                    {{ $doctor->first_name }} {{ $doctor->last_name }}
+                                                </a>
+                                            </td>
+                                            <td>{{ $doctor->doctorInfo->department ?? 'N/A' }}</td>
+                                            <td>{{ $doctor->doctorInfo->specialization ?? 'N/A' }}</td>
+                                            <td>{{ $doctor->doctorInfo->degree ?? 'N/A' }}</td>
+                                            <td><a href="tel:{{ $doctor->mobile }}">{{ $doctor->mobile }}</a></td>
+                                            <td>{{ $doctor->email }}</td>
+                                            <td>{{ $doctor->created_at->format('d.m.Y') }}</td>
+                                            <td class="text-end">
+                                                <div class="dropdown dropdown-action">
+                                                    <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="{{ route('dashboard.doctor.edit', $doctor->id) }}"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
+                                                        <form action="{{ route('dashboard.doctor.destroy', $doctor->id) }}" method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="dropdown-item text-danger"><i class="fa fa-trash-alt m-r-5"></i> Delete</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="{{ route('dashboard.doctor.profile') }}"><img width="28"
-                                                    height="28" src="{{ asset('') }}assets/img/profiles/avatar-03.jpg"
-                                                    class="rounded-circle m-r-5" alt=""> Dr.William
-                                                Stephin</a></td>
-                                        <td>Radiology</td>
-                                        <td>Cancer</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="87e2ffe6eaf7ebe2c7e2eae6eeeba9e4e8ea">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-doctor.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="{{ route('dashboard.doctor.profile') }}"><img width="28"
-                                                    height="28" src="{{ asset('') }}assets/img/profiles/avatar-04.jpg"
-                                                    class="rounded-circle m-r-5" alt=""> Bernardo
-                                                James</a></td>
-                                        <td>Dentist</td>
-                                        <td>Prostate</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="53362b323e233f3613363e323a3f7d303c3e">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-doctor.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="{{ route('dashboard.doctor.profile') }}"><img width="28"
-                                                    height="28" src="{{ asset('') }}assets/img/profiles/avatar-06.jpg"
-                                                    class="rounded-circle m-r-5" alt="">Cristina
-                                                Groves</a></td>
-                                        <td>Gynocolgy</td>
-                                        <td>Prostate</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="23465b424e534f4663464e424a4f0d404c4e">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-doctor.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="{{ route('dashboard.doctor.profile') }}"><img width="28"
-                                                    height="28" src="{{ asset('') }}assets/img/profiles/avatar-05.jpg"
-                                                    class="rounded-circle m-r-5" alt=""> Mark Hay
-                                                Smith</a></td>
-                                        <td>Gynocolgy</td>
-                                        <td>Prostate</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="b2d7cad3dfc2ded7f2d7dfd3dbde9cd1dddf">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-doctor.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="{{ route('dashboard.doctor.profile') }}"><img width="28"
-                                                    height="28" src="{{ asset('') }}assets/img/profiles/avatar-01.jpg"
-                                                    class="rounded-circle m-r-5" alt=""> Andrea
-                                                Lalema</a></td>
-                                        <td>Otolaryngology</td>
-                                        <td>Infertility</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="8beef3eae6fbe7eecbeee6eae2e7a5e8e4e6">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-doctor.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="{{ route('dashboard.doctor.profile') }}"><img width="28"
-                                                    height="28" src="{{ asset('') }}assets/img/profiles/avatar-02.jpg"
-                                                    class="rounded-circle m-r-5" alt=""> Dr.Smith
-                                                Bruklin</a></td>
-                                        <td>Urology</td>
-                                        <td>Prostate</td>
-                                        <td>MBBS, MS</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="b6d3ced7dbc6dad3f6d3dbd7dfda98d5d9db">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-doctor.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
     <div class="notification-box">
         <div class="msg-sidebar notifications msg-noti">

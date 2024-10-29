@@ -38,8 +38,11 @@
                             <div class="login-right">
                                 <div class="login-right-wrap">
                                     <div class="account-logo">
-                                        <a href="index.html"><img src="assets/img/login-logo.png" alt=""></a>
+                                        <a href="/" class="logo">
+                                            <img src="http://medicare.ops/assets/img/logo.png" width="35" height="35" alt=""> <span style="font-weight: 600; font-size: 24px">Medi Care</span>
+                                        </a>
                                     </div>
+                                    
                                     <h2>Login</h2>
 
                                     <form method="POST" action="{{ route('login') }}">

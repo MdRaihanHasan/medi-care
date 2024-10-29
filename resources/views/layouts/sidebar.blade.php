@@ -32,11 +32,11 @@
                         <li><a href="{{ route('dashboard.patient') }}">Patients List</a></li>
                         <li><a href="{{ route('dashboard.patient.create') }}">Add Patient</a></li>
 
-                        <li><a href="edit-patient.html">Edit Patients</a></li>
-                        <li><a href="patient-profile.html">Patients Profile</a></li>
+                        {{-- <li><a href="edit-patient.html">Edit Patients</a></li>
+                        <li><a href="patient-profile.html">Patients Profile</a></li> --}}
                     </ul>
                 </li>
-                <li class="submenu">
+                {{-- <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-08.svg"
                                 alt=""></span> <span> Staff </span> <span
                             class="menu-arrow"></span></a>
@@ -48,15 +48,15 @@
                         <li><a href="staff-holiday.html">Holidays</a></li>
                         <li><a href="staff-attendance.html">Attendance</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-04.svg"
                                 alt=""></span> <span> Appointments </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="appointments.html">Appointment List</a></li>
-                        <li><a href="add-appointment.html">Book Appointment</a></li>
-                        <li><a href="edit-appointment.html">Edit Appointment</a></li>
+                        <li><a href="{{ route('dashboard.appoinment') }}">Appointment List</a></li>
+                        <li><a href="{{ route('dashboard.appoinment.create') }}">Book Appointment</a></li>
+                        {{-- <li><a href="edit-appointment.html">Edit Appointment</a></li> --}}
                     </ul>
                 </li>
                 <li class="submenu">
@@ -91,7 +91,7 @@
                         <li><a href="provident-fund.html">Provident Fund</a></li>
                     </ul>
                 </li>
-                <li class="submenu">
+                 {{-- <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-09.svg"
                                 alt=""></span> <span> Payroll </span> <span
                             class="menu-arrow"></span></a>
@@ -316,10 +316,16 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
+            </ul> --}}
             <div class="logout-btn">
-                <a href="login.html"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/logout.svg"
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a :href="route('logout')"
+                    onclick="event.preventDefault();
+                                this.closest('form').submit();""><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/logout.svg"
                             alt=""></span> <span>Logout</span></a>
+                    
+                </form>
             </div>
         </div>
     </div>

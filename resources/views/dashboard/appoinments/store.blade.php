@@ -2,180 +2,182 @@
 @section('content')
 <div class="page-wrapper">
     <div class="content">
-        <div class="row">
-            <div class="col-sm-7 col-6">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Dashboard </a></li>
-                    <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                    <li class="breadcrumb-item active">My Profile</li>
-                </ul>
-            </div>
-            <div class="col-sm-5 col-6 text-end m-b-30">
-                <a href="edit-profile.html" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i>
-                    Edit Profile</a>
-            </div>
-        </div>
-        <div class="card-box profile-header">
+
+        <div class="page-header">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="profile-view">
-                        <div class="profile-img-wrap">
-                            <div class="profile-img">
-                                <a href="#">
-                                    <img class="avatar" src="{{ asset('storage/avatars/' . $doctor->doctorInfo->avatar ?? 'assets/img/profiles/default-avatar.jpg') }}" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="profile-basic">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="profile-info-left">
-                                        <h3 class="mb-0 user-name m-t-0">{{ $doctor->name }}</h3>
-                                        <small class="text-muted">{{ $doctor->doctorInfo->specialization ?? 'N/A' }}</small>
-                                        <div class="staff-id">Employee ID : {{ $doctor->id }}</div>
-                                        <div class="staff-msg">
-                                            <a href="#" class="btn btn-primary">Send Message</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-7">
-                                    <ul class="personal-info">
-                                        <li>
-                                            <span class="title">Phone:</span>
-                                            <span class="text"><a href="tel:{{ $doctor->mobile }}">{{ $doctor->mobile ?? 'N/A' }}</a></span>
-                                        </li>
-                                        <li>
-                                            <span class="title">Email:</span>
-                                            <span class="text">
-                                                <a href="mailto:{{ $doctor->email }}">{{ $doctor->email ?? 'N/A' }}</a>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="title">Birthday:</span>
-                                            <span class="text">{{ $doctor->doctorInfo->birth_date ? $doctor->doctorInfo->birth_date->format('jS F') : 'N/A' }}</span>
-                                        </li>
-                                        <li>
-                                            <span class="title">Address:</span>
-                                            <span class="text">{{ $doctor->doctorInfo->address ?? 'N/A' }}</span>
-                                        </li>
-                                        <li>
-                                            <span class="title">Gender:</span>
-                                            <span class="text">{{ $doctor->doctorInfo->gender ?? 'N/A' }}</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="appointments.html">Appointment </a></li>
+                        <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
+                        <li class="breadcrumb-item active">Book Appointment</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        {{-- <div class="profile-tabs">
-            <ul class="nav nav-tabs nav-tabs-bottom">
-                <li class="nav-item"><a class="nav-link active" href="#about-cont"
-                        data-bs-toggle="tab">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#bottom-tab2"
-                        data-bs-toggle="tab">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="#bottom-tab3"
-                        data-bs-toggle="tab">Messages</a></li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane show active" id="about-cont">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card-box">
-                                <h3 class="card-title">Education Informations</h3>
-                                <div class="experience-box">
-                                    <ul class="experience-list">
-                                        <li>
-                                            <div class="experience-user">
-                                                <div class="before-circle"></div>
-                                            </div>
-                                            <div class="experience-content">
-                                                <div class="timeline-content">
-                                                    <a href="#/" class="name">International College of
-                                                        Medical Science (UG)</a>
-                                                    <div>MBBS</div>
-                                                    <span class="time">2001 - 2003</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="experience-user">
-                                                <div class="before-circle"></div>
-                                            </div>
-                                            <div class="experience-content">
-                                                <div class="timeline-content">
-                                                    <a href="#/" class="name">International College of
-                                                        Medical Science (PG)</a>
-                                                    <div>MD - Obstetrics & Gynaecology</div>
-                                                    <span class="time">1997 - 2001</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{{ route('dashboard.appoinment.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <!-- Patient Details Heading -->
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Patient Details</h4>
+                                    </div>
+                                </div>
+                        
+                                <!-- First Name -->
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                        <label>First Name <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" name="first_name" required>
+                                    </div>
+                                </div>
+                        
+                                <!-- Last Name -->
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                        <label>Last Name <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" name="last_name" required>
+                                    </div>
+                                </div>
+                        
+                                <!-- Gender -->
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block select-gender">
+                                        <label class="gen-label">Gender<span class="login-danger">*</span></label>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" name="gender" value="Male" class="form-check-input" required>Male
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" name="gender" value="Female" class="form-check-input" required>Female
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <!-- Mobile -->
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>Mobile <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" name="mobile" required>
+                                    </div>
+                                </div>
+                        
+                                <!-- Email -->
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>Email <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="email" name="email" required>
+                                    </div>
+                                </div>
+                        
+                                <!-- Address -->
+                                <div class="col-12 col-sm-12">
+                                    <div class="input-block local-forms">
+                                        <label>Address <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" rows="3" name="address" required></textarea>
+                                    </div>
+                                </div>
+                        
+                                <!-- Appointment Details Heading -->
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Appointment Details</h4>
+                                    </div>
+                                </div>
+                        
+                                <!-- Date of Appointment -->
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms cal-icon">
+                                        <label>Date of Appointment <span class="login-danger">*</span></label>
+                                        <input class="form-control datetimepicker" type="text" name="appointment_date" required>
+                                    </div>
+                                </div>
+                        
+                                <!-- Time From -->
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                        <label>From <span class="login-danger">*</span></label>
+                                        <div class="time-icon">
+                                            <input type="text" class="form-control" id="datetimepicker3" name="appointment_from" required>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <!-- Time To -->
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="input-block local-forms">
+                                        <label>To <span class="login-danger">*</span></label>
+                                        <div class="time-icon">
+                                            <input type="text" class="form-control" id="datetimepicker4" name="appointment_to" required>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <!-- Consulting Doctor -->
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>Consulting Doctor</label>
+                                        <select class="form-control select" name="doctor_id" required>
+                                            <option value="">Select Doctor</option>
+                                            <!-- Loop through doctors dynamically -->
+                                            @foreach ($doctors as $doctor)
+                                                <option value="{{ $doctor->id }}">{{ $doctor->first_name }} {{ $doctor->last_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                        
+                                <!-- Treatment -->
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>Treatment </label>
+                                        <input class="form-control" type="text" name="treatment">
+                                    </div>
+                                </div>
+                        
+                                <!-- Notes -->
+                                <div class="col-12 col-sm-12">
+                                    <div class="input-block local-forms">
+                                        <label>Notes <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" rows="3" name="notes" required></textarea>
+                                    </div>
+                                </div>
+                        
+                                <!-- Avatar Upload -->
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-top-form">
+                                        <label class="local-top">Avatar <span class="login-danger">*</span></label>
+                                        <div class="settings-btn upload-files-avatar">
+                                            <input type="file" accept="image/*" name="avatar" id="file" class="hide-input" required>
+                                            <label for="file" class="upload">Choose File</label>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <!-- Submit and Cancel Buttons -->
+                                <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                        <button type="submit" class="btn btn-primary submit-form me-2">Submit</button>
+                                        <a href="{{ route('dashboard.appoinment') }}" class="btn btn-secondary">Cancel</a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-box ">
-                                <h3 class="card-title">Experience</h3>
-                                <div class="experience-box">
-                                    <ul class="experience-list">
-                                        <li>
-                                            <div class="experience-user">
-                                                <div class="before-circle"></div>
-                                            </div>
-                                            <div class="experience-content">
-                                                <div class="timeline-content">
-                                                    <a href="#/" class="name">Consultant
-                                                        Gynecologist</a>
-                                                    <span class="time">Jan 2014 - Present (4 years 8
-                                                        months)</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="experience-user">
-                                                <div class="before-circle"></div>
-                                            </div>
-                                            <div class="experience-content">
-                                                <div class="timeline-content">
-                                                    <a href="#/" class="name">Consultant
-                                                        Gynecologist</a>
-                                                    <span class="time">Jan 2009 - Present (6 years 1
-                                                        month)</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="experience-user">
-                                                <div class="before-circle"></div>
-                                            </div>
-                                            <div class="experience-content">
-                                                <div class="timeline-content">
-                                                    <a href="#/" class="name">Consultant
-                                                        Gynecologist</a>
-                                                    <span class="time">Jan 2004 - Present (5 years 2
-                                                        months)</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
+                        
                     </div>
                 </div>
-                <div class="tab-pane" id="bottom-tab2">
-                    Tab content 2
-                </div>
-                <div class="tab-pane" id="bottom-tab3">
-                    Tab content 3
-                </div>
             </div>
-        </div> --}}
+        </div>
     </div>
-    {{-- <div class="notification-box">
+    <div class="notification-box">
         <div class="msg-sidebar notifications msg-noti">
             <div class="topnav-dropdown-header">
                 <span>Messages</span>
@@ -396,7 +398,20 @@
                 <a href="chat.html">See all messages</a>
             </div>
         </div>
-    </div> --}}
+    </div>
 </div>
-
+<div id="delete_patient" class="modal fade delete-modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img src="assets/img/sent.png" alt="" width="50" height="46">
+                <h3>Are you sure want to delete this ?</h3>
+                <div class="m-t-20"> <a href="#" class="btn btn-white"
+                        data-bs-dismiss="modal">Close</a>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

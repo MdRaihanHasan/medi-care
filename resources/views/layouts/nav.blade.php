@@ -1,7 +1,7 @@
 
 <div class="header">
     <div class="header-left">
-        <a href="index.html" class="logo">
+        <a href="{{ route('dashboard.dashboard') }}" class="logo">
             <img src="{{ asset('') }}assets/img/logo.png" width="35" height="35" alt=""> <span>Medi Care</span>
         </a>
     </div>
@@ -119,9 +119,9 @@
                 </span>
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="profile.html">My Profile</a>
+                {{-- <a class="dropdown-item" href="profile.html">My Profile</a>
                 <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
-                <a class="dropdown-item" href="settings.html">Settings</a>
+                <a class="dropdown-item" href="settings.html">Settings</a> --}}
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
@@ -131,18 +131,18 @@
                 </form>
             </div>
         </li>
-        <li class="nav-item ">
+        {{-- <li class="nav-item ">
             <a href="settings.html" class="hasnotifications nav-link"><img
                     src="{{ asset('') }}assets/img/icons/setting-icon-01.svg" alt=""> </a>
-        </li>
+        </li> --}}
     </ul>
     <div class="dropdown mobile-user-menu float-end">
         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i
                 class="fa-solid fa-ellipsis-vertical"></i></a>
         <div class="dropdown-menu dropdown-menu-end">
-            <a class="dropdown-item" href="profile.html">My Profile</a>
+            {{-- <a class="dropdown-item" href="profile.html">My Profile</a>
             <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
-            <a class="dropdown-item" href="settings.html">Settings</a>
+            <a class="dropdown-item" href="settings.html">Settings</a> --}}
             <a class="dropdown-item" href="login.html">Logout</a>
         </div>
     </div>

@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="patients.html">Patients </a></li>
+                        <li class="breadcrumb-item"><a href="#">Patients </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                         <li class="breadcrumb-item active">Add Patient</li>
                     </ul>
@@ -19,194 +19,90 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form action="{{ route('dashboard.patient.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-heading">
-                                        <h4>Patinets Details</h4>
+                                        <h4>Patient Details</h4>
                                     </div>
                                 </div>
+                        
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="input-block local-forms">
                                         <label>First Name <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="">
+                                        <input class="form-control" type="text" name="first_name" placeholder="Enter first name">
                                     </div>
                                 </div>
+                        
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="input-block local-forms">
                                         <label>Last Name <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="">
+                                        <input class="form-control" type="text" name="last_name" placeholder="Enter last name">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="input-block local-forms">
-                                        <label>User Name <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="">
-                                    </div>
-                                </div>
+                        
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="input-block local-forms">
                                         <label>Mobile <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="">
+                                        <input class="form-control" type="text" name="mobile" placeholder="Enter mobile number">
                                     </div>
                                 </div>
+                        
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="input-block local-forms">
                                         <label>Email <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="email" placeholder="">
+                                        <input class="form-control" type="email" name="email" placeholder="Enter email">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="input-block local-forms">
-                                        <label>Password <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="password" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="input-block local-forms">
-                                        <label>Confirm Password <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="password" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="input-block local-forms cal-icon">
-                                        <label>Date Of Birth <span class="login-danger">*</span></label>
-                                        <input class="form-control datetimepicker" type="text"
-                                            placeholder="">
-                                    </div>
-                                </div>
+                        
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="input-block select-gender">
-                                        <label class="gen-label">Gender<span
-                                                class="login-danger">*</span></label>
+                                        <label class="gen-label">Gender <span class="login-danger">*</span></label>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" name="gender"
-                                                    class="form-check-input">Male
+                                                <input type="radio" name="gender" value="Male" class="form-check-input"> Male
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" name="gender"
-                                                    class="form-check-input">Female
+                                                <input type="radio" name="gender" value="Female" class="form-check-input"> Female
                                             </label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="input-block local-forms">
-                                        <label>Education <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="input-block local-forms">
-                                        <label>Designation <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="input-block local-forms">
-                                        <label>Department <span class="login-danger">*</span></label>
-                                        <select class="form-control select">
-                                            <option>Select Department</option>
-                                            <option>Orthopedics</option>
-                                            <option>Radiology</option>
-                                            <option>Dentist</option>
-                                        </select>
-                                    </div>
-                                </div>
+                        
                                 <div class="col-12 col-sm-12">
                                     <div class="input-block local-forms">
                                         <label>Address <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30"></textarea>
+                                        <textarea class="form-control" rows="3" cols="30" name="address" placeholder="Enter address"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="input-block local-forms">
-                                        <label>City <span class="login-danger">*</span></label>
-                                        <select class="form-control select">
-                                            <option>Select City</option>
-                                            <option>Alaska</option>
-                                            <option>Los Angeles</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="input-block local-forms">
-                                        <label>Country <span class="login-danger">*</span></label>
-                                        <select class="form-control select">
-                                            <option>Select Country </option>
-                                            <option>Usa</option>
-                                            <option>Uk</option>
-                                            <option>Italy</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="input-block local-forms">
-                                        <label>State/Province <span class="login-danger">*</span></label>
-                                        <select class="form-control select">
-                                            <option>Select State</option>
-                                            <option>Alaska</option>
-                                            <option>California</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="input-block local-forms">
-                                        <label>Postal Code <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12">
-                                    <div class="input-block local-forms">
-                                        <label>Start Biography <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30"></textarea>
-                                    </div>
-                                </div>
+                        
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="input-block local-top-form">
-                                        <label class="local-top">Avatar <span
-                                                class="login-danger">*</span></label>
+                                        <label class="local-top">Avatar <span class="login-danger">*</span></label>
                                         <div class="settings-btn upload-files-avator">
-                                            <input type="file" accept="image/*" name="image"
-                                                id="file"
-                                                onchange="if (!window.__cfRLUnblockHandlers) return false; loadFile(event)"
-                                                class="hide-input"
-                                                data-cf-modified-470c3c83d9e9415220de68d3-="">
+                                            <input type="file" accept="image/*" name="avatar" id="file" class="form-control" style="
+                                            border: none;
+                                            /* margin-bottom: 10px; */
+                                            padding-bottom: 30px;
+                                            margin-top: -8px;
+                                        ">
                                             <label for="file" class="upload">Choose File</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="input-block select-gender">
-                                        <label class="gen-label">Status <span
-                                                class="login-danger">*</span></label>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender"
-                                                    class="form-check-input">Active
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender"
-                                                    class="form-check-input">In Active
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+                        
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit"
-                                            class="btn btn-primary submit-form me-2">Submit</button>
-                                        <button type="submit"
-                                            class="btn btn-primary cancel-form">Cancel</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2">Submit</button>
+                                        <button type="reset" class="btn btn-primary cancel-form">Cancel</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
+                        
                     </div>
                 </div>
             </div>
