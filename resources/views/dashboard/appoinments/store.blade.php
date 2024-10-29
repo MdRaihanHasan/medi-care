@@ -22,6 +22,35 @@
                         <form action="{{ route('dashboard.appoinment.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
+                                <!-- Patient Selection -->
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Patient Selection</h4>
+                                    </div>
+                                </div>
+                                @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>Select Existing Patient</label>
+                                        <select class="form-control select" name="existing_patient_id" id="existing_patient_id">
+                                            <option value="">New Patient</option>
+                                            @foreach ($patients as $patient)
+                                                <option value="{{ $patient->id }}">
+                                                    {{ $patient->first_name }} {{ $patient->last_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                
                                 <!-- Patient Details Heading -->
                                 <div class="col-12">
                                     <div class="form-heading">
@@ -33,7 +62,7 @@
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="input-block local-forms">
                                         <label>First Name <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" name="first_name" required>
+                                        <input class="form-control" type="text" name="first_name" id="first_name" required>
                                     </div>
                                 </div>
                         
@@ -41,48 +70,47 @@
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="input-block local-forms">
                                         <label>Last Name <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" name="last_name" required>
-                                    </div>
-                                </div>
-                        
-                                <!-- Gender -->
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="input-block select-gender">
-                                        <label class="gen-label">Gender<span class="login-danger">*</span></label>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" value="Male" class="form-check-input" required>Male
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" value="Female" class="form-check-input" required>Female
-                                            </label>
-                                        </div>
+                                        <input class="form-control" type="text" name="last_name" id="last_name" required>
                                     </div>
                                 </div>
                         
                                 <!-- Mobile -->
-                                <div class="col-12 col-md-6 col-xl-6">
+                                <div class="col-12 col-md-6 col-xl-4">
                                     <div class="input-block local-forms">
                                         <label>Mobile <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" name="mobile" required>
+                                        <input class="form-control" type="text" name="mobile" id="mobile" required>
                                     </div>
                                 </div>
                         
                                 <!-- Email -->
-                                <div class="col-12 col-md-6 col-xl-6">
+                                <div class="col-12 col-md-6 col-xl-4">
                                     <div class="input-block local-forms">
                                         <label>Email <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="email" name="email" required>
+                                        <input class="form-control" type="email" name="email" id="email" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-12col-xl-12">
+                                    <div class="input-block select-gender">
+                                        <label class="gen-label">Gender <span class="login-danger">*</span></label>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" name="gender" value="Male" class="form-check-input"> Male
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" name="gender" value="Female" class="form-check-input"> Female
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                         
                                 <!-- Address -->
-                                <div class="col-12 col-sm-12">
+                                <div class="col-12">
                                     <div class="input-block local-forms">
                                         <label>Address <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" name="address" required></textarea>
+                                        <textarea class="form-control" rows="3" name="address" id="address" required></textarea>
                                     </div>
                                 </div>
                         
@@ -127,7 +155,6 @@
                                         <label>Consulting Doctor</label>
                                         <select class="form-control select" name="doctor_id" required>
                                             <option value="">Select Doctor</option>
-                                            <!-- Loop through doctors dynamically -->
                                             @foreach ($doctors as $doctor)
                                                 <option value="{{ $doctor->id }}">{{ $doctor->first_name }} {{ $doctor->last_name }}</option>
                                             @endforeach
@@ -135,30 +162,11 @@
                                     </div>
                                 </div>
                         
-                                <!-- Treatment -->
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="input-block local-forms">
-                                        <label>Treatment </label>
-                                        <input class="form-control" type="text" name="treatment">
-                                    </div>
-                                </div>
-                        
                                 <!-- Notes -->
-                                <div class="col-12 col-sm-12">
+                                <div class="col-12">
                                     <div class="input-block local-forms">
                                         <label>Notes <span class="login-danger">*</span></label>
                                         <textarea class="form-control" rows="3" name="notes" required></textarea>
-                                    </div>
-                                </div>
-                        
-                                <!-- Avatar Upload -->
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="input-block local-top-form">
-                                        <label class="local-top">Avatar <span class="login-danger">*</span></label>
-                                        <div class="settings-btn upload-files-avatar">
-                                            <input type="file" accept="image/*" name="avatar" id="file" class="hide-input" required>
-                                            <label for="file" class="upload">Choose File</label>
-                                        </div>
                                     </div>
                                 </div>
                         
@@ -172,233 +180,18 @@
                             </div>
                         </form>
                         
+                        
+                        
+                        
+                        
+                        
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="notification-box">
-        <div class="msg-sidebar notifications msg-noti">
-            <div class="topnav-dropdown-header">
-                <span>Messages</span>
-            </div>
-            <div class="drop-scroll msg-list-scroll" id="msg_list">
-                <ul class="list-box">
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">R</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Richard Miles </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item new-message">
-                                <div class="list-left">
-                                    <span class="avatar">J</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">John Doe</span>
-                                    <span class="message-time">1 Aug</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">T</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Tarah Shropshire </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">M</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Mike Litorus</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">C</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Catherine Manseau </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">D</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Domenic Houston </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">B</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Buster Wigton </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">R</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Rolland Webber </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">C</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author"> Claire Mapes </span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">M</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Melita Faucher</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">J</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Jeffery Lalor</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">L</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Loren Gatlin</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="chat.html">
-                            <div class="list-item">
-                                <div class="list-left">
-                                    <span class="avatar">T</span>
-                                </div>
-                                <div class="list-body">
-                                    <span class="message-author">Tarah Shropshire</span>
-                                    <span class="message-time">12:28 AM</span>
-                                    <div class="clearfix"></div>
-                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="topnav-dropdown-footer">
-                <a href="chat.html">See all messages</a>
-            </div>
-        </div>
-    </div>
+    
 </div>
 <div id="delete_patient" class="modal fade delete-modal" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
@@ -414,4 +207,32 @@
         </div>
     </div>
 </div>
+
+<script>
+    // JavaScript to populate form fields based on selected patient
+    document.getElementById('existing_patient_id').addEventListener('change', function () {
+        let selectedPatientId = this.value;
+
+        if (selectedPatientId) {
+            fetch(`/dashboard/patients/${selectedPatientId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('first_name').value = data.first_name;
+                    document.getElementById('last_name').value = data.last_name;
+                    document.getElementById('mobile').value = data.mobile;
+                    document.getElementById('email').value = data.email;
+                    document.getElementById('address').value = data.address;
+                    // Populate other fields as needed...
+                });
+        } else {
+            // Clear fields for a new patient
+            document.getElementById('first_name').value = '';
+            document.getElementById('last_name').value = '';
+            document.getElementById('mobile').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('address').value = '';
+        }
+    });
+</script>
+
 @endsection

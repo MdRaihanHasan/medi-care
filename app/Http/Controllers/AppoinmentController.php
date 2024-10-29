@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\Patient;
+use App\Models\Appoinment;
 use App\Models\DoctorInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -10,178 +12,87 @@ use Illuminate\Support\Facades\Hash;
 class AppoinmentController extends Controller
 {
     public function index() {
-        $doctors = Doctor::with('doctorInfo')->get();
+        $appointments = Appoinment::with('patient', 'doctor')->get(); // Assuming you have relationships set up
 
-        return view('dashboard.appoinments.index', compact('doctors'));
+        return view('dashboard.appoinments.index', compact('appointments'));
     }
 
     public function create() {
-        $doctors = Doctor::with('doctorInfo')->get();
-        return view('dashboard.appoinments.store', compact('doctors'));
-    }
+        $patients = Patient::all();
+        $doctors = Doctor::all();
 
-    public function profile($id) {
-        // Retrieve the doctor and related info using the ID
-        $doctor = Doctor::with('doctorInfo')->findOrFail($id);
-
-        // Pass the doctor data to the profile view
-        return view('dashboard.appoinments.profile', compact('doctor', 'id'));
+        return view('dashboard.appoinments.store', compact('patients', 'doctors'));
     }
 
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:doctors,username',
-            'mobile' => 'required|string|max:15|unique:doctors,mobile',
-            'email' => 'required|email|max:255|unique:doctors,email',
-            'date_of_birth' => 'required|date',
-            'gender' => 'required|in:Male,Female',
-            'education' => 'nullable|string|max:255',
-            'designation' => 'nullable|string|max:255',
-            'department' => 'nullable|string|max:255',
+            'gender' => 'required|string',
+            'mobile' => 'required|string',
+            'email' => 'required|email',
             'address' => 'required|string',
-            'city' => 'required|string|max:255',
-            'country' => 'required|string|max:255',
-            'state' => 'required|string|max:255',
-            'postal_code' => 'required|string|max:10',
-            'biography' => 'nullable|string',
-            'status' => 'required|in:Active,Inactive',
-            'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'appointment_date' => 'required',
+            'appointment_from' => 'required',
+            'appointment_to' => 'required',
+            'doctor_id' => 'required|exists:doctors,id',
+            'notes' => 'nullable|string',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        // Check if an existing patient was selected
+        $patient = null;
+        if ($request->has('existing_patient_id') && $request->existing_patient_id) {
+            $patient = Patient::find($request->existing_patient_id);
+        } else {
+            // Create a new patient record
+            $patient = new Patient();
+            $patient->first_name = $request->first_name;
+            $patient->last_name = $request->last_name;
+            $patient->gender = $request->gender;
+            $patient->mobile = $request->mobile;
+            $patient->email = $request->email;
+            $patient->address = $request->address;
 
+            if($request->hasFile('avatar')){
+                $file = $request->file('avatar');
+                $fileName = $file->getClientOriginalName();
+                $random = random_int(111111111, 999999999);
+                $file = $file->move(storage_path() . "/app/public/avatars/" , $random.'_'.$fileName);
+                $patient->avatar = $random.'_'.$fileName;
+            }
 
-        $doctor = Doctor::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'username' => $request->username,
-            'mobile' => $request->mobile,
-            'email' => $request->email,
-            'password' => Hash::make(value: now()),
-        ]);
-
-        $doctorInfoData = [
-            'doctor_id' => $doctor->id,
-            'date_of_birth' => $request->date_of_birth,
-            'gender' => $request->gender,
-            'education' => $request->education,
-            'designation' => $request->designation,
-            'department' => $request->department,
-            'address' => $request->address,
-            'city' => $request->city,
-            'country' => $request->country,
-            'state' => $request->state,
-            'postal_code' => $request->postal_code,
-            'biography' => $request->biography,
-            'status' => $request->status,
-        ];
-
-
-        if($request->hasFile('avatar')){
-            $file = $request->file('avatar');
-            $fileName = $file->getClientOriginalName();
-            $random = random_int(111111111, 999999999);
-            $file = $file->move(storage_path() . "/app/public/avatars/" , $random.'_'.$fileName);
-            $doctorInfoData['avatar'] = $random.'_'.$fileName;
+            $patient->save();
         }
 
-        DoctorInfo::create(attributes: $doctorInfoData);
+        // Store appointment details
+        $appointment = new Appoinment();
+        $appointment->patient_id = $patient->id;
+        $appointment->appointment_date = $request->appointment_date;
+        $appointment->appointment_from = $request->appointment_from;
+        $appointment->appointment_to = $request->appointment_to;
+        $appointment->doctor_id = $request->doctor_id;
+        $appointment->notes = $request->notes;
+        $appointment->save();
 
-        return redirect()->route('dashboard.doctor')->with('success', 'Doctor created successfully.');
+        return redirect()->route('dashboard.appoinment')->with('success', 'Appointment created successfully!');
     }
 
-    /**
-     * Show the form for editing a specific doctor.
-     */
-    public function edit($id)
-    {
-        $doctor = Doctor::findOrFail($id);
-        $doctorInfo = DoctorInfo::where('doctor_id', $id)->firstOrFail();
-        // dd('fda');
-        return view('dashboard.appoinments.store', compact('doctor', 'doctorInfo', 'id'));
-    }
 
-    /**
-     * Update the specified doctor in storage.
-     */
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:doctors,username,' . $id,
-            'mobile' => 'required|string|max:15|unique:doctors,mobile,' . $id,
-            'email' => 'required|email|max:255|unique:doctors,email,' . $id,
-            'date_of_birth' => 'required|date',
-            'gender' => 'required|in:Male,Female',
-            'education' => 'nullable|string|max:255',
-            'designation' => 'nullable|string|max:255',
-            'department' => 'nullable|string|max:255',
-            'address' => 'required|string',
-            'city' => 'required|string|max:255',
-            'country' => 'required|string|max:255',
-            'state' => 'required|string|max:255',
-            'postal_code' => 'required|string|max:10',
-            'biography' => 'nullable|string',
-            'status' => 'required|in:Active,Inactive',
-            'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
 
-        $doctor = Doctor::findOrFail($id);
-        $doctor->update([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'username' => $request->username,
-            'mobile' => $request->mobile,
-            'email' => $request->email,
-        ]);
-
-        $doctorInfoData = [
-            'date_of_birth' => $request->date_of_birth,
-            'gender' => $request->gender,
-            'education' => $request->education,
-            'designation' => $request->designation,
-            'department' => $request->department,
-            'address' => $request->address,
-            'city' => $request->city,
-            'country' => $request->country,
-            'state' => $request->state,
-            'postal_code' => $request->postal_code,
-            'biography' => $request->biography,
-            'status' => $request->status,
-        ];
-
-        if($request->hasFile('avatar')){
-            $file = $request->file('avatar');
-            $fileName = $file->getClientOriginalName();
-            $random = random_int(111111111, 999999999);
-            $file = $file->move(storage_path() . "/app/public/avatars/" , $random.'_'.$fileName);
-            $doctorInfoData['avatar'] = $random.'_'.$fileName;
-        }
-
-        $doctorInfo = DoctorInfo::where('doctor_id', $doctor->id)->firstOrFail();
-        $doctorInfo->update($doctorInfoData);
-
-        return redirect()->route('dashboard.doctor')->with('success', 'Doctor updated successfully.');
-    }
 
     /**
      * Remove the specified doctor from storage.
      */
+
     public function destroy($id)
     {
-        $doctor = Doctor::findOrFail($id);
-        $doctorInfo = DoctorInfo::where('doctor_id', $doctor->id)->firstOrFail();
+        $patient = Appoinment::findOrFail($id);
+        $patient->delete();
 
-        // Delete associated records
-        $doctorInfo->delete();
-        $doctor->delete();
-
-        return redirect()->route('dashboard.doctor')->with('success', 'Doctor deleted successfully.');
+        return redirect()->route('dashboard.appoinment')->with('success', 'Appoinment deleted successfully!');
     }
 
 

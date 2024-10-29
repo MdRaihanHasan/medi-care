@@ -24,5 +24,5 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
 </head>
 
-<body>
+<body onload="startTime()">
     <div class="main-wrapper">

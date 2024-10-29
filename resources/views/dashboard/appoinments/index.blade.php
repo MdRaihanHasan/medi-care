@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="appointments.html">Appointment </a></li>
+                        <li class="breadcrumb-item"><a href="#">Appointment </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                         <li class="breadcrumb-item active">Appointment List</li>
                     </ul>
@@ -31,17 +31,17 @@
                                                     <input type="text" class="form-control"
                                                         placeholder="Search here">
                                                     <a class="btn"><img
-                                                            src="assets/img/icons/search-normal.svg"
+                                                            src="{{ asset('') }}/assets/img/icons/search-normal.svg"
                                                             alt=""></a>
                                                 </form>
                                             </div>
                                             <div class="add-group">
-                                                <a href="add-appointment.html"
+                                                <a href="{{ route('dashboard.appoinment.create') }}"
                                                     class="btn btn-primary add-pluss ms-2"><img
-                                                        src="assets/img/icons/plus.svg" alt=""></a>
+                                                        src="{{ asset('') }}/assets/img/icons/plus.svg" alt=""></a>
                                                 <a href="javascript:;"
                                                     class="btn btn-primary doctor-refresh ms-2"><img
-                                                        src="assets/img/icons/re-fresh.svg"
+                                                        src="{{ asset('') }}/assets/img/icons/re-fresh.svg"
                                                         alt=""></a>
                                             </div>
                                         </div>
@@ -49,25 +49,24 @@
                                 </div>
                                 <div class="col-auto text-end float-end ms-auto download-grp">
                                     <a href="javascript:;" class=" me-2"><img
-                                            src="assets/img/icons/pdf-icon-01.svg" alt=""></a>
+                                            src="{{ asset('') }}/assets/img/icons/pdf-icon-01.svg" alt=""></a>
                                     <a href="javascript:;" class=" me-2"><img
-                                            src="assets/img/icons/pdf-icon-02.svg" alt=""></a>
+                                            src="{{ asset('') }}/assets/img/icons/pdf-icon-02.svg" alt=""></a>
                                     <a href="javascript:;" class=" me-2"><img
-                                            src="assets/img/icons/pdf-icon-03.svg" alt=""></a>
-                                    <a href="javascript:;"><img src="assets/img/icons/pdf-icon-04.svg"
+                                            src="{{ asset('') }}/assets/img/icons/pdf-icon-03.svg" alt=""></a>
+                                    <a href="javascript:;"><img src="{{ asset('') }}/assets/img/icons/pdf-icon-04.svg"
                                             alt=""></a>
                                 </div>
                             </div>
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table border-0 custom-table comman-table datatable mb-0">
-                                <thead>
+                            <table class="table table-striped table-hover border-0 custom-table comman-table datatable mb-0">
+                                <thead class="table-light">
                                     <tr>
                                         <th>
                                             <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
+                                                <input class="form-check-input" type="checkbox" value="something" id="select-all">
                                             </div>
                                         </th>
                                         <th>Name</th>
@@ -77,300 +76,73 @@
                                         <th>Email</th>
                                         <th>Date</th>
                                         <th>Time</th>
-                                        <th></th>
+                                        <th class="text-end">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28"
-                                                    height="28" src="assets/img/profiles/avatar-01.jpg"
-                                                    class="rounded-circle m-r-5" alt=""> Andrea
-                                                Lalema</a></td>
-                                        <td>Dr.Bernardo James</td>
-                                        <td>Infertility</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="ef8a978e829f838aaf8a828e8683c18c8082">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td>07:30</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-appointment.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
+                                    @foreach ($appointments as $appointment)
+                                        <tr>
+                                            <td>
+                                                <div class="form-check check-tables">
+                                                    <input class="form-check-input" type="checkbox" value="{{ $appointment->id }}" id="appointment-{{ $appointment->id }}">
+                                                </div>
+                                            </td>
+                                            <td class="profile-image">
+                                                <a href="{{ route('dashboard.patient.profile', $appointment->patient->id) }}">
+                                                    <img width="28" height="28" src="{{ asset('assets/img/profiles/images.jpg') }}" class="rounded-circle m-r-5" alt="{{ $appointment->patient->first_name }}">
+                                                    {{ $appointment->patient->first_name }} {{ $appointment->patient->last_name }}
+                                                </a>
+                                            </td>
+                                            <td>{{ $appointment->doctor->name }}</td>
+                                            <td>{{ $appointment->notes }}</td>
+                                            <td>
+                                                <a href="javascript:;">{{ $appointment->patient->mobile }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="mailto:{{ $appointment->patient->email }}">{{ $appointment->patient->email }}</a>
+                                            </td>
+                                            <td>{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d.m.Y') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($appointment->appointment_from)->format('H:i') }}</td>
+                                            <td class="text-end">
+                                                <div class="dropdown dropdown-action">
+                                                    <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+
+                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_appointment_{{ $appointment->id }}">
+                                                            <i class="fa fa-trash-alt m-r-5"></i>Delete
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!-- Delete Modal -->
+                                        <div class="modal fade" id="delete_appointment_{{ $appointment->id }}" tabindex="-1" aria-labelledby="deleteAppointmentLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteAppointmentLabel">Delete Appointment</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete this appointment?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <form action="{{ route('dashboard.appoinment.destroy', $appointment->id) }}" method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28"
-                                                    height="28" src="assets/img/profiles/avatar-02.jpg"
-                                                    class="rounded-circle m-r-5" alt="">Smith
-                                                Bruklin</a></td>
-                                        <td>Dr.William Stephin</td>
-                                        <td>Infertility</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="e88d90898598848da88d85898184c68b8785">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td>07:30</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-appointment.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28"
-                                                    height="28" src="assets/img/profiles/avatar-03.jpg"
-                                                    class="rounded-circle m-r-5" alt="">William
-                                                Stephin</a></td>
-                                        <td>Dr.Galaviz Lalema</td>
-                                        <td>Cancer</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="bcd9c4ddd1ccd0d9fcd9d1ddd5d092dfd3d1">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td>07:30</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-appointment.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28"
-                                                    height="28" src="assets/img/profiles/avatar-04.jpg"
-                                                    class="rounded-circle m-r-5" alt=""> Bernardo
-                                                James</a></td>
-                                        <td>Dr.Cristina Groves</td>
-                                        <td>Infertility</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="ee8b968f839e828bae8b838f8782c08d8183">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td>07:30</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-appointment.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28"
-                                                    height="28" src="assets/img/profiles/avatar-06.jpg"
-                                                    class="rounded-circle m-r-5" alt="">Cristina
-                                                Groves</a></td>
-                                        <td>Dr.Smith Bruklin</td>
-                                        <td>Infertility</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="b0d5c8d1ddc0dcd5f0d5ddd1d9dc9ed3dfdd">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td>07:30</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-appointment.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28"
-                                                    height="28" src="assets/img/profiles/avatar-05.jpg"
-                                                    class="rounded-circle m-r-5" alt=""> Mark Hay
-                                                Smith</a></td>
-                                        <td>Dr.Smith Bruklin</td>
-                                        <td>Prostate</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="c8adb0a9a5b8a4ad88ada5a9a1a4e6aba7a5">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td>07:30</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-appointment.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28"
-                                                    height="28" src="assets/img/profiles/avatar-01.jpg"
-                                                    class="rounded-circle m-r-5" alt=""> Andrea
-                                                Lalema</a></td>
-                                        <td>Dr.Smith Bruklin</td>
-                                        <td>Infertility</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="1a7f627b776a767f5a7f777b737634797577">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td>07:30</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-appointment.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox"
-                                                    value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a href="profile.html"><img width="28"
-                                                    height="28" src="assets/img/profiles/avatar-02.jpg"
-                                                    class="rounded-circle m-r-5" alt="">Smith
-                                                Bruklin</a></td>
-                                        <td>Dr.Bernardo James</td>
-                                        <td>Infertility</td>
-                                        <td><a href="javascript:;">+1 23 456890</a></td>
-                                        <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="c7a2bfa6aab7aba287a2aaa6aeabe9a4a8aa">[email&#160;protected]</a>
-                                        </td>
-                                        <td>01.10.2022</td>
-                                        <td>07:30</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="edit-appointment.html"><i
-                                                            class="fa-solid fa-pen-to-square m-r-5"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="#"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete_patient"><i
-                                                            class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        </div>
+                                    @endforeach
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -604,7 +376,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body text-center">
-                <img src="assets/img/sent.png" alt="" width="50" height="46">
+                <img src="{{ asset('') }}/assets/img/sent.png" alt="" width="50" height="46">
                 <h3>Are you sure want to delete this ?</h3>
                 <div class="m-t-20"> <a href="#" class="btn btn-white"
                         data-bs-dismiss="modal">Close</a>

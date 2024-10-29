@@ -169,7 +169,7 @@
                           <!-- Submit and Cancel Buttons -->
                           <div class="doctor-submit text-end">
                               <button type="submit" class="btn btn-primary">{{ isset($doctor) ? 'Update' : 'Submit' }}</button>
-                              <a href="{{ route('dashboard.doctor.profile', $id) }}" class="btn btn-secondary">Cancel</a>
+                              <a href="{{ route('dashboard.doctor') }}" class="btn btn-secondary">Cancel</a>
                           </div>
                       </form>
 

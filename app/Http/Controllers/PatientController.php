@@ -57,10 +57,10 @@ class PatientController extends Controller
     }
 
     public function destroy($id)
-{
-    $patient = Patient::findOrFail($id);
-    $patient->delete();
+    {
+        $patient = Patient::findOrFail($id);
+        $patient->delete();
 
-    return redirect()->route('dashboard.patient')->with('success', 'Patient deleted successfully!');
-}
+        return redirect()->route('dashboard.patient')->with('success', 'Patient deleted successfully!');
+    }
 }

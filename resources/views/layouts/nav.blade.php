@@ -18,7 +18,7 @@
         <li class="nav-item dropdown d-none d-md-block">
             <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown"><img
                     src="{{ asset('') }}assets/img/icons/note-icon-02.svg" alt=""><span class="pulse"></span> </a>
-            <div class="dropdown-menu notifications">
+            {{-- <div class="dropdown-menu notifications">
                 <div class="topnav-dropdown-header">
                     <span>Notifications</span>
                 </div>
@@ -102,7 +102,7 @@
                 <div class="topnav-dropdown-footer">
                     <a href="activities.html">View all Notifications</a>
                 </div>
-            </div>
+            </div> --}}
         </li>
         <li class="nav-item dropdown d-none d-md-block">
             <a href="javascript:void(0);" id="open_msg_box" class="hasnotifications nav-link"><img
@@ -111,8 +111,9 @@
         <li class="nav-item dropdown has-arrow user-profile-list">
             <a href="#" class="dropdown-toggle nav-link user-link" data-bs-toggle="dropdown">
                 <div class="user-names">
+                    <span>Welcome, Admin</span><br>
                     <h5>{{ auth()->user()->name }} </h5>
-                    <span>Admin</span>
+                    {{-- <span id="txt"></span> --}}
                 </div>
                 <span class="user-img">
                     <img src="{{ asset('') }}assets/img/user-06.jpg" alt="Admin">

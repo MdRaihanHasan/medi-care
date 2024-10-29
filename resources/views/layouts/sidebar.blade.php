@@ -59,7 +59,7 @@
                         {{-- <li><a href="edit-appointment.html">Edit Appointment</a></li> --}}
                     </ul>
                 </li>
-                <li class="submenu">
+                {{-- <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-05.svg"
                                 alt=""></span> <span> Doctor Schedule </span> <span
                             class="menu-arrow"></span></a>
@@ -90,7 +90,7 @@
                         <li><a href="taxes.html">Taxes</a></li>
                         <li><a href="provident-fund.html">Provident Fund</a></li>
                     </ul>
-                </li>
+                </li> --}}
                  {{-- <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-09.svg"
                                 alt=""></span> <span> Payroll </span> <span

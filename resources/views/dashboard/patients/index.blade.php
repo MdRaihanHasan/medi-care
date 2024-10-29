@@ -88,7 +88,7 @@
                                         </td>
                                         <td class="profile-image">
                                             <a href="#">
-                                                <img width="28" height="28" src="{{ asset('storage/avatars/' . $patient->avatar) }}" class="rounded-circle m-r-5" alt="{{ $patient->first_name }} {{ $patient->last_name }}">
+                                                <img width="28" height="28" src="{{ asset('storage/avatars/' . $patient->avatar ?? 'assets/img/profiles/images.jpg') }}" class="rounded-circle m-r-5" alt="{{ $patient->first_name }} {{ $patient->last_name }}">
                                                 {{ $patient->first_name }} {{ $patient->last_name }}
                                             </a>
                                         </td>
@@ -101,7 +101,7 @@
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    
+
                                                     <form action="{{ route('dashboard.patients.destroy', $patient->id) }}" method="POST" style="display: inline;">
                                                         @csrf
                                                         @method('DELETE')
@@ -117,7 +117,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

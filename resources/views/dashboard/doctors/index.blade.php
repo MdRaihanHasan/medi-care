@@ -70,7 +70,7 @@
                                             </td>
                                             <td class="profile-image">
                                                 <a href="{{ route('dashboard.doctor.profile', $doctor->id) }}">
-                                                    <img width="28" height="28" src="{{ asset('storage/avatars/' . $doctor->doctorInfo->avatar ?? 'assets/img/profiles/default-avatar.jpg') }}" class="rounded-circle m-r-5" alt="">
+                                                    <img width="28" height="28" src="{{ asset('storage/avatars/' . $doctor->doctorInfo->avatar ?? 'assets/img/profiles/images.jpg') }}" class="rounded-circle m-r-5" alt="">
                                                     {{ $doctor->first_name }} {{ $doctor->last_name }}
                                                 </a>
                                             </td>
