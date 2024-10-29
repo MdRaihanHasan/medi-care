@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard </a></li>
+                        <li class="breadcrumb-item"><a href="#">Dashboard </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
                         <li class="breadcrumb-item active">Admin Dashboard</li>
                     </ul>
@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="morning-user">
-                        <h2>Good Morning, <span>Daniel Bruk</span></h2>
+                        <h2>Good Morning, <span>{{ auth()->user()->name }}</span></h2>
                         <p>Have a nice day at work</p>
                     </div>
                 </div>
@@ -38,9 +38,9 @@
                     </div>
                     <div class="dash-content dash-count">
                         <h4>Appointments</h4>
-                        <h2><span class="counter-up">250</span></h2>
-                        <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>40%</span> vs
-                            last month</p>
+                        <h2><span class="counter-up">{{ $appoinments->count() }}</span></h2>
+                        {{-- <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>40%</span> vs
+                            last month</p> --}}
                     </div>
                 </div>
             </div>
@@ -50,10 +50,10 @@
                         <img src="{{ asset('assets/img/icons/profile-add.svg') }}" alt="">
                     </div>
                     <div class="dash-content dash-count">
-                        <h4>New Patients</h4>
-                        <h2><span class="counter-up">140</span></h2>
-                        <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>20%</span> vs
-                            last month</p>
+                        <h4>Patients</h4>
+                        <h2><span class="counter-up">{{ $patients->count() }}</span></h2>
+                        {{-- <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>20%</span> vs
+                            last month</p> --}}
                     </div>
                 </div>
             </div>
@@ -63,10 +63,10 @@
                         <img src="{{ asset('assets/img/icons/scissor.svg') }}" alt="">
                     </div>
                     <div class="dash-content dash-count">
-                        <h4>Operations</h4>
-                        <h2><span class="counter-up">56</span></h2>
-                        <p><span class="negative-view"><i class="feather-arrow-down-right me-1"></i>15%</span>
-                            vs last month</p>
+                        <h4>Doctors</h4>
+                        <h2><span class="counter-up">{{ $doctors->count() }}</span></h2>
+                        {{-- <p><span class="negative-view"><i class="feather-arrow-down-right me-1"></i>15%</span>
+                            vs last month</p> --}}
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="input-block mb-0">
+                            <div class="mb-0 input-block">
                                 <select class="form-control select">
                                     <option>2022</option>
                                     <option>2021</option>
@@ -125,10 +125,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-12  col-xl-4">
+            <div class="col-12 col-md-12 col-xl-4">
                 <div class="card top-departments">
                     <div class="card-header">
-                        <h4 class="card-title mb-0">Top Departments</h4>
+                        <h4 class="mb-0 card-title">Top Departments</h4>
                     </div>
                     <div class="card-body">
                         <div class="activity-top">
@@ -167,7 +167,7 @@
                                 <p>15%</p>
                             </div>
                         </div>
-                        <div class="activity-top mb-0">
+                        <div class="mb-0 activity-top">
                             <div class="activity-boxs comman-flex-center">
                                 <img src="{{ asset('assets/img/icons/dep-icon-05.svg') }}" alt="">
                             </div>
@@ -179,13 +179,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-12  col-xl-8">
+            <div class="col-12 col-md-12 col-xl-8">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a
                             href="appointments.html" class="patient-views float-end">Show all</a>
                     </div>
-                    <div class="card-body p-0 table-dash">
+                    <div class="p-0 card-body table-dash">
                         <div class="table-responsive">
                             <table class="table mb-0 border-0 datatable custom-table">
                                 <thead>
@@ -380,7 +380,7 @@
         <div class="row">
             <div class="col-12 col-xl-12">
                 <div class="card">
-                    <div class="card-header pb-0">
+                    <div class="pb-0 card-header">
                         <h4 class="card-title d-inline-block">Recent Patients </h4> <a href="patients.html"
                             class="float-end patient-views">Show all</a>
                     </div>

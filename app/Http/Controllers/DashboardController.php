@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appoinment;
 use App\Models\cr;
+use App\Models\Doctor;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,7 +15,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $doctors = Doctor::all();
+        $patients = Patient::all();
+        $appoinments = Appoinment::all();
+        return view('dashboard.index', compact('doctors', 'patients', 'appoinments'));
     }
 
     /**

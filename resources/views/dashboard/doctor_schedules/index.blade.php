@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Appointment </a></li>
+                        <li class="breadcrumb-item"><a href="#">Doctor Shedule </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Appointment List</li>
+                        <li class="breadcrumb-item active">Schedule List</li>
                     </ul>
                 </div>
             </div>
@@ -26,26 +26,25 @@
                                     @if(session('success'))
                                         <div class="alert alert-success">{{ session('success') }}</div>
                                     @endif
-
                                     <div class="doctor-table-blk">
-                                        <h3>Appointment</h3>
+                                        <h3>Schedule List</h3>
                                         <div class="doctor-search-blk">
                                             <div class="top-nav-search table-search-blk">
                                                 <form>
                                                     <input type="text" class="form-control"
                                                         placeholder="Search here">
                                                     <a class="btn"><img
-                                                            src="{{ asset('') }}/assets/img/icons/search-normal.svg"
+                                                            src="assets/img/icons/search-normal.svg"
                                                             alt=""></a>
                                                 </form>
                                             </div>
                                             <div class="add-group">
-                                                <a href="{{ route('dashboard.appoinment.create') }}"
+                                                <a href="add-schedule.html"
                                                     class="btn btn-primary add-pluss ms-2"><img
-                                                        src="{{ asset('') }}/assets/img/icons/plus.svg" alt=""></a>
+                                                        src="assets/img/icons/plus.svg" alt=""></a>
                                                 <a href="javascript:;"
                                                     class="btn btn-primary doctor-refresh ms-2"><img
-                                                        src="{{ asset('') }}/assets/img/icons/re-fresh.svg"
+                                                        src="assets/img/icons/re-fresh.svg"
                                                         alt=""></a>
                                             </div>
                                         </div>
@@ -53,100 +52,80 @@
                                 </div>
                                 <div class="col-auto text-end float-end ms-auto download-grp">
                                     <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}/assets/img/icons/pdf-icon-01.svg" alt=""></a>
+                                            src="assets/img/icons/pdf-icon-01.svg" alt=""></a>
                                     <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}/assets/img/icons/pdf-icon-02.svg" alt=""></a>
+                                            src="assets/img/icons/pdf-icon-02.svg" alt=""></a>
                                     <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}/assets/img/icons/pdf-icon-03.svg" alt=""></a>
-                                    <a href="javascript:;"><img src="{{ asset('') }}/assets/img/icons/pdf-icon-04.svg"
+                                            src="assets/img/icons/pdf-icon-03.svg" alt=""></a>
+                                    <a href="javascript:;"><img src="assets/img/icons/pdf-icon-04.svg"
                                             alt=""></a>
                                 </div>
                             </div>
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table mb-0 border-0 table-striped table-hover custom-table comman-table datatable">
-                                <thead class="table-light">
+                            <table class="table mb-0 border-0 custom-table comman-table datatable">
+                                <thead>
                                     <tr>
                                         <th>
                                             <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something" id="select-all">
+                                                <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </th>
-                                        <th>Name</th>
-                                        <th>Consulting Doctor</th>
-                                        <th>Treatment</th>
-                                        <th>Mobile</th>
-                                        <th>Email</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th class="text-end">Actions</th>
+                                        <th>Doctor Name</th>
+                                        <th>Department</th>
+                                        <th>Available Days</th>
+                                        <th>Available Time</th>
+                                        <th>Status</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($appointments as $appointment)
+                                    @foreach($schedules as $schedule)
                                         <tr>
                                             <td>
                                                 <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="{{ $appointment->id }}" id="appointment-{{ $appointment->id }}">
+                                                    <input class="form-check-input" type="checkbox" value="{{ $schedule->id }}">
                                                 </div>
                                             </td>
                                             <td class="profile-image">
-                                                <a href="{{ route('dashboard.patient.profile', $appointment->patient->id) }}">
-                                                    <img width="28" height="28" src="{{ asset('assets/img/profiles/images.jpg') }}" class="rounded-circle m-r-5" alt="{{ $appointment->patient->first_name }}">
-                                                    {{ $appointment->patient->first_name }} {{ $appointment->patient->last_name }}
+                                                <a href="profile.html">
+                                                    <img width="28" height="28" src="{{ asset('assets/img/profiles/avatar-01.jpg') }}"
+                                                         class="rounded-circle m-r-5" alt="">
+                                                    Dr. {{ $schedule->doctor->first_name }} {{ $schedule->doctor->last_name }}
                                                 </a>
                                             </td>
-                                            <td>{{ $appointment->doctor->name }}</td>
-                                            <td>{{ $appointment->notes }}</td>
+                                            <td>{{ $schedule->department }}</td>
+                                            <td>{{ $schedule->available_days }}</td>
+                                            <td>{{ date('h:i A', strtotime($schedule->start_time)) }} - {{ date('h:i A', strtotime($schedule->end_time)) }}</td>
                                             <td>
-                                                <a href="javascript:;">{{ $appointment->patient->mobile }}</a>
+                                                <button class="custom-badge {{ $schedule->status == 'Active' ? 'status-green' : 'status-red' }}">
+                                                    {{ $schedule->status }}
+                                                </button>
                                             </td>
-                                            <td>
-                                                <a href="mailto:{{ $appointment->patient->email }}">{{ $appointment->patient->email }}</a>
-                                            </td>
-                                            <td>{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d.m.Y') }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($appointment->appointment_from)->format('H:i') }}</td>
                                             <td class="text-end">
                                                 <div class="dropdown dropdown-action">
                                                     <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                                         <i class="fa fa-ellipsis-v"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-end">
-
-                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_appointment_{{ $appointment->id }}">
-                                                            <i class="fa fa-trash-alt m-r-5"></i>Delete
+                                                        <a class="dropdown-item" href="{{ route('dashboard.schedule.edit', $schedule->id) }}">
+                                                            <i class="fa-solid fa-pen-to-square m-r-5"></i> Edit
                                                         </a>
+                                                        <form action="{{ route('dashboard.schedule.destroy', $schedule->id) }}" method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this schedule?')">
+                                                                <i class="fa fa-trash-alt m-r-5"></i> Delete
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <!-- Delete Modal -->
-                                        <div class="modal fade" id="delete_appointment_{{ $appointment->id }}" tabindex="-1" aria-labelledby="deleteAppointmentLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteAppointmentLabel">Delete Appointment</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to delete this appointment?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                        <form action="{{ route('dashboard.appoinment.destroy', $appointment->id) }}" method="POST" style="display:inline;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
@@ -380,7 +359,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="text-center modal-body">
-                <img src="{{ asset('') }}/assets/img/sent.png" alt="" width="50" height="46">
+                <img src="assets/img/sent.png" alt="" width="50" height="46">
                 <h3>Are you sure want to delete this ?</h3>
                 <div class="m-t-20"> <a href="#" class="btn btn-white"
                         data-bs-dismiss="modal">Close</a>

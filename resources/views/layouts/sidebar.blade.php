@@ -3,15 +3,10 @@
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
                 <li class="menu-title">Admin Menu</li>
-                <li class="submenu {{ request()->routeIs('dashboard.dashboard') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('dashboard.dashboard') ? 'active' : '' }}">
                     <a href="{{ route('dashboard.dashboard') }}"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-01.svg"
-                                alt=""></span> <span> Dashboard </span> <span
+                                alt=""></span> <span>Admin Dashboard </span> <span
                             class="menu-arrow"></span></a>
-                    {{-- <ul style="display: none;">
-                        <li><a class="active" href="index.html">Admin Dashboard</a></li>
-                        <li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
-                        <li><a href="patient-dashboard.html">Patient Dashboard</a></li>
-                    </ul> --}}
                 </li>
                 <li class="submenu {{ request()->routeIs('dashboard.doctor' , 'dashboard.doctor.create') ? 'active' : '' }}">
                     <a href="#"><span class="menu-side "><img src="{{ asset('/') }}/assets/img/icons/menu-icon-02.svg"
@@ -20,8 +15,6 @@
                     <ul style="display: none;">
                         <li><a href="{{ route('dashboard.doctor') }}">Doctors List</a></li>
                         <li><a href="{{ route('dashboard.doctor.create') }}">Add Doctor</a></li>
-                        {{-- <li><a href="edit-doctor.html">Edit Doctor</a></li>
-                        <li><a href="doctor-profile.html">Doctor Profile</a></li> --}}
                     </ul>
                 </li>
                 <li class="submenu">
@@ -31,9 +24,6 @@
                     <ul style="display: none;">
                         <li><a href="{{ route('dashboard.patient') }}">Patients List</a></li>
                         <li><a href="{{ route('dashboard.patient.create') }}">Add Patient</a></li>
-
-                        {{-- <li><a href="edit-patient.html">Edit Patients</a></li>
-                        <li><a href="patient-profile.html">Patients Profile</a></li> --}}
                     </ul>
                 </li>
                 {{-- <li class="submenu">
@@ -56,20 +46,18 @@
                     <ul style="display: none;">
                         <li><a href="{{ route('dashboard.appoinment') }}">Appointment List</a></li>
                         <li><a href="{{ route('dashboard.appoinment.create') }}">Book Appointment</a></li>
-                        {{-- <li><a href="edit-appointment.html">Edit Appointment</a></li> --}}
                     </ul>
                 </li>
-                {{-- <li class="submenu">
+                <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-05.svg"
                                 alt=""></span> <span> Doctor Schedule </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="schedule.html">Schedule List</a></li>
-                        <li><a href="add-schedule.html">Add Schedule</a></li>
-                        <li><a href="edit-schedule.html">Edit Schedule</a></li>
+                        <li><a href="{{ route('dashboard.schedule') }}">Schedule List</a></li>
+                        <li><a href="{{ route('dashboard.schedule.create') }}">Add Schedule</a></li>
                     </ul>
                 </li>
-                <li class="submenu">
+                {{-- <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/menu-icon-06.svg"
                                 alt=""></span> <span> Departments </span> <span
                             class="menu-arrow"></span></a>
@@ -324,7 +312,7 @@
                     onclick="event.preventDefault();
                                 this.closest('form').submit();""><span class="menu-side"><img src="{{ asset('/') }}/assets/img/icons/logout.svg"
                             alt=""></span> <span>Logout</span></a>
-                    
+
                 </form>
             </div>
         </div>

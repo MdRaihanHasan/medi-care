@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Appointment </a></li>
+                        <li class="breadcrumb-item"><a href="#">Doctor Shedule </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Appointment List</li>
+                        <li class="breadcrumb-item active">Add Schedule</li>
                     </ul>
                 </div>
             </div>
@@ -17,137 +17,70 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <div class="card card-table show-entire">
+                <div class="card">
                     <div class="card-body">
 
-                        <div class="mb-2 page-table-header">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    @if(session('success'))
-                                        <div class="alert alert-success">{{ session('success') }}</div>
-                                    @endif
+                    <form action="{{ isset($schedule) ? route('dashboard.schedule.update', $schedule->id) : route('dashboard.schedule.store') }}" method="POST">
+                        @csrf
 
-                                    <div class="doctor-table-blk">
-                                        <h3>Appointment</h3>
-                                        <div class="doctor-search-blk">
-                                            <div class="top-nav-search table-search-blk">
-                                                <form>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Search here">
-                                                    <a class="btn"><img
-                                                            src="{{ asset('') }}/assets/img/icons/search-normal.svg"
-                                                            alt=""></a>
-                                                </form>
-                                            </div>
-                                            <div class="add-group">
-                                                <a href="{{ route('dashboard.appoinment.create') }}"
-                                                    class="btn btn-primary add-pluss ms-2"><img
-                                                        src="{{ asset('') }}/assets/img/icons/plus.svg" alt=""></a>
-                                                <a href="javascript:;"
-                                                    class="btn btn-primary doctor-refresh ms-2"><img
-                                                        src="{{ asset('') }}/assets/img/icons/re-fresh.svg"
-                                                        alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto text-end float-end ms-auto download-grp">
-                                    <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}/assets/img/icons/pdf-icon-01.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}/assets/img/icons/pdf-icon-02.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}/assets/img/icons/pdf-icon-03.svg" alt=""></a>
-                                    <a href="javascript:;"><img src="{{ asset('') }}/assets/img/icons/pdf-icon-04.svg"
-                                            alt=""></a>
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-xl-6">
+                                <label>Doctor Name <span class="text-danger">*</span></label>
+                                <select name="doctor_id" class="form-control select">
+                                    <option value="">Choose Doctor</option>
+                                    @foreach ($doctors as $doctor)
+                                        <option value="{{ $doctor->id }}" {{ isset($schedule) && $schedule->doctor_id == $doctor->id ? 'selected' : '' }}>
+                                            {{ $doctor->first_name }} {{ $doctor->last_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-12 col-md-6 col-xl-6">
+                                <label>Department <span class="text-danger">*</span></label>
+                                <select name="department" class="form-control select">
+                                    <option value="">Choose Department</option>
+                                    <option value="Cardiology" {{ isset($schedule) && $schedule->department == 'Cardiology' ? 'selected' : '' }}>Cardiology</option>
+                                    <option value="Urology" {{ isset($schedule) && $schedule->department == 'Urology' ? 'selected' : '' }}>Urology</option>
+                                    <option value="Radiology" {{ isset($schedule) && $schedule->department == 'Radiology' ? 'selected' : '' }}>Radiology</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12 col-md-6 col-xl-4">
+                                <label>Available Days <span class="text-danger">*</span></label>
+                                <input type="text" name="available_days" class="form-control" value="{{ old('available_days', isset($schedule) ? $schedule->available_days : '') }}">
+                            </div>
+
+                            <div class="col-12 col-md-6 col-xl-4">
+                                <label>From <span class="text-danger">*</span></label>
+                                <input type="time" name="start_time" class="form-control" value="{{ old('start_time', isset($schedule) ? $schedule->start_time : '') }}">
+                            </div>
+
+                            <div class="col-12 col-md-6 col-xl-4">
+                                <label>To <span class="text-danger">*</span></label>
+                                <input type="time" name="end_time" class="form-control" value="{{ old('end_time', isset($schedule) ? $schedule->end_time : '') }}">
+                            </div>
+
+                            <div class="col-12">
+                                <label>Notes</label>
+                                <textarea name="notes" class="form-control">{{ old('notes', isset($schedule) ? $schedule->notes : '') }}</textarea>
+                            </div>
+
+                            <div class="col-12 col-md-6 col-xl-4">
+                                <label>Status <span class="text-danger">*</span></label>
+                                <div>
+                                    <input type="radio" name="status" value="Active" {{ isset($schedule) && $schedule->status == 'Active' ? 'checked' : '' }}> Active
+                                    <input type="radio" name="status" value="Inactive" {{ isset($schedule) && $schedule->status == 'Inactive' ? 'checked' : '' }}> Inactive
                                 </div>
                             </div>
+
+                            <div class="mt-3 col-12 text-end">
+                                <button type="submit" class="btn btn-primary">{{ isset($schedule) ? 'Update' : 'Create' }} Schedule</button>
+                                <a href="{{ route('dashboard.schedule') }}" class="btn btn-secondary">Cancel</a>
+                            </div>
                         </div>
+                    </form>
 
-                        <div class="table-responsive">
-                            <table class="table mb-0 border-0 table-striped table-hover custom-table comman-table datatable">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something" id="select-all">
-                                            </div>
-                                        </th>
-                                        <th>Name</th>
-                                        <th>Consulting Doctor</th>
-                                        <th>Treatment</th>
-                                        <th>Mobile</th>
-                                        <th>Email</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th class="text-end">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($appointments as $appointment)
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="{{ $appointment->id }}" id="appointment-{{ $appointment->id }}">
-                                                </div>
-                                            </td>
-                                            <td class="profile-image">
-                                                <a href="{{ route('dashboard.patient.profile', $appointment->patient->id) }}">
-                                                    <img width="28" height="28" src="{{ asset('assets/img/profiles/images.jpg') }}" class="rounded-circle m-r-5" alt="{{ $appointment->patient->first_name }}">
-                                                    {{ $appointment->patient->first_name }} {{ $appointment->patient->last_name }}
-                                                </a>
-                                            </td>
-                                            <td>{{ $appointment->doctor->name }}</td>
-                                            <td>{{ $appointment->notes }}</td>
-                                            <td>
-                                                <a href="javascript:;">{{ $appointment->patient->mobile }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="mailto:{{ $appointment->patient->email }}">{{ $appointment->patient->email }}</a>
-                                            </td>
-                                            <td>{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d.m.Y') }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($appointment->appointment_from)->format('H:i') }}</td>
-                                            <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fa fa-ellipsis-v"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-
-                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_appointment_{{ $appointment->id }}">
-                                                            <i class="fa fa-trash-alt m-r-5"></i>Delete
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <!-- Delete Modal -->
-                                        <div class="modal fade" id="delete_appointment_{{ $appointment->id }}" tabindex="-1" aria-labelledby="deleteAppointmentLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteAppointmentLabel">Delete Appointment</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to delete this appointment?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                        <form action="{{ route('dashboard.appoinment.destroy', $appointment->id) }}" method="POST" style="display:inline;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </tbody>
-                            </table>
-
-                        </div>
                     </div>
                 </div>
             </div>
@@ -380,7 +313,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="text-center modal-body">
-                <img src="{{ asset('') }}/assets/img/sent.png" alt="" width="50" height="46">
+                <img src="assets/img/sent.png" alt="" width="50" height="46">
                 <h3>Are you sure want to delete this ?</h3>
                 <div class="m-t-20"> <a href="#" class="btn btn-white"
                         data-bs-dismiss="modal">Close</a>

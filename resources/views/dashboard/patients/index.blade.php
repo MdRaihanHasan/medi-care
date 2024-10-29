@@ -23,6 +23,10 @@
                         <div class="mb-2 page-table-header">
                             <div class="row align-items-center">
                                 <div class="col">
+                                    @if(session('success'))
+                                        <div class="alert alert-success">{{ session('success') }}</div>
+                                    @endif
+
                                     <div class="doctor-table-blk">
                                         <h3>Patients List</h3>
                                         <div class="doctor-search-blk">

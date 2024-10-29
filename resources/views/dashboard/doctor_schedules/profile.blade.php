@@ -2,158 +2,180 @@
 @section('content')
 <div class="page-wrapper">
     <div class="content">
-
-        <div class="page-header">
-            <div class="row">
-                <div class="col-sm-12">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Appointment </a></li>
-                        <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Appointment List</li>
-                    </ul>
-                </div>
+        <div class="row">
+            <div class="col-sm-7 col-6">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard </a></li>
+                    <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
+                    <li class="breadcrumb-item active">My Profile</li>
+                </ul>
+            </div>
+            <div class="col-sm-5 col-6 text-end m-b-30">
+                <a href="edit-profile.html" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i>
+                    Edit Profile</a>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card card-table show-entire">
-                    <div class="card-body">
-
-                        <div class="mb-2 page-table-header">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    @if(session('success'))
-                                        <div class="alert alert-success">{{ session('success') }}</div>
-                                    @endif
-
-                                    <div class="doctor-table-blk">
-                                        <h3>Appointment</h3>
-                                        <div class="doctor-search-blk">
-                                            <div class="top-nav-search table-search-blk">
-                                                <form>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Search here">
-                                                    <a class="btn"><img
-                                                            src="{{ asset('') }}/assets/img/icons/search-normal.svg"
-                                                            alt=""></a>
-                                                </form>
-                                            </div>
-                                            <div class="add-group">
-                                                <a href="{{ route('dashboard.appoinment.create') }}"
-                                                    class="btn btn-primary add-pluss ms-2"><img
-                                                        src="{{ asset('') }}/assets/img/icons/plus.svg" alt=""></a>
-                                                <a href="javascript:;"
-                                                    class="btn btn-primary doctor-refresh ms-2"><img
-                                                        src="{{ asset('') }}/assets/img/icons/re-fresh.svg"
-                                                        alt=""></a>
-                                            </div>
+        <div class="card-box profile-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="profile-view">
+                        <div class="profile-img-wrap">
+                            <div class="profile-img">
+                                <a href="#">
+                                    <img class="avatar" src="{{ asset('storage/avatars/' . $doctor->doctorInfo->avatar ?? 'assets/img/profiles/default-avatar.jpg') }}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="profile-basic">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="profile-info-left">
+                                        <h3 class="mb-0 user-name m-t-0">{{ $doctor->name }}</h3>
+                                        <small class="text-muted">{{ $doctor->doctorInfo->specialization ?? 'N/A' }}</small>
+                                        <div class="staff-id">Employee ID : {{ $doctor->id }}</div>
+                                        <div class="staff-msg">
+                                            <a href="#" class="btn btn-primary">Send Message</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-auto text-end float-end ms-auto download-grp">
-                                    <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}/assets/img/icons/pdf-icon-01.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}/assets/img/icons/pdf-icon-02.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}/assets/img/icons/pdf-icon-03.svg" alt=""></a>
-                                    <a href="javascript:;"><img src="{{ asset('') }}/assets/img/icons/pdf-icon-04.svg"
-                                            alt=""></a>
+                                <div class="col-md-7">
+                                    <ul class="personal-info">
+                                        <li>
+                                            <span class="title">Phone:</span>
+                                            <span class="text"><a href="tel:{{ $doctor->mobile }}">{{ $doctor->mobile ?? 'N/A' }}</a></span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Email:</span>
+                                            <span class="text">
+                                                <a href="mailto:{{ $doctor->email }}">{{ $doctor->email ?? 'N/A' }}</a>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Birthday:</span>
+                                            <span class="text">{{ $doctor->doctorInfo->birth_date ? $doctor->doctorInfo->birth_date->format('jS F') : 'N/A' }}</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Address:</span>
+                                            <span class="text">{{ $doctor->doctorInfo->address ?? 'N/A' }}</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Gender:</span>
+                                            <span class="text">{{ $doctor->doctorInfo->gender ?? 'N/A' }}</span>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="table-responsive">
-                            <table class="table mb-0 border-0 table-striped table-hover custom-table comman-table datatable">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something" id="select-all">
-                                            </div>
-                                        </th>
-                                        <th>Name</th>
-                                        <th>Consulting Doctor</th>
-                                        <th>Treatment</th>
-                                        <th>Mobile</th>
-                                        <th>Email</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th class="text-end">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($appointments as $appointment)
-                                        <tr>
-                                            <td>
-                                                <div class="form-check check-tables">
-                                                    <input class="form-check-input" type="checkbox" value="{{ $appointment->id }}" id="appointment-{{ $appointment->id }}">
-                                                </div>
-                                            </td>
-                                            <td class="profile-image">
-                                                <a href="{{ route('dashboard.patient.profile', $appointment->patient->id) }}">
-                                                    <img width="28" height="28" src="{{ asset('assets/img/profiles/images.jpg') }}" class="rounded-circle m-r-5" alt="{{ $appointment->patient->first_name }}">
-                                                    {{ $appointment->patient->first_name }} {{ $appointment->patient->last_name }}
-                                                </a>
-                                            </td>
-                                            <td>{{ $appointment->doctor->name }}</td>
-                                            <td>{{ $appointment->notes }}</td>
-                                            <td>
-                                                <a href="javascript:;">{{ $appointment->patient->mobile }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="mailto:{{ $appointment->patient->email }}">{{ $appointment->patient->email }}</a>
-                                            </td>
-                                            <td>{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d.m.Y') }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($appointment->appointment_from)->format('H:i') }}</td>
-                                            <td class="text-end">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fa fa-ellipsis-v"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-
-                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_appointment_{{ $appointment->id }}">
-                                                            <i class="fa fa-trash-alt m-r-5"></i>Delete
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <!-- Delete Modal -->
-                                        <div class="modal fade" id="delete_appointment_{{ $appointment->id }}" tabindex="-1" aria-labelledby="deleteAppointmentLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteAppointmentLabel">Delete Appointment</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to delete this appointment?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                        <form action="{{ route('dashboard.appoinment.destroy', $appointment->id) }}" method="POST" style="display:inline;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </tbody>
-                            </table>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        {{-- <div class="profile-tabs">
+            <ul class="nav nav-tabs nav-tabs-bottom">
+                <li class="nav-item"><a class="nav-link active" href="#about-cont"
+                        data-bs-toggle="tab">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#bottom-tab2"
+                        data-bs-toggle="tab">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="#bottom-tab3"
+                        data-bs-toggle="tab">Messages</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane show active" id="about-cont">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-box">
+                                <h3 class="card-title">Education Informations</h3>
+                                <div class="experience-box">
+                                    <ul class="experience-list">
+                                        <li>
+                                            <div class="experience-user">
+                                                <div class="before-circle"></div>
+                                            </div>
+                                            <div class="experience-content">
+                                                <div class="timeline-content">
+                                                    <a href="#/" class="name">International College of
+                                                        Medical Science (UG)</a>
+                                                    <div>MBBS</div>
+                                                    <span class="time">2001 - 2003</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="experience-user">
+                                                <div class="before-circle"></div>
+                                            </div>
+                                            <div class="experience-content">
+                                                <div class="timeline-content">
+                                                    <a href="#/" class="name">International College of
+                                                        Medical Science (PG)</a>
+                                                    <div>MD - Obstetrics & Gynaecology</div>
+                                                    <span class="time">1997 - 2001</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-box ">
+                                <h3 class="card-title">Experience</h3>
+                                <div class="experience-box">
+                                    <ul class="experience-list">
+                                        <li>
+                                            <div class="experience-user">
+                                                <div class="before-circle"></div>
+                                            </div>
+                                            <div class="experience-content">
+                                                <div class="timeline-content">
+                                                    <a href="#/" class="name">Consultant
+                                                        Gynecologist</a>
+                                                    <span class="time">Jan 2014 - Present (4 years 8
+                                                        months)</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="experience-user">
+                                                <div class="before-circle"></div>
+                                            </div>
+                                            <div class="experience-content">
+                                                <div class="timeline-content">
+                                                    <a href="#/" class="name">Consultant
+                                                        Gynecologist</a>
+                                                    <span class="time">Jan 2009 - Present (6 years 1
+                                                        month)</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="experience-user">
+                                                <div class="before-circle"></div>
+                                            </div>
+                                            <div class="experience-content">
+                                                <div class="timeline-content">
+                                                    <a href="#/" class="name">Consultant
+                                                        Gynecologist</a>
+                                                    <span class="time">Jan 2004 - Present (5 years 2
+                                                        months)</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="bottom-tab2">
+                    Tab content 2
+                </div>
+                <div class="tab-pane" id="bottom-tab3">
+                    Tab content 3
+                </div>
+            </div>
+        </div> --}}
     </div>
-    <div class="notification-box">
+    {{-- <div class="notification-box">
         <div class="msg-sidebar notifications msg-noti">
             <div class="topnav-dropdown-header">
                 <span>Messages</span>
@@ -374,20 +396,7 @@
                 <a href="chat.html">See all messages</a>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
-<div id="delete_patient" class="modal fade delete-modal" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="text-center modal-body">
-                <img src="{{ asset('') }}/assets/img/sent.png" alt="" width="50" height="46">
-                <h3>Are you sure want to delete this ?</h3>
-                <div class="m-t-20"> <a href="#" class="btn btn-white"
-                        data-bs-dismiss="modal">Close</a>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 @endsection

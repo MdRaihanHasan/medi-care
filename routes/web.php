@@ -8,6 +8,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AppoinmentController;
+use App\Http\Controllers\DoctorSheduleController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -42,6 +43,14 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::get('/appointment/{id}/edit', [AppoinmentController::class, 'edit'])->name('appoinment.edit');
     Route::put('/appointment/update/{id}', [AppoinmentController::class, 'update'])->name('appoinment.update');
     Route::delete('/appointment/delete/{id}', [AppoinmentController::class, 'destroy'])->name('appoinment.destroy');
+
+    Route::get('/doctor-schedules', [DoctorSheduleController::class, 'index'])->name('schedule');
+    Route::get('/doctor-schedule/create', [DoctorSheduleController::class, 'create'])->name('schedule.create');
+    Route::post('/doctor-schedule/create', [DoctorSheduleController::class, 'store'])->name('schedule.store');
+    Route::get('/doctor-schedule/profile/{id}', [DoctorSheduleController::class, 'profile'])->name('schedule.profile');
+    Route::get('/doctor-schedule/{id}/edit', [DoctorSheduleController::class, 'edit'])->name('schedule.edit');
+    Route::put('/doctor-schedule/update/{id}', [DoctorSheduleController::class, 'update'])->name('schedule.update');
+    Route::delete('/doctor-schedule/delete/{id}', [DoctorSheduleController::class, 'destroy'])->name('schedule.destroy');
 
 });
 

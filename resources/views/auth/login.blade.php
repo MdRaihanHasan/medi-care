@@ -20,7 +20,7 @@
 <body>
 
     <div class="main-wrapper login-body">
-        <div class="container-fluid px-0">
+        <div class="px-0 container-fluid">
             <div class="row">
 
                 <div class="col-lg-6 login-wrap">
@@ -39,10 +39,10 @@
                                 <div class="login-right-wrap">
                                     <div class="account-logo">
                                         <a href="/" class="logo">
-                                            <img src="http://medicare.ops/assets/img/logo.png" width="35" height="35" alt=""> <span style="font-weight: 600; font-size: 24px">Medi Care</span>
+                                            <img src="{{ asset('assets/img/logo.png') }}" width="35" height="35" alt=""> <span style="font-weight: 600; font-size: 24px">Medi Care</span>
                                         </a>
                                     </div>
-                                    
+
                                     <h2>Login</h2>
 
                                     <form method="POST" action="{{ route('login') }}">
@@ -58,7 +58,7 @@
                                         </div>
                                         <div class="forgotpass">
                                             <div class="remember-me">
-                                                <label class="custom_check mr-2 mb-0 d-inline-flex remember-me">
+                                                <label class="mb-0 mr-2 custom_check d-inline-flex remember-me">
                                                     Remember me
                                                     <input type="checkbox" name="radio">
                                                     <span class="checkmark"></span>
