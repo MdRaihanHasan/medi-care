@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('') }}assets/css/bootstrap-datetimepicker.min.css">
+
 </head>
 
 <body onload="startTime()">

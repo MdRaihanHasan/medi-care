@@ -29,14 +29,14 @@
                                     </div>
                                 </div>
                                 @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="input-block local-forms">
                                         <label>Select Existing Patient</label>
@@ -50,47 +50,47 @@
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Patient Details Heading -->
-                                <div class="col-12">
+                                <div class="col-12 new-patient-fields" >
                                     <div class="form-heading">
                                         <h4>Patient Details</h4>
                                     </div>
                                 </div>
-                        
+
                                 <!-- First Name -->
-                                <div class="col-12 col-md-6 col-xl-4">
+                                <div class="col-12 col-md-6 col-xl-4 new-patient-fields">
                                     <div class="input-block local-forms">
                                         <label>First Name <span class="login-danger">*</span></label>
                                         <input class="form-control" type="text" name="first_name" id="first_name" required>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Last Name -->
-                                <div class="col-12 col-md-6 col-xl-4">
+                                <div class="col-12 col-md-6 col-xl-4 new-patient-fields">
                                     <div class="input-block local-forms">
                                         <label>Last Name <span class="login-danger">*</span></label>
                                         <input class="form-control" type="text" name="last_name" id="last_name" required>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Mobile -->
-                                <div class="col-12 col-md-6 col-xl-4">
+                                <div class="col-12 col-md-6 col-xl-4 new-patient-fields">
                                     <div class="input-block local-forms">
                                         <label>Mobile <span class="login-danger">*</span></label>
                                         <input class="form-control" type="text" name="mobile" id="mobile" required>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Email -->
-                                <div class="col-12 col-md-6 col-xl-4">
+                                <div class="col-12 col-md-6 col-xl-4 new-patient-fields">
                                     <div class="input-block local-forms">
                                         <label>Email <span class="login-danger">*</span></label>
                                         <input class="form-control" type="email" name="email" id="email" required>
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-12col-xl-12">
+                                <div class="col-12 col-md-12col-xl-12 new-patient-fields">
                                     <div class="input-block select-gender">
                                         <label class="gen-label">Gender <span class="login-danger">*</span></label>
                                         <div class="form-check-inline">
@@ -105,22 +105,22 @@
                                         </div>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Address -->
-                                <div class="col-12">
+                                <div class="col-12 new-patient-fields">
                                     <div class="input-block local-forms">
                                         <label>Address <span class="login-danger">*</span></label>
                                         <textarea class="form-control" rows="3" name="address" id="address" required></textarea>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Appointment Details Heading -->
                                 <div class="col-12">
                                     <div class="form-heading">
                                         <h4>Appointment Details</h4>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Date of Appointment -->
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="input-block local-forms cal-icon">
@@ -128,7 +128,7 @@
                                         <input class="form-control datetimepicker" type="text" name="appointment_date" required>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Time From -->
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="input-block local-forms">
@@ -138,7 +138,7 @@
                                         </div>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Time To -->
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="input-block local-forms">
@@ -148,7 +148,7 @@
                                         </div>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Consulting Doctor -->
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="input-block local-forms">
@@ -161,7 +161,7 @@
                                         </select>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Notes -->
                                 <div class="col-12">
                                     <div class="input-block local-forms">
@@ -169,7 +169,7 @@
                                         <textarea class="form-control" rows="3" name="notes" required></textarea>
                                     </div>
                                 </div>
-                        
+
                                 <!-- Submit and Cancel Buttons -->
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
@@ -179,24 +179,24 @@
                                 </div>
                             </div>
                         </form>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
 </div>
 <div id="delete_patient" class="modal fade delete-modal" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-body text-center">
+            <div class="text-center modal-body">
                 <img src="assets/img/sent.png" alt="" width="50" height="46">
                 <h3>Are you sure want to delete this ?</h3>
                 <div class="m-t-20"> <a href="#" class="btn btn-white"
@@ -234,5 +234,20 @@
         }
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+        $('#existing_patient_id').on('change', function() {
+            if ($(this).val() === '') {
+                // Show all fields
+                $('.new-patient-fields').show();
+            } else {
+                // Hide all fields
+                $('.new-patient-fields').hide();
+            }
+        });
+    });
+</script>
+
 
 @endsection

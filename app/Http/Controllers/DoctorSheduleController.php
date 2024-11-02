@@ -8,12 +8,19 @@ use App\Models\DoctorShedule;
 
 class DoctorSheduleController extends Controller
 {
-    public function index() {
-        // $doctors = Doctor::with('doctorInfo')->get();
-        $schedules = DoctorShedule::with('doctor')->get(); // Fetch schedules with doctor details
-        // $doctor_i = Doctor::with('doctorInfo')->get();
-        return view('dashboard.doctor_schedules.index', compact('schedules'));
+    public function index(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        $schedules = DoctorShedule::with('doctor')->when($searchTerm, function ($query) use ($searchTerm) {
+            return $query->whereHas('doctor', function ($q) use ($searchTerm) {
+                $q->where('name', 'like', "%{$searchTerm}%");
+            });
+        })->get();
+
+        return view('dashboard.doctor_schedules.index', compact('schedules', 'searchTerm'));
     }
+
 
     public function create() {
         $doctors = Doctor::with('doctorInfo')->get();

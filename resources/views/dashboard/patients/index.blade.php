@@ -30,15 +30,7 @@
                                     <div class="doctor-table-blk">
                                         <h3>Patients List</h3>
                                         <div class="doctor-search-blk">
-                                            <div class="top-nav-search table-search-blk">
-                                                <form>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Search here">
-                                                    <a class="btn"><img
-                                                            src="{{ asset('') }}assets/img/icons/search-normal.svg"
-                                                            alt=""></a>
-                                                </form>
-                                            </div>
+                                            @include('components.search-component', ['searchTerm' => $searchTerm])
                                             <div class="add-group">
                                                 <a href="{{ route('dashboard.patient.create') }}"
                                                     class="btn btn-primary add-pluss ms-2"><img

@@ -13,13 +13,19 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $searchTerm = $request->input('search');
+
         $doctors = Doctor::all();
         $patients = Patient::all();
-        $appoinments = Appoinment::all();
-        return view('dashboard.index', compact('doctors', 'patients', 'appoinments'));
+        $appointments = Appoinment::all();
+
+        // You can filter these collections in your view if needed
+
+        return view('dashboard.index', compact('doctors', 'patients', 'appointments', 'searchTerm'));
     }
+
 
     /**
      * Show the form for creating a new resource.

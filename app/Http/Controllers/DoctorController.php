@@ -9,10 +9,15 @@ use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
-    public function index() {
-        $doctors = Doctor::with('doctorInfo')->get();
+    public function index(Request $request)
+    {
+        $searchTerm = $request->input('search');
 
-        return view('dashboard.doctors.index', compact('doctors'));
+        $doctors = Doctor::with('doctorInfo')->when($searchTerm, function ($query) use ($searchTerm) {
+            return $query->where('first_name', 'like', "%{$searchTerm}%")->orWhere('last_name', 'like', "%{$searchTerm}%");
+        })->get();
+
+        return view('dashboard.doctors.index', compact('doctors', 'searchTerm'));
     }
 
     public function create() {

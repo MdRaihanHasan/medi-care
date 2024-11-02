@@ -46,27 +46,27 @@
                                 </select>
                             </div>
 
-                            <div class="col-12 col-md-6 col-xl-4">
+                            <div class="mt-4 col-12 col-md-6 col-xl-4">
                                 <label>Available Days <span class="text-danger">*</span></label>
                                 <input type="text" name="available_days" class="form-control" value="{{ old('available_days', isset($schedule) ? $schedule->available_days : '') }}">
                             </div>
 
-                            <div class="col-12 col-md-6 col-xl-4">
+                            <div class="mt-4 col-12 col-md-6 col-xl-4">
                                 <label>From <span class="text-danger">*</span></label>
                                 <input type="time" name="start_time" class="form-control" value="{{ old('start_time', isset($schedule) ? $schedule->start_time : '') }}">
                             </div>
 
-                            <div class="col-12 col-md-6 col-xl-4">
+                            <div class="mt-4 col-12 col-md-6 col-xl-4">
                                 <label>To <span class="text-danger">*</span></label>
                                 <input type="time" name="end_time" class="form-control" value="{{ old('end_time', isset($schedule) ? $schedule->end_time : '') }}">
                             </div>
 
-                            <div class="col-12">
+                            <div class="mt-4 col-12">
                                 <label>Notes</label>
                                 <textarea name="notes" class="form-control">{{ old('notes', isset($schedule) ? $schedule->notes : '') }}</textarea>
                             </div>
 
-                            <div class="col-12 col-md-6 col-xl-4">
+                            <div class="mt-4 col-12 col-md-6 col-xl-4">
                                 <label>Status <span class="text-danger">*</span></label>
                                 <div>
                                     <input type="radio" name="status" value="Active" {{ isset($schedule) && $schedule->status == 'Active' ? 'checked' : '' }}> Active

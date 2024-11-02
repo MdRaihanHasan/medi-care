@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
-    public function index() {
-        $patients = Patient::all();
-        return view('dashboard.patients.index', compact('patients'));
+    public function index(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        $patients = Patient::when($searchTerm, function ($query) use ($searchTerm) {
+            return $query->where('first_name', 'like', "%{$searchTerm}%")->orWhere('last_name', 'like', "%{$searchTerm}%");
+        })->get();
+
+        return view('dashboard.patients.index', compact('patients', 'searchTerm'));
     }
 
     public function create() {

@@ -11,10 +11,19 @@ use Illuminate\Support\Facades\Hash;
 
 class AppoinmentController extends Controller
 {
-    public function index() {
-        $appointments = Appoinment::with('patient', 'doctor')->get(); // Assuming you have relationships set up
+    public function index(Request $request)
+    {
+        $searchTerm = $request->input('search');
 
-        return view('dashboard.appoinments.index', compact('appointments'));
+        $appointments = Appoinment::with('patient', 'doctor')->when($searchTerm, function ($query) use ($searchTerm) {
+            return $query->whereHas('patient', function ($q) use ($searchTerm) {
+                $q->where('name', 'like', "%{$searchTerm}%");
+            })->orWhereHas('doctor', function ($q) use ($searchTerm) {
+                $q->where('name', 'like', "%{$searchTerm}%");
+            });
+        })->get();
+
+        return view('dashboard.appoinments.index', compact('appointments', 'searchTerm'));
     }
 
     public function create() {

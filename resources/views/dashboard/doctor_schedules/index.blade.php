@@ -29,22 +29,15 @@
                                     <div class="doctor-table-blk">
                                         <h3>Schedule List</h3>
                                         <div class="doctor-search-blk">
-                                            <div class="top-nav-search table-search-blk">
-                                                <form>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Search here">
-                                                    <a class="btn"><img
-                                                            src="assets/img/icons/search-normal.svg"
-                                                            alt=""></a>
-                                                </form>
-                                            </div>
+                                            @include('components.search-component', ['searchTerm' => $searchTerm])
+
                                             <div class="add-group">
                                                 <a href="add-schedule.html"
                                                     class="btn btn-primary add-pluss ms-2"><img
-                                                        src="assets/img/icons/plus.svg" alt=""></a>
+                                                        src="{{ asset('') }}assets/img/icons/plus.svg" alt=""></a>
                                                 <a href="javascript:;"
                                                     class="btn btn-primary doctor-refresh ms-2"><img
-                                                        src="assets/img/icons/re-fresh.svg"
+                                                        src="{{ asset('') }}assets/img/icons/re-fresh.svg"
                                                         alt=""></a>
                                             </div>
                                         </div>
@@ -52,12 +45,12 @@
                                 </div>
                                 <div class="col-auto text-end float-end ms-auto download-grp">
                                     <a href="javascript:;" class=" me-2"><img
-                                            src="assets/img/icons/pdf-icon-01.svg" alt=""></a>
+                                            src="{{ asset('') }}assets/img/icons/pdf-icon-01.svg" alt=""></a>
                                     <a href="javascript:;" class=" me-2"><img
-                                            src="assets/img/icons/pdf-icon-02.svg" alt=""></a>
+                                            src="{{ asset('') }}assets/img/icons/pdf-icon-02.svg" alt=""></a>
                                     <a href="javascript:;" class=" me-2"><img
-                                            src="assets/img/icons/pdf-icon-03.svg" alt=""></a>
-                                    <a href="javascript:;"><img src="assets/img/icons/pdf-icon-04.svg"
+                                            src="{{ asset('') }}assets/img/icons/pdf-icon-03.svg" alt=""></a>
+                                    <a href="javascript:;"><img src="{{ asset('') }}assets/img/icons/pdf-icon-04.svg"
                                             alt=""></a>
                                 </div>
                             </div>
@@ -359,7 +352,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="text-center modal-body">
-                <img src="assets/img/sent.png" alt="" width="50" height="46">
+                <img src="{{ asset('') }}assets/img/sent.png" alt="" width="50" height="46">
                 <h3>Are you sure want to delete this ?</h3>
                 <div class="m-t-20"> <a href="#" class="btn btn-white"
                         data-bs-dismiss="modal">Close</a>
