@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">service </a></li>
+                        <li class="breadcrumb-item"><a href="#">Service </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">service List</li>
+                        <li class="breadcrumb-item active">Service List</li>
                     </ul>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                                     @endif
 
                                     <div class="doctor-table-blk">
-                                        <h3>service List</h3>
+                                        <h3>Service List</h3>
                                         <div class="doctor-search-blk">
                                             @include('components.search-component', ['searchTerm' => $searchTerm])
                                             <div class="add-group">
