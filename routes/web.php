@@ -1,11 +1,15 @@
 <?php
 
 use App\Models\Doctor;
+use App\Models\Service;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\WardController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AppoinmentController;
 use App\Http\Controllers\DoctorSheduleController;
@@ -52,7 +56,12 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::put('/doctor-schedule/update/{id}', [DoctorSheduleController::class, 'update'])->name('schedule.update');
     Route::delete('/doctor-schedule/delete/{id}', [DoctorSheduleController::class, 'destroy'])->name('schedule.destroy');
 
+    Route::resource('wards', WardController::class);
+    Route::resource('rooms', RoomController::class);
+    Route::resource('services', ServiceController::class);
+
 });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

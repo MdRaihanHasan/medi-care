@@ -38,7 +38,7 @@
                     </div>
                     <div class="dash-content dash-count">
                         <h4>Appointments</h4>
-                        <h2><span class="counter-up">{{ $appoinments->count() }}</span></h2>
+                        <h2><span class="counter-up">{{ $appointments->count() }}</span></h2>
                         {{-- <p><span class="passive-view"><i class="feather-arrow-up-right me-1"></i>40%</span> vs
                             last month</p> --}}
                     </div>
