@@ -26,6 +26,15 @@
                         <li><a href="{{ route('dashboard.patient.create') }}">Add Patient</a></li>
                     </ul>
                 </li>
+                <li class="submenu">
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/assets/img/icons/menu-icon-03.svg') }}"
+                                alt=""></span> <span>Patient Treatment </span> <span
+                            class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('dashboard.patient-treatments.index') }}">Patient Treatment List</a></li>
+                        <li><a href="{{ route('dashboard.patient-treatments.create') }}">Add Patient Treatment</a></li>
+                    </ul>
+                </li>
                 {{-- <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('/assets/img/icons/menu-icon-08.svg') }}"
                                 alt=""></span> <span> Staff </span> <span
@@ -81,7 +90,7 @@
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ route('dashboard.rooms.index') }}">Room List</a></li>
-                        <li><a href="{{ route('dashboard.rooms.index') }}">Add Room</a></li>
+                        <li><a href="{{ route('dashboard.room-type.index') }}">Room Type</a></li>
                     </ul>
                 </li>
                 {{-- <li class="submenu">

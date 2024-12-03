@@ -10,9 +10,11 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AppoinmentController;
 use App\Http\Controllers\DoctorSheduleController;
+use App\Http\Controllers\PatientTreatmentController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -59,6 +61,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::resource('wards', WardController::class);
     Route::resource('rooms', RoomController::class);
     Route::resource('services', ServiceController::class);
+    Route::resource('patient-treatments', PatientTreatmentController::class);
+    Route::resource('room-type', RoomTypeController::class);
 
 });
 

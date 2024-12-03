@@ -84,7 +84,7 @@
                                         <td>{{ $room->room_number }}</td>
                                         <td>{{ $room->ward->name }}</td> <!-- Ward name from relationship -->
                                         <td>{{ $room->beds }}</td>
-                                        <td>{{ $room->type }}</td>
+                                        <td>{{ $room->roomType->name }}</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
