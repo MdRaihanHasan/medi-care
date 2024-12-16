@@ -10,10 +10,12 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AppoinmentController;
 use App\Http\Controllers\DoctorSheduleController;
+use App\Http\Controllers\MedicineCategoryController;
 use App\Http\Controllers\PatientTreatmentController;
 
 Route::get('/', function () {
@@ -63,6 +65,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::resource('services', ServiceController::class);
     Route::resource('patient-treatments', PatientTreatmentController::class);
     Route::resource('room-type', RoomTypeController::class);
+    Route::Resource('medicine-categories', MedicineCategoryController::class);
+    Route::Resource('medicines', MedicineController::class);
 
 });
 

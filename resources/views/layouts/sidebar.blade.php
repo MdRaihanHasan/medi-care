@@ -93,6 +93,15 @@
                         <li><a href="{{ route('dashboard.room-type.index') }}">Room Type</a></li>
                     </ul>
                 </li>
+                <li class="submenu">
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/assets/img/icons/menu-icon-07.svg') }}"
+                                alt=""></span> <span> Medicine </span> <span
+                            class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('dashboard.medicines.index') }}">Medicine List</a></li>
+                        <li><a href="{{ route('dashboard.medicine-categories.index') }}">Medicine Category</a></li>
+                    </ul>
+                </li>
                 {{-- <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('/assets/img/icons/menu-icon-07.svg') }}"
                                 alt=""></span> <span> Room </span> <span
