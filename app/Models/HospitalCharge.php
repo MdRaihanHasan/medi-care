@@ -5,18 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Service extends Model
+class HospitalCharge extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
+        'amount',
         'description',
-        'price',
     ];
-
-    public function schedules()
-    {
-        return $this->hasMany(ServiceSchedule::class);
-    }
 }
+

@@ -15,6 +15,8 @@ use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AppoinmentController;
 use App\Http\Controllers\DoctorSheduleController;
+use App\Http\Controllers\HospitalChargeController;
+use App\Http\Controllers\ServiceScheduleController;
 use App\Http\Controllers\MedicineCategoryController;
 use App\Http\Controllers\PatientTreatmentController;
 
@@ -67,7 +69,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::resource('room-type', RoomTypeController::class);
     Route::Resource('medicine-categories', MedicineCategoryController::class);
     Route::Resource('medicines', MedicineController::class);
-
+    Route::Resource('hospital-charge', HospitalChargeController::class);
+    Route::resource('service_schedules', ServiceScheduleController::class);
 });
 
 
