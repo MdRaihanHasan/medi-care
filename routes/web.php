@@ -16,6 +16,7 @@ use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DischargeController;
 use App\Http\Controllers\AppoinmentController;
 use App\Http\Controllers\DoctorVisitController;
 use App\Http\Controllers\DoctorSheduleController;
@@ -41,6 +42,9 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::delete('/doctor/delete/{id}', [DoctorController::class, 'destroy'])->name('doctor.destroy');
 
     Route::get('/patients', [PatientController::class, 'index'])->name('patient');
+    Route::get('/patients/discharge', [PatientController::class, 'dis'])->name('patient.dis');
+    Route::get('/patients/indoor', [PatientController::class, 'indor'])->name('patient.in');
+    Route::get('/patients/outdoor', [PatientController::class, 'out'])->name('patient.out');
     Route::get('/patient/create', [PatientController::class, 'create'])->name('patient.create');
     Route::get('/patient/profile', [PatientController::class, 'profile'])->name('patient.profile');
     Route::post('/patients/store', [PatientController::class, 'store'])->name('patient.store');
@@ -87,6 +91,14 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::get('/inpatients/visits', [DoctorVisitController::class, 'index'])->name('doctor.visits.index');
     Route::get('/inpatients/visits/create', [DoctorVisitController::class, 'create'])->name('doctor.visits.create');
     Route::post('/inpatients/visits/store', [DoctorVisitController::class, 'store'])->name('doctor.visits.store');
+
+    // Route::get('/patients/{patient}/discharge', [DischargeController::class, 'create'])->name('dashboard.discharges.create');
+    // Route::post('/patients/{patient}/discharge', [DischargeController::class, 'store'])->name('dashboard.discharges.store');
+    // Show discharge form
+    Route::get('/patients/{patient}/discharge', [DischargeController::class, 'show'])->name('patients.discharge.show');
+
+    // Store discharge details
+    Route::post('/patients/{patient}/discharge', [DischargeController::class, 'store'])->name('patients.discharge.store');
 
 
 });

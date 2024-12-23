@@ -37,7 +37,15 @@ class Patient extends Model
             return $this->hasMany(DoctorVisit::class);
         }
 
-        
+        public function discharge()
+        {
+            return $this->hasOne(Discharge::class);
+        }
+
+        public function isDischarged()
+        {
+            return !is_null($this->discharged_at);
+        }
 
 
 }

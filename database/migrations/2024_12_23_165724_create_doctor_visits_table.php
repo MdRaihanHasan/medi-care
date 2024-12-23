@@ -9,18 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('doctor_visits', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('patient_id')->constrained()->onDelete('cascade');
-            $table->foreignId('doctor_id')->constrained()->onDelete('cascade');
-            $table->date('visit_date');
-            $table->text('prescription_details')->nullable(); // Medicine details
-            $table->enum('type', ['medicine', 'service']);
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('doctor_visits')) {
+            Schema::create('doctor_visits', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('patient_id')->constrained();
+                $table->foreignId('doctor_id')->constrained();
+                $table->date('visit_date');
+                $table->text('prescription_details')->nullable();
+                $table->enum('type', ['medicine', 'service']);
+                $table->timestamps();
+            });
+        }
     }
+
 
     /**
      * Reverse the migrations.

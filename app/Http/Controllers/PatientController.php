@@ -20,6 +20,33 @@ class PatientController extends Controller
 
         return view('dashboard.patients.index', compact('patients', 'searchTerm'));
     }
+    public function dis(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        $patients = Patient::where('patient_type',  'indoor')->whereNotNull('discharged_at')->get();
+        // dd($patients);
+
+        return view('dashboard.patients.index', compact('patients', 'searchTerm'));
+    }
+    public function indor(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        $patients = Patient::where('patient_type',  'indoor')->get();
+        // dd($patients);
+
+        return view('dashboard.patients.index', compact('patients', 'searchTerm'));
+    }
+    public function out(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        $patients = Patient::where('patient_type',  'outdoor')->get();
+        // dd($patients);
+
+        return view('dashboard.patients.index', compact('patients', 'searchTerm'));
+    }
 
     public function create() {
         return view('dashboard.patients.store');

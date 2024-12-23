@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Patients </a></li>
+                        <li class="breadcrumb-item"><a href="#">discharge </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Patients List</li>
+                        <li class="breadcrumb-item active">Add discharge</li>
                     </ul>
                 </div>
             </div>
@@ -17,119 +17,55 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <div class="card card-table show-entire">
+                <div class="card">
                     <div class="card-body">
-
-                        <div class="mb-2 page-table-header">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    @if(session('success'))
-                                        <div class="alert alert-success">{{ session('success') }}</div>
-                                    @endif
-
-                                    <div class="doctor-table-blk">
-                                        <h3>Patients List</h3>
-                                        <div class="doctor-search-blk">
-                                            @include('components.search-component', ['searchTerm' => $searchTerm])
-                                            <div class="add-group">
-                                                <a href="{{ route('dashboard.patient.create') }}"
-                                                    class="btn btn-primary add-pluss ms-2"><img
-                                                        src="{{ asset('') }}assets/img/icons/plus.svg" alt=""></a>
-                                                <a href="javascript:;"
-                                                    class="btn btn-primary doctor-refresh ms-2"><img
-                                                        src="{{ asset('') }}assets/img/icons/re-fresh.svg"
-                                                        alt=""></a>
-                                            </div>
-                                        </div>
+                        <form action="{{ route('dashboard.patients.discharge.store', $patient->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>dischagre Details</h4>
                                     </div>
                                 </div>
-                                <div class="col-auto text-end float-end ms-auto download-grp">
-                                    <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}assets/img/icons/pdf-icon-01.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}assets/img/icons/pdf-icon-02.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img
-                                            src="{{ asset('') }}assets/img/icons/pdf-icon-03.svg" alt=""></a>
-                                    <a href="javascript:;"><img src="{{ asset('') }}assets/img/icons/pdf-icon-04.svg"
-                                            alt=""></a>
+
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>Discharge date <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="date" name="discharge_date" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>Discharge note <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="textarea" name="note" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>Bill status <span class="login-danger">*</span></label>
+                                        <select class="form-control" name="bill" required>
+                                            <option value="" disabled selected>Select bill</option>
+                                            <option value="paid">paid</option>
+                                            <option value="unpaid">unpaid</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                        <button type="submit" class="btn btn-primary submit-form me-2">Submit</button>
+                                        <button type="reset" class="btn btn-primary cancel-form">Cancel</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
 
-                        <div class="table-responsive">
-                            <table class="table mb-0 border-0 custom-table comman-table datatable">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox">
-                                            </div>
-                                        </th>
-                                        <th>Name</th>
-                                        <th>Gender</th>
-                                        <th>Mobile</th>
-                                        <th>Email</th>
-                                        <th>Address</th>
-                                        <th>Type</th>
-                                        <th>Joining Date</th>
-                                        <th>Discharge Status</th> <!-- Add this column -->
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($patients as $patient)
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="{{ $patient->id }}">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image">
-                                            <a href="#">
-                                                <img width="28" height="28" src="{{ asset('storage/avatars/' . $patient->avatar ?? 'assets/img/profiles/images.jpg') }}" class="rounded-circle m-r-5" alt="{{ $patient->first_name }} {{ $patient->last_name }}">
-                                                {{ $patient->first_name }} {{ $patient->last_name }}
-                                            </a>
-                                        </td>
-                                        <td>{{ $patient->gender }}</td>
-                                        <td><a href="tel:{{ $patient->mobile }}">{{ $patient->mobile }}</a></td>
-                                        <td><a href="mailto:{{ $patient->email }}">{{ $patient->email }}</a></td>
-                                        <td>{{ $patient->address }}</td>
-                                        <td>{{ $patient->patient_type }}</td>
-                                        <td>{{ $patient->created_at->format('d.m.Y') }}</td>
 
-                                        <!-- Add a column for discharge status -->
-                                        <td>
-                                            @if($patient->patient_type == 'indoor')
-                                            @if($patient->discharged_at)
-                                                <span class="badge bg-success">Discharged <br>{{ $patient->discharged_at }}</span>
-                                            @else
-                                                <a href="{{ route('dashboard.patients.discharge.show', $patient->id) }}" class="btn btn-danger btn-sm">Discharge</a>
-                                            @endif
-                                            @else
-                                            N/A
-                                            @endif
-                                        </td>
 
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <form action="{{ route('dashboard.patients.destroy', $patient->id) }}" method="POST" style="display: inline;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="dropdown-item text-danger">
-                                                            <i class="fa fa-trash-alt m-r-5"></i> Delete
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-
-                        </div>
 
                     </div>
                 </div>
@@ -363,7 +299,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="text-center modal-body">
-                <img src="{{ asset('') }}assets/img/sent.png" alt="" width="50" height="46">
+                <img src="assets/img/sent.png" alt="" width="50" height="46">
                 <h3>Are you sure want to delete this ?</h3>
                 <div class="m-t-20"> <a href="#" class="btn btn-white"
                         data-bs-dismiss="modal">Close</a>

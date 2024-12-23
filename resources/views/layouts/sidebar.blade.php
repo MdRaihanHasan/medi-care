@@ -32,7 +32,10 @@
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ route('dashboard.patient') }}">Patients List</a></li>
-                        <li><a href="{{ route('dashboard.patient.create') }}">Add Patient</a></li>
+                        <li><a href="{{ route('dashboard.patient.dis') }}">Discharge Patients</a></li>
+                        <li><a href="{{ route('dashboard.patient.in') }}">Indoor Patients</a></li>
+                        <li><a href="{{ route('dashboard.patient.out') }}">Outdoor Patients</a></li>
+
                     </ul>
                 </li>
                 <li class="submenu">
