@@ -73,6 +73,8 @@
                     <ul style="display: none;">
                         <li><a href="{{ route('dashboard.services.index') }}">Service List</a></li>
                         <li><a href="{{ route('dashboard.service_schedules.index') }}">Service Shedule</a></li>
+                        <li><a href="{{ route('dashboard.patient_service_schedules.index') }}">Patient Service Shedule</a></li>
+
                     </ul>
                 </li>
                 <li class="submenu">
@@ -91,6 +93,7 @@
                     <ul style="display: none;">
                         <li><a href="{{ route('dashboard.rooms.index') }}">Room List</a></li>
                         <li><a href="{{ route('dashboard.room-type.index') }}">Room Type</a></li>
+                        <li><a href="{{ route('dashboard.beds.index') }}">Bed</a></li>
                     </ul>
                 </li>
                 <li class="submenu">

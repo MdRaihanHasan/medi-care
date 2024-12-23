@@ -3,6 +3,7 @@
 use App\Models\Doctor;
 use App\Models\Service;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BedController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\WardController;
 use App\Http\Controllers\StaffController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\HospitalChargeController;
 use App\Http\Controllers\ServiceScheduleController;
 use App\Http\Controllers\MedicineCategoryController;
 use App\Http\Controllers\PatientTreatmentController;
+use App\Http\Controllers\PatientServiceScheduleController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -71,6 +73,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::Resource('medicines', MedicineController::class);
     Route::Resource('hospital-charge', HospitalChargeController::class);
     Route::resource('service_schedules', ServiceScheduleController::class);
+    Route::resource('beds', BedController::class);
+    Route::resource('patient_service_schedules', PatientServiceScheduleController::class);
 });
 
 
