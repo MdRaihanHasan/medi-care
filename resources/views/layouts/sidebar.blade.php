@@ -66,7 +66,7 @@
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ route('dashboard.admissions.index') }}">Admission list</a></li>
-                        <li><a href="{{ route('dashboard.admissions.index') }}">Admission list</a></li>
+                        <li><a href="{{ route('dashboard.guardians') }}">Guardian</a></li>
                         {{-- <li><a href="{{ route('dashboard.appoinment.create') }}">Out Appointment</a></li> --}}
                     </ul>
                 </li>

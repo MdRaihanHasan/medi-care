@@ -78,6 +78,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::resource('beds', BedController::class);
     Route::resource('patient_service_schedules', PatientServiceScheduleController::class);
     Route::resource('admissions', AdmissionController::class);
+    Route::get('guardians', [AdmissionController::class, 'guardian'])->name('guardians');
 
     Route::get('/treatment/outdoor', [PatientTreatmentController::class, 'outdoor'])->name('treatment.outdoor');
     Route::get('/treatment/indoor', [PatientTreatmentController::class, 'indoor'])->name('treatment.indoor');

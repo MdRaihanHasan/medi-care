@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Admission  </a></li>
+                        <li class="breadcrumb-item"><a href="#">guadian  </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Admission  List</li>
+                        <li class="breadcrumb-item active">guadian  List</li>
                     </ul>
                 </div>
             </div>
@@ -28,13 +28,13 @@
                                     @endif
 
                                     <div class="doctor-table-blk">
-                                        <h3>Admission List</h3>
+                                        <h3>guadian List</h3>
                                         <div class="doctor-search-blk">
                                             @include('components.search-component', ['searchTerm' => $searchTerm])
                                             <div class="add-group">
-                                                <a href="{{ route('dashboard.admissions.create') }}"
+                                                {{-- <a href="{{ route('dashboard.admissions.create') }}"
                                                     class="btn btn-primary add-pluss ms-2"><img
-                                                        src="{{ asset('') }}assets/img/icons/plus.svg" alt=""></a>
+                                                        src="{{ asset('') }}assets/img/icons/plus.svg" alt=""></a> --}}
                                                 <a href="javascript:;"
                                                     class="btn btn-primary doctor-refresh ms-2"><img
                                                         src="{{ asset('') }}assets/img/icons/re-fresh.svg"
@@ -65,12 +65,11 @@
                                                 <input class="form-check-input" type="checkbox">
                                             </div>
                                         </th>
+                                        <th>Name</th>
                                         <th>Patient</th>
-                                        <th>Admission Reason</th>
-                                        <th>Admission Date</th>
-                                        <th>Ward</th>
-                                        <th>Room</th>
-                                        <th class="">Guardian</th>
+                                        <th>Relation</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -82,14 +81,11 @@
                                                 <input class="form-check-input" type="checkbox" value="{{ $admission->id }}">
                                             </div>
                                         </td>
+                                        <td>{{ $admission->first_name }} {{ $admission->last_name }}</td>
                                         <td>{{ $admission->patient->first_name }} {{ $admission->patient->last_name }}</td>
-                                        <td>{{ ucfirst($admission->admission_reason) }}</td>
-                                        <td>{{ $admission->admission_date }}</td>
-                                        <td>{{ $admission->ward->name ?? 'N/A' }}</td>
-                                        <td>{{ $admission->room->name ?? 'N/A' }}</td>
-                                        @foreach ($admission->patient->guardians as $guardian)
-                    <td>{{ $guardian->first_name }} {{ $guardian->last_name }} - {{ $guardian->relationship }}</td>
-                @endforeach
+                                        <td>{{ ucfirst($admission->relationship) }}</td>
+                                        <td>{{ $admission->mobile }}</td>
+                                        <td>{{ $admission->email ?? 'N/A' }}</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

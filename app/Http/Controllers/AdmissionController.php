@@ -23,6 +23,14 @@ class AdmissionController extends Controller
         return view('dashboard.admissions.index', compact('admissions', 'searchTerm'));
     }
 
+    public function guardian()
+    {
+        $searchTerm = '';
+        // Retrieve all admissions (or paginate them)
+        $admissions = Guardian::with('patient')->get();
+        return view('dashboard.admissions.guadian', compact('admissions', 'searchTerm'));
+    }
+
     /**
      * Show the form to create a new admission.
      */
