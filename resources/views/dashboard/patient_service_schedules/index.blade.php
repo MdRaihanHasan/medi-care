@@ -70,6 +70,8 @@
                                     <th>Start Time</th>
                                     <th>End Time</th>
                                     <th>Status</th>
+                                    <th>Bill amount</th>
+                                    <th>paid Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -88,6 +90,8 @@
                                     <td>{{ $schedule->start_time }}</td>
                                     <td>{{ $schedule->end_time }}</td>
                                     <td>{{ ucfirst($schedule->status) }}</td>
+                                    <td>{{ ucfirst($schedule->bill_amount) }}</td>
+                                    <td>{{ ucfirst($schedule->paid_status) }}</td>
                                     <td class="text-end">
                                         <div class="dropdown dropdown-action">
                                             <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

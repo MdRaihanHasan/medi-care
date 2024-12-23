@@ -17,6 +17,9 @@ class PatientServiceSchedule extends Model
         'start_time',
         'end_time',
         'status',
+        'bill_amount',
+        'paid_status',
+        'status',
     ];
 
     // Relationship to Service

@@ -34,6 +34,8 @@ class PatientServiceScheduleController extends Controller
             'start_time' => 'required',
             'end_time' => 'required|after:start_time',
             'status' => 'required|string',
+            'bill_amount' => 'required|string',
+            'paid_status' => 'required|string',
         ]);
 
         PatientServiceSchedule::create($request->all());
@@ -44,7 +46,7 @@ class PatientServiceScheduleController extends Controller
     {
         $services = Service::all();
         $patients = Patient::all();
-        return view('dashboard.patient_service_schedules.edit', compact('patientServiceSchedule', 'services', 'patients'));
+        return view('dashboard.patient_service_schedules.store', compact('patientServiceSchedule', 'services', 'patients'));
     }
 
     public function update(Request $request, PatientServiceSchedule $patientServiceSchedule)
@@ -57,6 +59,8 @@ class PatientServiceScheduleController extends Controller
             'start_time' => 'required',
             'end_time' => 'required|after:start_time',
             'status' => 'required|string',
+            'bill_amount' => 'required|string',
+            'paid_status' => 'required|string',
         ]);
 
         $patientServiceSchedule->update($request->all());
