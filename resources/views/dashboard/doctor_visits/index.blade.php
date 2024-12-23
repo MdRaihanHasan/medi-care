@@ -101,7 +101,7 @@
                                                         @method('DELETE')
                                                         <button type="submit" class="dropdown-item text-danger">
                                                             <i class="fa fa-trash-alt m-r-5"></i> Delete
-                                                        </button>
+                                                        </button> 
                                                     </form> --}}
                                                 </div>
                                             </div>
