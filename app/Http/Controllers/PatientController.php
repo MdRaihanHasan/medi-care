@@ -37,6 +37,7 @@ class PatientController extends Controller
             'email' => 'required|email|unique:patients,email',
             'address' => 'required|string',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'patient_type' => 'required',
         ]);
 
         if($request->hasFile('avatar')){
@@ -56,6 +57,7 @@ class PatientController extends Controller
             'email' => $request->email,
             'address' => $request->address,
             'avatar' => $avatarPath,
+            'patient_type' => $request->patient_type,
         ]);
 
         // Redirect with success message

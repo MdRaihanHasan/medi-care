@@ -15,13 +15,25 @@ class AppoinmentController extends Controller
     {
         $searchTerm = $request->input('search');
 
-        $appointments = Appoinment::with('patient', 'doctor')->when($searchTerm, function ($query) use ($searchTerm) {
-            return $query->whereHas('patient', function ($q) use ($searchTerm) {
-                $q->where('name', 'like', "%{$searchTerm}%");
-            })->orWhereHas('doctor', function ($q) use ($searchTerm) {
-                $q->where('name', 'like', "%{$searchTerm}%");
-            });
-        })->get();
+        $appointments = Appoinment::with('patient', 'doctor')
+    ->when($searchTerm, function ($query) use ($searchTerm) {
+        return $query->where(function ($q) use ($searchTerm) {
+            // Search by patient name
+            $q->whereHas('patient', function ($query) use ($searchTerm) {
+                $query->where('first_name', 'like', "%{$searchTerm}%")
+                    ->orWhere('last_name', 'like', "%{$searchTerm}%");
+            })
+            // Search by doctor name
+            ->orWhereHas('doctor', function ($query) use ($searchTerm) {
+                $query->where('first_name', 'like', "%{$searchTerm}%")
+                    ->orWhere('last_name', 'like', "%{$searchTerm}%");
+            })
+            // Search by appointment type (indoor or outdoor)
+            ->orWhere('appointment_type', 'like', "%{$searchTerm}%");
+        });
+    })
+    ->get();
+
 
         return view('dashboard.appoinments.index', compact('appointments', 'searchTerm'));
     }
@@ -36,6 +48,7 @@ class AppoinmentController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -49,6 +62,8 @@ class AppoinmentController extends Controller
             'doctor_id' => 'required|exists:doctors,id',
             'notes' => 'nullable|string',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'appointment_type' => 'required|string',
+            'bill_status' => 'required|string',
         ]);
 
         // Check if an existing patient was selected
@@ -64,6 +79,7 @@ class AppoinmentController extends Controller
             $patient->mobile = $request->mobile;
             $patient->email = $request->email;
             $patient->address = $request->address;
+
 
             if($request->hasFile('avatar')){
                 $file = $request->file('avatar');
@@ -84,6 +100,8 @@ class AppoinmentController extends Controller
         $appointment->appointment_to = $request->appointment_to;
         $appointment->doctor_id = $request->doctor_id;
         $appointment->notes = $request->notes;
+        $appointment->appointment_type = $request->appointment_type;
+        $appointment->bill_status = $request->bill_status;
         $appointment->save();
 
         return redirect()->route('dashboard.appoinment')->with('success', 'Appointment created successfully!');

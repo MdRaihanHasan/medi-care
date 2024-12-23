@@ -32,7 +32,9 @@
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ route('dashboard.patient-treatments.index') }}">Patient Treatment List</a></li>
-                        <li><a href="{{ route('dashboard.patient-treatments.create') }}">Add Patient Treatment</a></li>
+                        <li><a href="{{ route('dashboard.treatment.outdoor') }}">Out Patient Treatment </a></li>
+                        <li><a href="{{ route('dashboard.treatment.indoor') }}">In Patient Treatment </a></li>
+                        {{-- <li><a href="{{ route('dashboard.patient-treatments.create') }}">Add Patient Treatment</a></li> --}}
                     </ul>
                 </li>
                 {{-- <li class="submenu">
@@ -54,9 +56,19 @@
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ route('dashboard.appoinment') }}">Appointment List</a></li>
-                        <li><a href="{{ route('dashboard.appoinment.create') }}">Book Appointment</a></li>
+                        <li><a href="/dashboard/appointments?search=outdoor">Out Appointment</a></li>
+                        <li><a href="/dashboard/appointments?search=indoor">In Appointment</a></li>
                     </ul>
                 </li>
+                {{-- <li class="submenu">
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/assets/img/icons/menu-icon-04.svg') }}"
+                                alt=""></span> <span>Doctor Appointments </span> <span
+                            class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('dashboard.appoinment') }}">In Appointments</a></li>
+                        <li><a href="{{ route('dashboard.appoinment.create') }}">Out Appointment</a></li>
+                    </ul>
+                </li> --}}
                 <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('/assets/img/icons/menu-icon-05.svg') }}"
                                 alt=""></span> <span> Doctor Schedule </span> <span
@@ -72,7 +84,9 @@
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ route('dashboard.services.index') }}">Service List</a></li>
-                        <li><a href="{{ route('dashboard.services.create') }}">Add Service</a></li>
+                        <li><a href="{{ route('dashboard.service_schedules.index') }}">Service Shedule</a></li>
+                        <li><a href="{{ route('dashboard.patient_service_schedules.index') }}">Patient Service Shedule</a></li>
+
                     </ul>
                 </li>
                 <li class="submenu">
@@ -91,6 +105,7 @@
                     <ul style="display: none;">
                         <li><a href="{{ route('dashboard.rooms.index') }}">Room List</a></li>
                         <li><a href="{{ route('dashboard.room-type.index') }}">Room Type</a></li>
+                        <li><a href="{{ route('dashboard.beds.index') }}">Bed</a></li>
                     </ul>
                 </li>
                 <li class="submenu">
@@ -100,6 +115,15 @@
                     <ul style="display: none;">
                         <li><a href="{{ route('dashboard.medicines.index') }}">Medicine List</a></li>
                         <li><a href="{{ route('dashboard.medicine-categories.index') }}">Medicine Category</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#"><span class="menu-side"><img src="{{ asset('/assets/img/icons/menu-icon-07.svg') }}"
+                                alt=""></span> <span> Hospital Charge </span> <span
+                            class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('dashboard.hospital-charge.index') }}">Hospital Charge List</a></li>
+                        {{-- <li><a href="{{ route('dashboard.medicine-categories.index') }}">Medicine Category</a></li> --}}
                     </ul>
                 </li>
                 {{-- <li class="submenu">

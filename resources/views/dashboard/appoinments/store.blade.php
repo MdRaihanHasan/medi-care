@@ -162,6 +162,27 @@
                                     </div>
                                 </div>
 
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>Appointment Type <span class="login-danger">*</span></label>
+                                        <select class="form-control" name="appointment_type" required>
+                                            <option value="" disabled selected>Select Appointment Type</option>
+                                            <option value="indoor">Indoor</option>
+                                            <option value="outdoor">Outdoor</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>Bill status <span class="login-danger">*</span></label>
+                                        <select class="form-control" name="bill_status" required>
+                                            <option value="" disabled selected>Select bill</option>
+                                            <option value="paid">paid</option>
+                                            <option value="unpaid">unpaid</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <!-- Notes -->
                                 <div class="col-12">
                                     <div class="input-block local-forms">

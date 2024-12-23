@@ -70,6 +70,7 @@
                                         <th>Mobile</th>
                                         <th>Email</th>
                                         <th>Address</th>
+                                        <th>Type</th>
                                         <th>Joining Date</th>
                                         <th></th>
                                     </tr>
@@ -92,6 +93,7 @@
                                         <td><a href="tel:{{ $patient->mobile }}">{{ $patient->mobile }}</a></td>
                                         <td><a href="mailto:{{ $patient->email }}">{{ $patient->email }}</a></td>
                                         <td>{{ $patient->address }}</td>
+                                        <td>{{ $patient->patient_type }}</td>
                                         <td>{{ $patient->created_at->format('d.m.Y') }}</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">

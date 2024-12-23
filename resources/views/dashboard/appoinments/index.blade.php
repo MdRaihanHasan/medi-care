@@ -70,6 +70,7 @@
                                         <th>Treatment</th>
                                         <th>Mobile</th>
                                         <th>Email</th>
+                                        <th>Type</th>
                                         <th>Date</th>
                                         <th>Time</th>
                                         <th class="text-end">Actions</th>
@@ -97,6 +98,7 @@
                                             <td>
                                                 <a href="mailto:{{ $appointment->patient->email }}">{{ $appointment->patient->email }}</a>
                                             </td>
+                                            <td>{{ $appointment->appointment_type }}</td>
                                             <td>{{ $appointment->appointment_date }}</td>
                                             <td>{{ $appointment->appointment_from }}</td>
                                             <td class="text-end">

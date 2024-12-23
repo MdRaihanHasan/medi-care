@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Patients </a></li>
+                        <li class="breadcrumb-item"><a href="#">service_schedules </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Add Patient</li>
+                        <li class="breadcrumb-item active">Add service_schedules</li>
                     </ul>
                 </div>
             </div>
@@ -19,89 +19,55 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('dashboard.patient.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('dashboard.service_schedules.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-heading">
-                                        <h4>Patient Details</h4>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="input-block local-forms">
-                                        <label>First Name <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" name="first_name" placeholder="Enter first name">
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="input-block local-forms">
-                                        <label>Last Name <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" name="last_name" placeholder="Enter last name">
+                                        <h4>Service Schedule Details</h4>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="input-block local-forms">
-                                        <label>Mobile <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" name="mobile" placeholder="Enter mobile number">
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="input-block local-forms">
-                                        <label>Email <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="email" name="email" placeholder="Enter email">
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="input-block select-gender">
-                                        <label class="gen-label">Gender <span class="login-danger">*</span></label>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" value="Male" class="form-check-input"> Male
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" value="Female" class="form-check-input"> Female
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-sm-12">
-                                    <div class="input-block local-forms">
-                                        <label>Address <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30" name="address" placeholder="Enter address"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="input-block local-forms">
-                                        <label>Patient Type <span class="login-danger">*</span></label>
-                                        <select class="form-control" name="patient_type" required>
-                                            <option value="" disabled selected>Select Type</option>
-                                            <option value="indoor">Indoor</option>
-                                            <option value="outdoor">Outdoor</option>
+                                        <label>Service Name <span class="login-danger">*</span></label>
+                                        <select name="service_id" class="form-control" required>
+                                            <option value="">Select Service</option>
+                                            @foreach ($services as $service)
+                                                <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="input-block local-top-form">
-                                        <label class="local-top">Avatar <span class="login-danger">*</span></label>
-                                        <div class="settings-btn upload-files-avator">
-                                            <input type="file" accept="image/*" name="avatar" id="file" class="form-control" style="
-                                            border: none;
-                                            /* margin-bottom: 10px; */
-                                            padding-bottom: 30px;
-                                            margin-top: -8px;
-                                        ">
-                                            <label for="file" class="upload">Choose File</label>
-                                        </div>
+                                    <div class="input-block local-forms">
+                                        <label>Schedule Date <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="date" name="date" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>Start Time <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="time" name="start_time" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>End Time <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="time" name="end_time" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>Status <span class="login-danger">*</span></label>
+                                        <select name="status" class="form-control" required>
+                                            <option value="Available">Available</option>
+                                            <option value="Unavailable">Unavailable</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -113,6 +79,8 @@
                                 </div>
                             </div>
                         </form>
+
+
 
                     </div>
                 </div>

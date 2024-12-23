@@ -15,6 +15,24 @@ class PatientTreatmentController extends Controller
         // $patients = Patient::all();
         return view('dashboard.patient_treatments.index', compact('patientTreatments','searchTerm'));
     }
+    public function indoor()
+    {
+        $searchTerm = '';
+        $patientTreatments = PatientTreatment::with('patient')
+        ->where('treatment_type', 'indoor')
+        ->get();
+        // $patients = Patient::all();
+        return view('dashboard.patient_treatments.index', compact('patientTreatments','searchTerm'));
+    }
+    public function outdoor()
+    {
+        $searchTerm = '';
+        $patientTreatments = PatientTreatment::with('patient')
+        ->where('treatment_type', 'outdoor')
+        ->get();
+        // $patients = Patient::all();
+        return view('dashboard.patient_treatments.index', compact('patientTreatments','searchTerm'));
+    }
 
     // Show the form for creating a new resource.
     public function create()
@@ -26,7 +44,7 @@ class PatientTreatmentController extends Controller
     // Store a newly created resource in storage.
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $validated = $request->validate([
             'patient_id' => 'required|exists:patients,id',
             'treatment_type' => 'required|string',

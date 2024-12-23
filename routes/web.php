@@ -3,8 +3,10 @@
 use App\Models\Doctor;
 use App\Models\Service;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BedController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\WardController;
+use App\Http\Controllers\RouteController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
@@ -15,8 +17,11 @@ use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AppoinmentController;
 use App\Http\Controllers\DoctorSheduleController;
+use App\Http\Controllers\HospitalChargeController;
+use App\Http\Controllers\ServiceScheduleController;
 use App\Http\Controllers\MedicineCategoryController;
 use App\Http\Controllers\PatientTreatmentController;
+use App\Http\Controllers\PatientServiceScheduleController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -67,6 +72,13 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::resource('room-type', RoomTypeController::class);
     Route::Resource('medicine-categories', MedicineCategoryController::class);
     Route::Resource('medicines', MedicineController::class);
+    Route::Resource('hospital-charge', HospitalChargeController::class);
+    Route::resource('service_schedules', ServiceScheduleController::class);
+    Route::resource('beds', BedController::class);
+    Route::resource('patient_service_schedules', PatientServiceScheduleController::class);
+
+    Route::get('/treatment/outdoor', [PatientTreatmentController::class, 'outdoor'])->name('treatment.outdoor');
+    Route::get('/treatment/indoor', [PatientTreatmentController::class, 'indoor'])->name('treatment.indoor');
 
 });
 
