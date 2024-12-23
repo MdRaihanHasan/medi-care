@@ -14,6 +14,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\RoomTypeController;
+use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AppoinmentController;
 use App\Http\Controllers\DoctorSheduleController;
@@ -76,9 +77,11 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::resource('service_schedules', ServiceScheduleController::class);
     Route::resource('beds', BedController::class);
     Route::resource('patient_service_schedules', PatientServiceScheduleController::class);
+    Route::resource('admissions', AdmissionController::class);
 
     Route::get('/treatment/outdoor', [PatientTreatmentController::class, 'outdoor'])->name('treatment.outdoor');
     Route::get('/treatment/indoor', [PatientTreatmentController::class, 'indoor'])->name('treatment.indoor');
+
 
 });
 

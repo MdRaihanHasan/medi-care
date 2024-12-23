@@ -60,15 +60,16 @@
                         <li><a href="/dashboard/appointments?search=indoor">In Appointment</a></li>
                     </ul>
                 </li>
-                {{-- <li class="submenu">
+                <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('/assets/img/icons/menu-icon-04.svg') }}"
-                                alt=""></span> <span>Doctor Appointments </span> <span
+                                alt=""></span> <span>Admission </span> <span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="{{ route('dashboard.appoinment') }}">In Appointments</a></li>
-                        <li><a href="{{ route('dashboard.appoinment.create') }}">Out Appointment</a></li>
+                        <li><a href="{{ route('dashboard.admissions.index') }}">Admission list</a></li>
+                        <li><a href="{{ route('dashboard.admissions.index') }}">Admission list</a></li>
+                        {{-- <li><a href="{{ route('dashboard.appoinment.create') }}">Out Appointment</a></li> --}}
                     </ul>
-                </li> --}}
+                </li>
                 <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('/assets/img/icons/menu-icon-05.svg') }}"
                                 alt=""></span> <span> Doctor Schedule </span> <span

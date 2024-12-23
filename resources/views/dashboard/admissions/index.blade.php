@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Admission </a></li>
+                        <li class="breadcrumb-item"><a href="#">Admission  </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Admission List</li>
+                        <li class="breadcrumb-item active">Admission  List</li>
                     </ul>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                                         <div class="doctor-search-blk">
                                             @include('components.search-component', ['searchTerm' => $searchTerm])
                                             <div class="add-group">
-                                                <a href="{{ route('dashboard.patient-treatments.create') }}"
+                                                <a href="{{ route('dashboard.admissions.create') }}"
                                                     class="btn btn-primary add-pluss ms-2"><img
                                                         src="{{ asset('') }}assets/img/icons/plus.svg" alt=""></a>
                                                 <a href="javascript:;"
@@ -66,31 +66,37 @@
                                             </div>
                                         </th>
                                         <th>Patient</th>
-                                        <th>Treatment Type</th>
-                                        <th>Treatment Details</th>
-                                        <th>Treatment Date</th>
+                                        <th>Admission Reason</th>
+                                        <th>Admission Date</th>
+                                        <th>Ward</th>
+                                        <th>Room</th>
+                                        <th class="">Guardian</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($patientTreatments as $patientTreatment)
+                                    @foreach($admissions as $admission)
                                     <tr>
                                         <td>
                                             <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="{{ $patientTreatment->id }}">
+                                                <input class="form-check-input" type="checkbox" value="{{ $admission->id }}">
                                             </div>
                                         </td>
-                                        <td>{{ $patientTreatment->patient->first_name }} {{ $patientTreatment->patient->last_name }}</td>
-                                        <td>{{ ucfirst($patientTreatment->treatment_type) }}</td>
-                                        <td>{{ $patientTreatment->treatment_details ?? 'N/A' }}</td>
-                                        <td>{{ $patientTreatment->treatment_date }}</td>
+                                        <td>{{ $admission->patient->first_name }} {{ $admission->patient->last_name }}</td>
+                                        <td>{{ ucfirst($admission->admission_reason) }}</td>
+                                        <td>{{ $admission->admission_date }}</td>
+                                        <td>{{ $admission->ward->name ?? 'N/A' }}</td>
+                                        <td>{{ $admission->room->name ?? 'N/A' }}</td>
+                                        @foreach ($admission->patient->guardians as $guardian)
+                    <td>{{ $guardian->first_name }} {{ $guardian->last_name }} - {{ $guardian->relationship }}</td>
+                @endforeach
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                                     <i class="fa fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <form action="{{ route('dashboard.patient-treatments.destroy', $patientTreatment->id) }}" method="POST" style="display: inline;">
+                                                    <form action="{{ route('dashboard.admissions.destroy', $admission->id) }}" method="POST" style="display: inline;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="dropdown-item text-danger">

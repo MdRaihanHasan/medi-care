@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
+use App\Models\Ward;
 use App\Models\Patient;
+use App\Models\Admission;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -71,4 +74,69 @@ class PatientController extends Controller
 
         return redirect()->route('dashboard.patient')->with('success', 'Patient deleted successfully!');
     }
+
+    public function admitInpatient(Request $request)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'patient_id' => 'required|exists:patients,id',
+            'admission_reason' => 'required|string',
+            'admission_date' => 'required|date',
+            'ward_id' => 'nullable|exists:wards,id',
+            'room_id' => 'nullable|exists:rooms,id',
+            'guardian_first_name' => 'required|string',
+            'guardian_last_name' => 'required|string',
+            'guardian_relationship' => 'required|string',
+            'guardian_mobile' => 'nullable|string',
+            'guardian_email' => 'nullable|email',
+        ]);
+
+        // Retrieve the patient
+        $patient = Patient::findOrFail($request->patient_id);
+
+        // Create a new guardian record for the patient
+        $guardian = $patient->guardians()->create([
+            'first_name' => $request->guardian_first_name,
+            'last_name' => $request->guardian_last_name,
+            'relationship' => $request->guardian_relationship,
+            'mobile' => $request->guardian_mobile,
+            'email' => $request->guardian_email,
+        ]);
+
+        // Create a new admission record for the patient
+        $admission = new Admission([
+            'admission_reason' => $request->admission_reason,
+            'admission_date' => $request->admission_date,
+            'ward_id' => $request->ward_id, // Optional, if assigned
+            'room_id' => $request->room_id, // Optional, if assigned
+        ]);
+
+        // Save the admission record for the patient
+        $patient->admission()->save($admission);
+
+        // Return a success response with the patient, guardian, and admission data
+        return response()->json([
+            'message' => 'Inpatient admitted successfully!',
+            'patient' => $patient,
+            'guardian' => $guardian,
+            'admission' => $admission,
+        ]);
+    }
+
+    /**
+     * Display the patient details and admission form.
+     */
+    public function showAdmissionForm($id)
+    {
+        // Retrieve the patient
+        $patient = Patient::findOrFail($id);
+
+        // Retrieve all wards and rooms for the dropdown lists
+        $wards = Ward::all();
+        $rooms = Room::all();
+
+        // Return a view with the patient details and available wards/rooms
+        return view('patients.admit', compact('patient', 'wards', 'rooms'));
+    }
+
 }

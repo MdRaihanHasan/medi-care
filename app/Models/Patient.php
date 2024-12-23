@@ -19,4 +19,17 @@ class Patient extends Model
         return $this->hasMany(PatientServiceSchedule::class);
     }
 
+        // Relationship with guardians
+        public function guardians()
+        {
+            return $this->hasMany(Guardian::class);
+        }
+
+        // Relationship with admissions
+        public function admission()
+        {
+            return $this->hasOne(Admission::class);
+        }
+
+
 }
