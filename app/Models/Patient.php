@@ -31,5 +31,13 @@ class Patient extends Model
             return $this->hasOne(Admission::class);
         }
 
+        // Relationship with doctor visits
+        public function doctorVisits()
+        {
+            return $this->hasMany(DoctorVisit::class);
+        }
+
+        
+
 
 }

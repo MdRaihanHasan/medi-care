@@ -17,6 +17,7 @@ use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AppoinmentController;
+use App\Http\Controllers\DoctorVisitController;
 use App\Http\Controllers\DoctorSheduleController;
 use App\Http\Controllers\HospitalChargeController;
 use App\Http\Controllers\ServiceScheduleController;
@@ -82,6 +83,10 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
 
     Route::get('/treatment/outdoor', [PatientTreatmentController::class, 'outdoor'])->name('treatment.outdoor');
     Route::get('/treatment/indoor', [PatientTreatmentController::class, 'indoor'])->name('treatment.indoor');
+
+    Route::get('/inpatients/visits', [DoctorVisitController::class, 'index'])->name('doctor.visits.index');
+    Route::get('/inpatients/visits/create', [DoctorVisitController::class, 'create'])->name('doctor.visits.create');
+    Route::post('/inpatients/visits/store', [DoctorVisitController::class, 'store'])->name('doctor.visits.store');
 
 
 });

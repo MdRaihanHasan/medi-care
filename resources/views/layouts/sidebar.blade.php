@@ -17,6 +17,15 @@
                         <li><a href="{{ route('dashboard.doctor.create') }}">Add Doctor</a></li>
                     </ul>
                 </li>
+                <li class="submenu {{ request()->routeIs('dashboard.doctor' , 'dashboard.doctor.create') ? 'active' : '' }}">
+                    <a href="#"><span class="menu-side "><img src="{{ asset('/assets/img/icons/menu-icon-02.svg') }}"
+                                alt=""></span> <span> Doctor visit </span> <span
+                            class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('dashboard.doctor.visits.index') }}">indoctor List</a></li>
+                        {{-- <li><a href="{{ route('dashboard.doctor.create') }}">Add Doctor</a></li> --}}
+                    </ul>
+                </li>
                 <li class="submenu">
                     <a href="#"><span class="menu-side"><img src="{{ asset('/assets/img/icons/menu-icon-03.svg') }}"
                                 alt=""></span> <span>Patients </span> <span
