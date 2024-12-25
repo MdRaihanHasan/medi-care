@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use PDF;
 use App\Models\Doctor;
 use App\Models\Patient;
+use App\Models\Service;
 use App\Models\Medicine;
 use App\Models\Admission;
 use App\Models\DoctorVisit;
@@ -25,8 +26,9 @@ class DoctorVisitController extends Controller
         $admissions = Admission::with('patient')->get();
         $doctors = Doctor::all();
         $medicines = Medicine::all();
+        $services = Service::all();
 
-        return view('dashboard.doctor_visits.store', compact('admissions', 'doctors', 'medicines'));
+        return view('dashboard.doctor_visits.store', compact('admissions', 'doctors', 'medicines', 'services'));
     }
 
 public function store(Request $request)

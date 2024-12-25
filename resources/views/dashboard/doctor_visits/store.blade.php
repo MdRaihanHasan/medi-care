@@ -34,8 +34,10 @@
                                         <select name="patient_id" class="form-control" required>
                                             <option value="">Select Patient</option>
                                             @foreach ($admissions as $admission)
+                                            @if(!$admission->patient->discharged_at)
                                                 <option value="{{ $admission->patient->id }}">{{ $admission->patient->first_name }} {{ $admission->patient->last_name }}</option>
-                                            @endforeach
+                                            @endif
+                                                @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -62,9 +64,34 @@
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="input-block local-forms">
                                         <label>Type <span class="login-danger">*</span></label>
-                                        <select name="type" class="form-control" required>
+                                        <select name="type" id="type-select" class="form-control" required>
+                                            <option value="">Select</option>
                                             <option value="medicine">Medicine</option>
                                             <option value="service">Service</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-6" id="medicine-field" style="display: none;">
+                                    <div class="input-block local-forms">
+                                        <label>Medicine <span class="login-danger">*</span></label>
+                                        <select name="medicines" id="medicine-select" class="form-control">
+                                            <option value="">Select</option>
+                                            @foreach ($medicines as $medicine)
+                                                <option value="{{ $medicine->name }}">{{ $medicine->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-6" id="service-field" style="display: none;">
+                                    <div class="input-block local-forms">
+                                        <label>Service <span class="login-danger">*</span></label>
+                                        <select name="services" id="service-select" class="form-control">
+                                            <option value="">Select</option>
+                                            @foreach ($services as $service)
+                                                <option value="{{ $service->name }}">{{ $service->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -72,9 +99,10 @@
                                 <div class="col-12">
                                     <div class="input-block local-forms">
                                         <label>Prescription Details <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" name="prescription_details" rows="3" required></textarea>
+                                        <textarea class="form-control" id="prescription-details" name="prescription_details" rows="3" required></textarea>
                                     </div>
                                 </div>
+
 
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
@@ -316,18 +344,51 @@
         </div>
     </div>
 </div>
-<div id="delete_patient" class="modal fade delete-modal" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="text-center modal-body">
-                <img src="assets/img/sent.png" alt="" width="50" height="46">
-                <h3>Are you sure want to delete this ?</h3>
-                <div class="m-t-20"> <a href="#" class="btn btn-white"
-                        data-bs-dismiss="modal">Close</a>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const typeSelect = document.getElementById('type-select');
+        const medicineField = document.getElementById('medicine-field');
+        const serviceField = document.getElementById('service-field');
+        const medicineSelect = document.getElementById('medicine-select');
+        const serviceSelect = document.getElementById('service-select');
+        const prescriptionDetails = document.getElementById('prescription-details');
+
+        // Listen for changes in the Type dropdown
+        typeSelect.addEventListener('change', function () {
+            const selectedType = typeSelect.value;
+
+            // Toggle fields based on selection
+            if (selectedType === 'medicine') {
+                medicineField.style.display = 'block';
+                serviceField.style.display = 'none';
+                serviceSelect.value = ''; // Clear service selection
+            } else if (selectedType === 'service') {
+                serviceField.style.display = 'block';
+                medicineField.style.display = 'none';
+                medicineSelect.value = ''; // Clear medicine selection
+            } else {
+                medicineField.style.display = 'none';
+                serviceField.style.display = 'none';
+            }
+
+            // Clear the prescription details when type changes
+            prescriptionDetails.value = '';
+        });
+
+        // Listen for changes in the Medicine dropdown
+        medicineSelect.addEventListener('change', function () {
+            if (typeSelect.value === 'medicine') {
+                prescriptionDetails.value = `Medicine: ${medicineSelect.value}`;
+            }
+        });
+
+        // Listen for changes in the Service dropdown
+        serviceSelect.addEventListener('change', function () {
+            if (typeSelect.value === 'service') {
+                prescriptionDetails.value = `Service: ${serviceSelect.value}`;
+            }
+        });
+    });
+</script>
+
 @endsection
