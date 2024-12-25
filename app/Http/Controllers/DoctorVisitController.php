@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Dompdf\Dompdf;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Medicine;
@@ -50,4 +50,24 @@ public function store(Request $request)
     return redirect()->route('dashboard.doctor.visits.index')->with('success', 'Doctor visit recorded successfully.');
 }
 
-}
+        public function prescription($id)
+        {
+            $doctorVisit = DoctorVisit::with('admission', 'doctor')->findOrFail($id);
+            // Fetch data for the prescription
+            $data = [
+                'admission' => $doctorVisit->admission,
+                'doctor' => $doctorVisit->doctor,
+                'visit_date' => $doctorVisit->visit_date,
+                'type' => ucfirst($doctorVisit->type),
+                'prescription_details' => $doctorVisit->prescription_details,
+            ];
+
+            // Load the view and render it as a PDF
+            $pdf = Pdf::loadView('dashboard.prescription', $data);
+
+
+            // Return the PDF as a downloadable response
+            return $pdf->download('prescription.pdf');
+        }
+
+    }

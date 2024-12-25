@@ -17,4 +17,9 @@ class DoctorVisit extends Model
     {
         return $this->belongsTo(Doctor::class, 'doctor_id');
     }
+
+    public function admission()
+    {
+        return $this->belongsTo(Admission::class, 'inpatient_id');
+    }
 }

@@ -93,6 +93,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::get('/inpatients/visits', [DoctorVisitController::class, 'index'])->name('doctor.visits.index');
     Route::get('/inpatients/visits/create', [DoctorVisitController::class, 'create'])->name('doctor.visits.create');
     Route::post('/inpatients/visits/store', [DoctorVisitController::class, 'store'])->name('doctor.visits.store');
+    Route::get('/inpatients/visits/prescription/{id}', [DoctorVisitController::class, 'prescription'])->name('doctor.visits.prescritipion');
 
     // Route::get('/patients/{patient}/discharge', [DischargeController::class, 'create'])->name('dashboard.discharges.create');
     // Route::post('/patients/{patient}/discharge', [DischargeController::class, 'store'])->name('dashboard.discharges.store');

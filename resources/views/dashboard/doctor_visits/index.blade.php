@@ -70,7 +70,7 @@
                                         <th>Patient</th>
                                         <th>Doctor</th>
                                         <th>Visit Date</th>
-                                        <th>Prescription</th>
+                                        {{-- <th>Prescription</th> --}}
                                         <th>Type</th>
                                         <th>Prescripion</th>
                                         <th></th>
@@ -88,10 +88,10 @@
                                         <td>{{ $visit->patient->first_name ?? '' }} {{ $visit->patient->last_name ?? '' }}</td> <!-- Related patient first_name -->
                                         <td>{{ $visit->doctor->first_name }} {{ $visit->doctor->last_name }}</td> <!-- Related doctor first_name -->
                                         <td>{{ $visit->visit_date }}</td> <!-- Visit date -->
-                                        <td>{{ $visit->prescription_details }}</td> <!-- Prescription details -->
+                                        {{-- <td>{{ $visit->prescription_details }}</td> <!-- Prescription details --> --}}
                                         <td>{{ ucfirst($visit->type) }}</td> <!-- Type (Medicine or Service) -->
                                         <td class="btn bg-primary" style="text-decoration:underline;font-weight:600;padding-top: 8px;padding-bottom: 8px;">
-                                            Download
+                                            <a href="{{ route('dashboard.doctor.visits.prescritipion', $visit->id) }}" style="color:white;">download</a>
                                         </td> <!-- Related patient first_name -->
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
