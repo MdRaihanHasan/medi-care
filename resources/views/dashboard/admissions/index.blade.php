@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">visit </a></li>
+                        <li class="breadcrumb-item"><a href="#">Admissions </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">visit </li>
+                        <li class="breadcrumb-item active">Admissions List</li>
                     </ul>
                 </div>
             </div>
@@ -28,11 +28,11 @@
                                     @endif
 
                                     <div class="doctor-table-blk">
-                                        <h3>visit List</h3>
+                                        <h3>Admissions List</h3>
                                         <div class="doctor-search-blk">
                                             @include('components.search-component', ['searchTerm' => $searchTerm])
                                             <div class="add-group">
-                                                <a href="{{ route('dashboard.doctor.visits.create') }}"
+                                                <a href="{{ route('dashboard.admissions.create') }}"
                                                     class="btn btn-primary add-pluss ms-2"><img
                                                         src="{{ asset('') }}assets/img/icons/plus.svg" alt=""></a>
                                                 <a href="javascript:;"
@@ -66,49 +66,45 @@
                                                 <input class="form-check-input" type="checkbox">
                                             </div>
                                         </th>
-
-                                        <th>Patient</th>
-                                        <th>Doctor</th>
-                                        <th>Visit Date</th>
-                                        <th>Prescription</th>
-                                        <th>Type</th>
-                                        <th>Prescripion</th>
-                                        <th></th>
+                                        <th>Patient Name</th>
+                                        <th>Admission Reason</th>
+                                        <th>Admission Date</th>
+                                        <th>Ward</th>
+                                        <th>Room</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($doctorVisits as $visit)
+                                    @foreach($admissions as $admission)
                                     <tr>
                                         <td>
                                             <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="{{ $visit->id }}">
+                                                <input class="form-check-input" type="checkbox" value="{{ $admission->id }}">
                                             </div>
                                         </td>
-
-                                        <td>{{ $visit->patient->first_name ?? '' }} {{ $visit->patient->last_name ?? '' }}</td> <!-- Related patient first_name -->
-                                        <td>{{ $visit->doctor->first_name }} {{ $visit->doctor->last_name }}</td> <!-- Related doctor first_name -->
-                                        <td>{{ $visit->visit_date }}</td> <!-- Visit date -->
-                                        <td>{{ $visit->prescription_details }}</td> <!-- Prescription details -->
-                                        <td>{{ ucfirst($visit->type) }}</td> <!-- Type (Medicine or Service) -->
-                                        <td class="btn bg-primary" style="text-decoration:underline;font-weight:600;padding-top: 8px;padding-bottom: 8px;">
-                                            Download
-                                        </td> <!-- Related patient first_name -->
+                                        <td>{{ $admission->patient->first_name }} {{ $admission->patient->last_name }}</td> <!-- Patient Name -->
+                                        <td>{{ $admission->admission_reason }}</td> <!-- Admission Reason -->
+                                        <td>{{ $admission->admission_date }}</td> <!-- Admission Date -->
+                                        <td>{{ $admission->ward->name ?? 'Not Assigned' }}</td> <!-- Ward Name -->
+                                        <td>{{ $admission->room->room_number ?? 'Not Assigned' }}</td> <!-- Room Number -->
+                                        <td>{{ ucfirst($admission->status ?? 'Pending') }}</td> <!-- Status -->
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                                     <i class="fa fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    {{-- <a href="{{ route('dashboard.doctor_visits.edit', $visit->id) }}" class="dropdown-item">
+                                                    <a href="{{ route('dashboard.admissions.edit', $admission->id) }}" class="dropdown-item">
                                                         <i class="fa fa-edit m-r-5"></i> Edit
-                                                    </a> --}}
-                                                    {{-- <form action="{{ route('dashboard.doctor_visits.destroy', $visit->id) }}" method="POST" style="display: inline;">
+                                                    </a>
+                                                    <form action="{{ route('dashboard.admissions.destroy', $admission->id) }}" method="POST" style="display: inline;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="dropdown-item text-danger">
                                                             <i class="fa fa-trash-alt m-r-5"></i> Delete
                                                         </button>
-                                                    </form> --}}
+                                                    </form>
                                                 </div>
                                             </div>
                                         </td>

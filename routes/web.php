@@ -81,6 +81,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::Resource('hospital-charge', HospitalChargeController::class);
     Route::resource('service_schedules', ServiceScheduleController::class);
     Route::resource('beds', BedController::class);
+    Route::get('bed-in-ward', [BedController::class, 'bedInRoom'])->name('bedInRoom');
+    Route::get('create-bed-in-ward', [BedController::class, 'bedInWardstore'])->name('bedInWardstore');
     Route::resource('patient_service_schedules', PatientServiceScheduleController::class);
     Route::resource('admissions', AdmissionController::class);
     Route::get('guardians', [AdmissionController::class, 'guardian'])->name('guardians');

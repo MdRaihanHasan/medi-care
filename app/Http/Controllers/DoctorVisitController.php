@@ -15,19 +15,19 @@ class DoctorVisitController extends Controller
     {
         $searchTerm = '';
         // Retrieve all doctor visits (or paginate them)
-        $doctorVisits = DoctorVisit::with('inpatient', 'doctor')->get();
+        $doctorVisits = DoctorVisit::with('patient', 'doctor')->get();
 
         return view('dashboard.doctor_visits.index', compact('doctorVisits', 'searchTerm'));
     }
 
     public function create()
-{
-    $inpatient = Patient::all();
-    $doctors = Doctor::all();
-    $medicines = Medicine::all();
+    {
+        $admissions = Admission::with('patient')->get();
+        $doctors = Doctor::all();
+        $medicines = Medicine::all();
 
-    return view('dashboard.doctor_visits.store', compact('inpatient', 'doctors', 'medicines'));
-}
+        return view('dashboard.doctor_visits.store', compact('admissions', 'doctors', 'medicines'));
+    }
 
 public function store(Request $request)
 {

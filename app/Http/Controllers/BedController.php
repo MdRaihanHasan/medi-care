@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bed;
 use App\Models\Room;
+use App\Models\Ward;
 use Illuminate\Http\Request;
 
 class BedController extends Controller
@@ -19,6 +20,16 @@ class BedController extends Controller
     }
 
     /**
+     * Display a listing of the beds.
+     */
+    public function bedInRoom()
+    {
+        $searchTerm = '';
+        $beds = Bed::with('room')->get(); // Fetch all beds with room data
+        return view('dashboard.beds.bedInWard', compact('beds', 'searchTerm')); // Use the correct path
+    }
+
+    /**
      * Show the form for creating a new bed.
      */
     public function create()
@@ -27,18 +38,29 @@ class BedController extends Controller
         return view('dashboard.beds.store', compact('rooms')); // Use the correct path
     }
 
+    public function bedInWardstore()
+    {
+        $rooms = Ward::all(); // Get all rooms
+        return view('dashboard.beds.bedInWardstore', compact('rooms')); // Use the correct path
+    }
+
     /**
      * Store a newly created bed in the database.
      */
     public function store(Request $request)
     {
         $request->validate([
-            'room_id' => 'required|exists:rooms,id',
+            'room_id' => 'required',
             'bed_number' => 'required|unique:beds,bed_number',
             'status' => 'required|in:available,occupied,maintenance',
         ]);
 
         Bed::create($request->all());
+
+
+        if($request->ward_bed_page == 'ward_bed_page'){
+            return redirect()->route('dashboard.bedInRoom')->with('success', 'Bed created successfully.');
+        }
 
         return redirect()->route('dashboard.beds.index')->with('success', 'Bed created successfully.');
     }

@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Doctor Visit </a></li>
+                        <li class="breadcrumb-item"><a href="#">Beds </a></li>
                         <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Add visit</li>
+                        <li class="breadcrumb-item active">Add beds</li>
                     </ul>
                 </div>
             </div>
@@ -19,60 +19,42 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('dashboard.doctor.visits.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('dashboard.beds.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-heading">
-                                        <h4>Doctor Visit Details</h4>
+                                        <h4>Bed Details</h4>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="input-block local-forms">
-                                        <label>Patient <span class="login-danger">*</span></label>
-                                        <select name="patient_id" class="form-control" required>
-                                            <option value="">Select Patient</option>
-                                            @foreach ($admissions as $admission)
-                                                <option value="{{ $admission->patient->id }}">{{ $admission->patient->first_name }} {{ $admission->patient->last_name }}</option>
+                                        <label>Ward <span class="login-danger">*</span></label>
+                                        <select name="room_id" class="form-control" required>
+                                            <option value="">Select Ward</option>
+                                            @foreach ($rooms as $room)
+                                                <option value="{{ $room->id }}">{{ $room->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
+                                <input type="hidden" name="ward_bed_page" value="ward_bed_page">
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
+                                        <label>Bed Number <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" name="bed_number" required>
+                                    </div>
+                                </div>
 
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="input-block local-forms">
-                                        <label>Doctor <span class="login-danger">*</span></label>
-                                        <select name="doctor_id" class="form-control" required>
-                                            <option value="">Select Doctor</option>
-                                            @foreach ($doctors as $doctor)
-                                                <option value="{{ $doctor->id }}">{{ $doctor->first_name }} {{ $doctor->last_name }}</option>
-                                            @endforeach
+                                        <label>Status <span class="login-danger">*</span></label>
+                                        <select name="status" class="form-control" required>
+                                            <option value="available">Available</option>
+                                            <option value="occupied">Occupied</option>
+                                            <option value="maintenance">Maintenance</option>
                                         </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="input-block local-forms">
-                                        <label>Visit Date <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="date" name="visit_date" required>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="input-block local-forms">
-                                        <label>Type <span class="login-danger">*</span></label>
-                                        <select name="type" class="form-control" required>
-                                            <option value="medicine">Medicine</option>
-                                            <option value="service">Service</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="input-block local-forms">
-                                        <label>Prescription Details <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" name="prescription_details" rows="3" required></textarea>
                                     </div>
                                 </div>
 

@@ -8,7 +8,7 @@ class DoctorVisit extends Model
 {
     protected $guarded = [];
 
-    public function inpatient()
+    public function patient()
     {
         return $this->belongsTo(Patient::class, 'inpatient_id');
     }
