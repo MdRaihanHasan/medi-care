@@ -70,9 +70,9 @@
             <p>Thank you for choosing our services!</p>
         </div>
 
-        <div class="avatar">
+        {{-- <div class="avatar">
             <img src="{{ asset('uploads/avatars/' . $patient['avatar']) }}" alt="Patient Avatar">
-        </div>
+        </div> --}}
 
         <div class="patient-info">
             <h2>Patient Information</h2>

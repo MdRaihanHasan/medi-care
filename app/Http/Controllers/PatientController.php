@@ -43,7 +43,7 @@ class PatientController extends Controller
 
 
         // Return the PDF as a downloadable response
-        return $pdf->download('prescription.pdf');
+        return $pdf->download('bill.pdf');
 
 
         $searchTerm = $request->input('search');
