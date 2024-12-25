@@ -90,7 +90,7 @@
             <table>
                 <tr>
                     <th>Patient Name</th>
-                    <td>{{ $admission->patient->first_name }} {{ $admission->patient->last_name }}</td>
+                    <td>{{ $patient->first_name }} {{ $patient->last_name }}</td>
                 </tr>
                 <tr>
                     <th>Doctor Name</th>

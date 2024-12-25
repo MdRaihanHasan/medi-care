@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Dompdf\Dompdf;
+use PDF;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Medicine;
@@ -53,10 +53,13 @@ public function store(Request $request)
         public function prescription($id)
         {
             $doctorVisit = DoctorVisit::with('admission', 'doctor')->findOrFail($id);
+            $patient = Patient::findOrFail($doctorVisit->inpatient_id);
+
             // Fetch data for the prescription
             $data = [
                 'admission' => $doctorVisit->admission,
                 'doctor' => $doctorVisit->doctor,
+                'patient' => $patient,
                 'visit_date' => $doctorVisit->visit_date,
                 'type' => ucfirst($doctorVisit->type),
                 'prescription_details' => $doctorVisit->prescription_details,

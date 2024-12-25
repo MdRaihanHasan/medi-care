@@ -31,5 +31,12 @@ class Admission extends Model
         return $this->belongsTo(Room::class);
     }
 
+    // admission relationship
+    public function doctorVisits()
+    {
+        return $this->hasMany(DoctorVisit::class, 'inpatient_id');
+    }
+
+
 }
 
