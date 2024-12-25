@@ -71,8 +71,12 @@
                                         <th>Email</th>
                                         <th>Address</th>
                                         <th>Type</th>
-                                        <th>Joining Date</th>
+                                        <th>Date</th>
                                         <th>Discharge Status</th> <!-- Add this column -->
+                                        @if (Request::is('dashboard/patients/discharge'))
+                                            <td>Bill</td>
+                                        @endif
+
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -97,6 +101,8 @@
                                         <td>{{ $patient->patient_type }}</td>
                                         <td>{{ $patient->created_at->format('d.m.Y') }}</td>
 
+
+
                                         <!-- Add a column for discharge status -->
                                         <td>
                                             @if($patient->patient_type == 'indoor')
@@ -109,6 +115,10 @@
                                             N/A
                                             @endif
                                         </td>
+
+                                        @if (Request::is('dashboard/patients/discharge'))
+                                        <td class="btn bg-primary" style="font-weight:600;padding-top: 8px;padding-bottom: 8px;"><a href="{{ route('dashboard.patient.bill', $patient->id) }}" style="color:white;">download</a></td>
+                                        @endif
 
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">

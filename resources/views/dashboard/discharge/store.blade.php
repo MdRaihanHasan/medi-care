@@ -43,6 +43,13 @@
 
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="input-block local-forms">
+                                        <label>Bill Amount <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="number" name="bill_amount" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="input-block local-forms">
                                         <label>Bill status <span class="login-danger">*</span></label>
                                         <select class="form-control" name="bill" required>
                                             <option value="" disabled selected>Select bill</option>

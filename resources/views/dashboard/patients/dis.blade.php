@@ -73,6 +73,7 @@
                                         <th>Type</th>
                                         <th>Joining Date</th>
                                         <th>Discharge Status</th> <!-- Add this column -->
+                                        <th>Bill</th> <!-- Add this column -->
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -109,7 +110,7 @@
                                             N/A
                                             @endif
                                         </td>
-
+                                        <td>{{ $patient->bill_amount }}</td>
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>

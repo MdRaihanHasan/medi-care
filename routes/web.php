@@ -43,6 +43,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
 
     Route::get('/patients', [PatientController::class, 'index'])->name('patient');
     Route::get('/patients/discharge', [PatientController::class, 'dis'])->name('patient.dis');
+    Route::get('/patients/discharge/{id}', [PatientController::class, 'billPay'])->name('patient.bill');
     Route::get('/patients/indoor', [PatientController::class, 'indor'])->name('patient.in');
     Route::get('/patients/outdoor', [PatientController::class, 'out'])->name('patient.out');
     Route::get('/patient/create', [PatientController::class, 'create'])->name('patient.create');

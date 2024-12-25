@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use PDF;
 use App\Models\Room;
 use App\Models\Ward;
 use App\Models\Patient;
@@ -25,10 +25,33 @@ class PatientController extends Controller
         $searchTerm = $request->input('search');
 
         $patients = Patient::where('patient_type',  'indoor')->whereNotNull('discharged_at')->get();
-        // dd($patients);
 
         return view('dashboard.patients.index', compact('patients', 'searchTerm'));
     }
+
+    public function billPay($id)
+    {
+        $patients = Patient::where('patient_type',  'indoor')->find($id);
+
+         // Fetch data for the prescription
+         $data = [
+            'patient' => $patients,
+        ];
+
+        // Load the view and render it as a PDF
+        $pdf = Pdf::loadView('dashboard.bill', $data);
+
+
+        // Return the PDF as a downloadable response
+        return $pdf->download('prescription.pdf');
+
+
+        $searchTerm = $request->input('search');
+
+
+        return view('dashboard.patients.index', compact('patients', 'searchTerm'));
+    }
+
     public function indor(Request $request)
     {
         $searchTerm = $request->input('search');

@@ -90,7 +90,7 @@
                                         <td>{{ $visit->visit_date }}</td> <!-- Visit date -->
                                         {{-- <td>{{ $visit->prescription_details }}</td> <!-- Prescription details --> --}}
                                         <td>{{ ucfirst($visit->type) }}</td> <!-- Type (Medicine or Service) -->
-                                        <td class="btn bg-primary" style="text-decoration:underline;font-weight:600;padding-top: 8px;padding-bottom: 8px;">
+                                        <td class="btn bg-primary" style="font-weight:600;padding-top: 8px;padding-bottom: 8px;">
                                             <a href="{{ route('dashboard.doctor.visits.prescritipion', $visit->id) }}" style="color:white;">download</a>
                                         </td> <!-- Related patient first_name -->
                                         <td class="text-end">

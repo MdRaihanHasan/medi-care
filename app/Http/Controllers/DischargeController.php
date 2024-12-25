@@ -66,12 +66,14 @@ class DischargeController extends Controller
                 'discharge_date' => 'required',
                 'note' => 'nullable|string',
                 'bill' => 'nullable|string',
+                'bill_amount' => 'required|numeric',
             ]);
 
             // Set the discharge date
             $patient->discharged_at = $request->discharge_date;
             $patient->note = $request->note; // You can also store additional notes
             $patient->bill = $request->bill; // You can also store additional notes
+            $patient->bill_amount = $request->bill_amount; // You can also store additional notes
             $patient->save();
 
             // Redirect to the patient list or another page with a success message
